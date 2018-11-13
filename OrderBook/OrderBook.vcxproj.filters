@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{a280824a-02ef-4d80-94a0-a36655ce6e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\orderbook">
+      <UniqueIdentifier>{a56850db-cfef-4625-b96c-b3c152f08b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{ef8c1aa2-f17d-4ffb-b3cf-e7b6666d0faf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3party">
+      <UniqueIdentifier>{d740cd14-b4ba-4795-baad-1d4fdfa2f088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3party\json11">
+      <UniqueIdentifier>{10092d50-24b5-4fe9-a163-5914d4a1389d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{2d12228b-bc52-4d69-b0d7-2c91f0a6ffdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{7ef656ac-4bda-4277-b16e-a14497533fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\redisapp">
+      <UniqueIdentifier>{d58bf6fb-8261-4362-aa22-e21498aca601}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orderbook\Order.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orderbook\OrderTree.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orderbook\RBTree.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orderbook\OrderBook.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orderbook\OrderList.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
+    <ClCompile Include="3party\json11\json11.cpp">
+      <Filter>3party\json11</Filter>
+    </ClCompile>
+    <ClCompile Include="test\JsonTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\CSVTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\TestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\RedisTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\JsonToRedisTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\orderbook\Quote.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\redispp\redispp.cpp">
+      <Filter>utils\redisapp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\orderbook\Order.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\OrderTree.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\RBTree.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\common.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\OrderBook.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\Quote.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\OrderList.h">
+      <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="3party\json11\json11.hpp">
+      <Filter>3party\json11</Filter>
+    </ClInclude>
+    <ClInclude Include="test\JsonTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\CSVTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\TestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\RedisTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\JsonToRedisTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\redispp\redispp.h">
+      <Filter>utils\redisapp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\testdata_1.json">
+      <Filter>resources</Filter>
+    </None>
+    <None Include="resources\testdata_0.json">
+      <Filter>resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>

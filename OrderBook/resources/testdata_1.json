@@ -1,0 +1,22 @@
+[
+  {
+    "type": "limit",
+    "side": "bid",
+    "quantity": 6,
+    "price": 102,
+    "trade_id": 109
+  },
+  {
+    "type": "limit",
+    "side": "bid",
+    "quantity": 50,
+    "price": 102,
+    "trade_id": 110
+  },
+  {
+    "type": "market",
+    "side": "ask",
+    "quantity": 40,
+    "trade_id": 111
+  }
+]
