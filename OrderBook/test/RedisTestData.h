@@ -20,5 +20,6 @@ public:
 public:
 	int DoTestProcess();
 	int read_quote_from_redis(std::vector <Quote> &quotes);
+	bool read_quote_from_redis_pop(std::vector <Quote> &quotes);
 };
 

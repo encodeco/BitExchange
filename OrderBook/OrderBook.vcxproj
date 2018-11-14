@@ -48,6 +48,7 @@
     <ClInclude Include="test\JsonToRedisTestData.h" />
     <ClInclude Include="test\RedisTestData.h" />
     <ClInclude Include="test\TestData.h" />
+    <ClInclude Include="utils\parse\parse.h" />
     <ClInclude Include="utils\redispp\redispp.h" />
   </ItemGroup>
   <ItemGroup>

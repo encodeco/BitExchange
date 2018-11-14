@@ -6,6 +6,7 @@
 #include "OrderBook/common.h"
 #include "OrderBook/OrderBook.h"
 #include "OrderBook/Quote.h"
+#include "parse/parse.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6379
@@ -21,26 +22,67 @@ RedisTestData::~RedisTestData()
 
 int RedisTestData::DoTestProcess()
 {
-	// Read Quotes from csv;
-	std::vector< Quote > quotes;
-	read_quote_from_redis(quotes);
-
 	std::unique_ptr <OrderBook> orderbook = std::make_unique<OrderBook>();
+	while (1)
+	{
+		std::vector< Quote > quotes;
+		if (!read_quote_from_redis_pop(quotes))
+			break;
 
-	int cnt = 0;
-	for (auto quote : quotes) {
-		std::cout << "############# " << ++cnt << "th" << std::endl;
-		std::pair<std::vector<TransactionRecord>, Quote> ret = orderbook->process_order(quote, false, false);
-		orderbook->print();
+
+		int cnt = 0;
+		for (auto quote : quotes) {
+			std::cout << "############# " << ++cnt << "th" << std::endl;
+			std::pair<std::vector<TransactionRecord>, Quote> ret = orderbook->process_order(quote, false, false);
+			orderbook->print();
+		}
 	}
-
-
 	return 0;
 }
 /*
 HMSET order_id:2 type limit side bid quantity 6 price 102 trade_id 109
 */
 
+//TC_TYPE, TC_SIDE, TC_QUANTITY, TC_PRICE, TC_ID, TC_TIMESTAMP };
+bool RedisTestData::read_quote_from_redis_pop(std::vector <Quote> &quotes)
+{
+	try {
+		redis.redisCommand("LPOP order");
+
+		if (redis.resp->str && strlen(redis.resp->str)) {
+
+			//std::cout << redis.resp->str;
+			std::string delimeter = "-";
+			std::vector <std::string> parsed;
+			parse(delimeter, redis.resp->str, parsed);
+
+			std::map <std::string, std::string> mapitem;
+			mapitem["oid"] = parsed[0];
+			mapitem["type"] = parsed[1];
+			mapitem["side"] = parsed[2];
+			mapitem["quantity"] = parsed[3];
+			mapitem["price"] = parsed[4];
+			mapitem["tid"] = parsed[5];
+
+			Quote quote(mapitem);
+			quote.set_current_timestamp();
+			quotes.push_back(quote);
+
+			redis.free_reply_object();
+			
+			return true;
+		}
+
+
+		redis.free_reply_object();
+		return false;
+	}
+	catch (int e) {
+		std::cout << "redis read error " << e;
+	}
+
+	return false;
+}
 
 int RedisTestData::read_quote_from_redis(std::vector <Quote> &quotes)
 {

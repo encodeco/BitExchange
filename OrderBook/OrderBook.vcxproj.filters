@@ -25,6 +25,9 @@
     <Filter Include="utils\redisapp">
       <UniqueIdentifier>{d58bf6fb-8261-4362-aa22-e21498aca601}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utils\parse">
+      <UniqueIdentifier>{67cf7599-4dd5-4283-b116-685ee2cc474e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="utils\redispp\redispp.h">
       <Filter>utils\redisapp</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\parse\parse.h">
+      <Filter>utils\parse</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

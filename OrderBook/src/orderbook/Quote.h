@@ -3,6 +3,7 @@
 #include "common.h"
 #include <string>
 #include <vector>
+#include <map>
 #include <boost/algorithm/string.hpp>  
 
 class Quote {
@@ -18,12 +19,14 @@ public:
 public:
 	Quote();
 	Quote(std::vector< std::string > &quote_string);
+	Quote(std::map <std::string, std::string> &mapitems);
 	~Quote();
-
+	
 public:
 	std::string redis_set_hash_string(size_t order_id, time_t timestamp);
 	std::string redis_set_list_string(size_t order_id, time_t timestamp);
 	bool fromText(std::vector< std::string > &quote_string);
+	bool fromMap(std::map <std::string, std::string> &mapitems);
 	time_t set_current_timestamp();
 };
 

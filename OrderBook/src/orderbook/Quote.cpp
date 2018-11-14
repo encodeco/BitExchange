@@ -8,28 +8,55 @@ using namespace std;
 Quote::Quote() : order_type('N'), order_side('N'), quantity(0), price(0), order_id(0), timestamp(0), trade_id(0)
 { 
 }
-Quote::Quote(std::vector< std::string > &quote_string) {
+Quote::Quote(std::map <std::string, std::string> &mapitems) : Quote()
+{
+	this->fromMap(mapitems);
+}
+Quote::Quote(std::vector< std::string > &quote_string) : Quote()
+{
 	this->fromText(quote_string);
 }
+
+
+bool Quote::fromMap(std::map <std::string, std::string> &mapitems) {
+	try {
+		order_id = std::stoi(mapitems["oid"]);
+		order_type = boost::algorithm::to_upper_copy(mapitems["type"])[0];
+		order_side = boost::algorithm::to_upper_copy(mapitems["side"])[0];
+		quantity = std::stoi(mapitems["quantity"]);
+		price = std::stoi(mapitems["price"]);
+		trade_id = std::stoi(mapitems["tid"]);
+		//timestamp = std::stol(mapitems[TC_TIMESTAMP]);
+	}
+	catch (...) {
+		return false;
+	}
+
+	return true;
+}
+
+
+
+
 Quote::~Quote() 
 {
 }
 
 std::string Quote::redis_set_list_string(size_t order_id, time_t timestamp)
 {
-	string str = "SADD order ";
-	str += std::to_string(this->order_id);
-	str += ",";
-	str += std::to_string(this->order_type);
-	str += ",";
-	str += std::to_string(this->order_side);
-	str += ",";
+	string str = "RPUSH order ";
+	str += std::to_string(order_id);
+	str += "-";
+	str += std::string (1, this->order_type);
+	str += "-";
+	str += std::string(1, this->order_side);
+	str += "-";
 	str += std::to_string(this->quantity);
-	str += ",";
+	str += "-";
 	str += std::to_string(this->price);
-	str += ",";
+	str += "-";
 	str += std::to_string(this->trade_id);
-	str += ",";
+	str += "-";
 	str += std::to_string(this->timestamp);
 	return str;
 }
@@ -60,7 +87,6 @@ bool Quote::fromText(std::vector< std::string > &quote_string) {
 		price = std::stoi(quote_string[TC_PRICE]);
 		trade_id = std::stoi(quote_string[TC_ID]);
 		timestamp = std::stol(quote_string[TC_TIMESTAMP]);
-		order_id = 0;
 	}
 	catch (...) {
 		return false;
