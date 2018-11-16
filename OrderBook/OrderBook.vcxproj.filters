@@ -72,6 +72,12 @@
     <ClCompile Include="utils\redispp\redispp.cpp">
       <Filter>utils\redisapp</Filter>
     </ClCompile>
+    <ClCompile Include="utils\redispp\asyncredis.cpp">
+      <Filter>utils\redisapp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\server.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\orderbook\Order.h">
@@ -118,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="utils\parse\parse.h">
       <Filter>utils\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\redispp\asyncredis.h">
+      <Filter>utils\redisapp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\server.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

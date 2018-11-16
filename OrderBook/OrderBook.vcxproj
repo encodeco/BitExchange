@@ -27,11 +27,13 @@
     <ClCompile Include="src\orderbook\OrderTree.cpp" />
     <ClCompile Include="src\orderbook\Quote.cpp" />
     <ClCompile Include="src\orderbook\RBTree.cpp" />
+    <ClCompile Include="src\server.cpp" />
     <ClCompile Include="test\CSVTestData.cpp" />
     <ClCompile Include="test\JsonTestData.cpp" />
     <ClCompile Include="test\JsonToRedisTestData.cpp" />
     <ClCompile Include="test\RedisTestData.cpp" />
     <ClCompile Include="test\TestData.cpp" />
+    <ClCompile Include="utils\redispp\asyncredis.cpp" />
     <ClCompile Include="utils\redispp\redispp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,12 +45,14 @@
     <ClInclude Include="src\orderbook\OrderTree.h" />
     <ClInclude Include="src\orderbook\Quote.h" />
     <ClInclude Include="src\orderbook\RBTree.h" />
+    <ClInclude Include="src\server.h" />
     <ClInclude Include="test\CSVTestData.h" />
     <ClInclude Include="test\JsonTestData.h" />
     <ClInclude Include="test\JsonToRedisTestData.h" />
     <ClInclude Include="test\RedisTestData.h" />
     <ClInclude Include="test\TestData.h" />
     <ClInclude Include="utils\parse\parse.h" />
+    <ClInclude Include="utils\redispp\asyncredis.h" />
     <ClInclude Include="utils\redispp\redispp.h" />
   </ItemGroup>
   <ItemGroup>
@@ -139,12 +143,18 @@
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\boost_1_68_0\stage\lib\x86;$(SolutionDir)lib\x86\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -165,6 +175,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\boost_1_68_0\stage\lib\x64;$(SolutionDir)lib\x64\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -180,6 +194,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -188,6 +203,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\boost_1_68_0\stage\lib\x86;$(SolutionDir)lib\x86\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -203,6 +222,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -211,6 +231,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\boost_1_68_0\stage\lib\x64;$(SolutionDir)lib\x64\$(Configuration)\</AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
