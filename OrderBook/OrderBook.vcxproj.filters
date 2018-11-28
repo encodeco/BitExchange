@@ -137,6 +137,12 @@
     <ClInclude Include="utils\BETime.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="test\TestStartModule.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ServerStartModule.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\testdata_1.json">

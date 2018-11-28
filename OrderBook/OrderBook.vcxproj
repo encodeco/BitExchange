@@ -48,11 +48,13 @@
     <ClInclude Include="src\orderbook\Quote.h" />
     <ClInclude Include="src\orderbook\RBTree.h" />
     <ClInclude Include="src\RedisTask.h" />
+    <ClInclude Include="src\ServerStartModule.h" />
     <ClInclude Include="test\CSVTestData.h" />
     <ClInclude Include="test\JsonTestData.h" />
     <ClInclude Include="test\JsonToRedisTestData.h" />
     <ClInclude Include="test\RedisTestData.h" />
     <ClInclude Include="test\TestData.h" />
+    <ClInclude Include="test\TestStartModule.h" />
     <ClInclude Include="utils\asyncredis.h" />
     <ClInclude Include="utils\BETime.h" />
     <ClInclude Include="utils\parse.h" />
