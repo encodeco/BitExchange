@@ -6,7 +6,7 @@
 #include "OrderBook/common.h"
 #include "OrderBook/OrderBook.h"
 #include "OrderBook/Quote.h"
-#include "parse/parse.h"
+#include "utils/parse.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6379

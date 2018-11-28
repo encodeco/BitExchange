@@ -15,8 +15,6 @@ public:
 	~TestData();
 
 public:
-	virtual  int DoTestProcess() {
-		return 0;
-	}
+	virtual  int DoTestProcess() = 0;
 };
 

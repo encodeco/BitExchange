@@ -22,12 +22,6 @@
     <Filter Include="utils">
       <UniqueIdentifier>{7ef656ac-4bda-4277-b16e-a14497533fd5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="utils\redisapp">
-      <UniqueIdentifier>{d58bf6fb-8261-4362-aa22-e21498aca601}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="utils\parse">
-      <UniqueIdentifier>{67cf7599-4dd5-4283-b116-685ee2cc474e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -69,14 +63,20 @@
     <ClCompile Include="src\orderbook\Quote.cpp">
       <Filter>src\orderbook</Filter>
     </ClCompile>
-    <ClCompile Include="utils\redispp\redispp.cpp">
-      <Filter>utils\redisapp</Filter>
+    <ClCompile Include="utils\parse.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
-    <ClCompile Include="utils\redispp\asyncredis.cpp">
-      <Filter>utils\redisapp</Filter>
+    <ClCompile Include="utils\redispp.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\server.cpp">
+    <ClCompile Include="utils\asyncredis.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RedisTask.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\BETime.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,17 +119,23 @@
     <ClInclude Include="test\JsonToRedisTestData.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="utils\redispp\redispp.h">
-      <Filter>utils\redisapp</Filter>
+    <ClInclude Include="utils\parse.h">
+      <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="utils\parse\parse.h">
-      <Filter>utils\parse</Filter>
+    <ClInclude Include="utils\redispp.h">
+      <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="utils\redispp\asyncredis.h">
-      <Filter>utils\redisapp</Filter>
+    <ClInclude Include="utils\Stoppable.h">
+      <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\server.h">
+    <ClInclude Include="utils\asyncredis.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RedisTask.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\BETime.h">
+      <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

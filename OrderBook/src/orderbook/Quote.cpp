@@ -100,3 +100,17 @@ time_t Quote::set_current_timestamp()
 	time(&timestamp);
 	return timestamp;
 }
+
+std::string Quote::to_text()
+{
+	return	(
+		std::string("pushed ") +
+		std::to_string(this->order_id) + string(" ") +
+		std::to_string(this->quantity) + string(" ") +
+		std::to_string(this->price) + string(" ") +
+		std::to_string(this->trade_id) + string(" ") +
+		std::to_string(this->timestamp) + string(" ")
+		);
+
+
+}

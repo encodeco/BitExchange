@@ -27,14 +27,16 @@
     <ClCompile Include="src\orderbook\OrderTree.cpp" />
     <ClCompile Include="src\orderbook\Quote.cpp" />
     <ClCompile Include="src\orderbook\RBTree.cpp" />
-    <ClCompile Include="src\server.cpp" />
+    <ClCompile Include="src\RedisTask.cpp" />
     <ClCompile Include="test\CSVTestData.cpp" />
     <ClCompile Include="test\JsonTestData.cpp" />
     <ClCompile Include="test\JsonToRedisTestData.cpp" />
     <ClCompile Include="test\RedisTestData.cpp" />
     <ClCompile Include="test\TestData.cpp" />
-    <ClCompile Include="utils\redispp\asyncredis.cpp" />
-    <ClCompile Include="utils\redispp\redispp.cpp" />
+    <ClCompile Include="utils\asyncredis.cpp" />
+    <ClCompile Include="utils\BETime.cpp" />
+    <ClCompile Include="utils\parse.cpp" />
+    <ClCompile Include="utils\redispp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3party\json11\json11.hpp" />
@@ -45,15 +47,17 @@
     <ClInclude Include="src\orderbook\OrderTree.h" />
     <ClInclude Include="src\orderbook\Quote.h" />
     <ClInclude Include="src\orderbook\RBTree.h" />
-    <ClInclude Include="src\server.h" />
+    <ClInclude Include="src\RedisTask.h" />
     <ClInclude Include="test\CSVTestData.h" />
     <ClInclude Include="test\JsonTestData.h" />
     <ClInclude Include="test\JsonToRedisTestData.h" />
     <ClInclude Include="test\RedisTestData.h" />
     <ClInclude Include="test\TestData.h" />
-    <ClInclude Include="utils\parse\parse.h" />
-    <ClInclude Include="utils\redispp\asyncredis.h" />
-    <ClInclude Include="utils\redispp\redispp.h" />
+    <ClInclude Include="utils\asyncredis.h" />
+    <ClInclude Include="utils\BETime.h" />
+    <ClInclude Include="utils\parse.h" />
+    <ClInclude Include="utils\redispp.h" />
+    <ClInclude Include="utils\Stoppable.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\testdata_0.json" />
@@ -141,7 +145,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>
       </LanguageStandard>
@@ -167,7 +171,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -193,7 +197,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -221,7 +225,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\utils\;.\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>

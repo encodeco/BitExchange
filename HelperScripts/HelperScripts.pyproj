@@ -1,0 +1,58 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>917775d9-baaf-4a31-88b6-db80adea2451</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>genOrders.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>HelperScripts</Name>
+    <RootNamespace>HelperScripts</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="genOrders.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HelperScripts.py" />
+    <Compile Include="orderbook\order.py" />
+    <Compile Include="orderbook\orderbook.py" />
+    <Compile Include="orderbook\orderlist.py" />
+    <Compile Include="orderbook\ordertree.py" />
+    <Compile Include="orderbook\test\example.py" />
+    <Compile Include="orderbook\test\genOrders.py" />
+    <Compile Include="orderbook\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="orderbook\" />
+    <Folder Include="orderbook\test\" />
+    <Folder Include="orderbook\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="orderbook\README.md" />
+    <Content Include="orderbook\__pycache__\order.cpython-36.pyc" />
+    <Content Include="orderbook\__pycache__\orderbook.cpython-36.pyc" />
+    <Content Include="orderbook\__pycache__\orderlist.cpython-36.pyc" />
+    <Content Include="orderbook\__pycache__\ordertree.cpython-36.pyc" />
+    <Content Include="orderbook\__pycache__\__init__.cpython-36.pyc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>

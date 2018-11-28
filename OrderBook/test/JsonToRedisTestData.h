@@ -4,7 +4,7 @@
 #include <vector>
 #include "OrderBook/Quote.h"
 
-#include "redispp/redispp.h"
+#include "utils/redispp.h"
 
 class JsonToRedisTestData : public TestData
 {

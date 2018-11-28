@@ -6,6 +6,8 @@
 #include <map>
 #include <boost/algorithm/string.hpp>  
 
+#include <chrono>
+
 class Quote {
 public:
 	char			order_type;
@@ -28,5 +30,8 @@ public:
 	bool fromText(std::vector< std::string > &quote_string);
 	bool fromMap(std::map <std::string, std::string> &mapitems);
 	time_t set_current_timestamp();
+
+	std::string to_text();
+
 };
 
