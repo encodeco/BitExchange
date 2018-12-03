@@ -22,6 +22,12 @@
     <Filter Include="utils">
       <UniqueIdentifier>{7ef656ac-4bda-4277-b16e-a14497533fd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="reference">
+      <UniqueIdentifier>{893c9f6f-4f58-4d54-a68f-6dab0c6e7bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="reference\websocketapp">
+      <UniqueIdentifier>{46ecf10b-83f7-4714-a71a-68c6a779a11a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -141,6 +147,9 @@
       <Filter>test</Filter>
     </ClInclude>
     <ClInclude Include="src\ServerStartModule.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StreamingTask.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

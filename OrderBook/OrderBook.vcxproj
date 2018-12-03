@@ -49,6 +49,7 @@
     <ClInclude Include="src\orderbook\RBTree.h" />
     <ClInclude Include="src\RedisTask.h" />
     <ClInclude Include="src\ServerStartModule.h" />
+    <ClInclude Include="src\StreamingTask.h" />
     <ClInclude Include="test\CSVTestData.h" />
     <ClInclude Include="test\JsonTestData.h" />
     <ClInclude Include="test\JsonToRedisTestData.h" />
