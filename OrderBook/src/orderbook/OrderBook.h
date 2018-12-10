@@ -61,5 +61,7 @@ public:
 	// for debug
 public:
 	void print();
+	std::string text();
+	BidAsk builder();
 };
 

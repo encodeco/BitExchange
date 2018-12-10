@@ -23,12 +23,21 @@ void OrderList::remove_order(std::shared_ptr<Order> order) {
 	order_list.remove(order);
 }
 
-void OrderList::print() 
+void OrderList::print()
 {
 	for (auto order : order_list) {
 		order->print();
 	}
 }
+std::string OrderList::text()
+{
+	std::string rstr;
+	for (auto order : order_list) {
+		rstr += order->text();
+	}
+	return rstr;
+}
+
 
 void OrderList::move_to_tail(Order* order) {
 
@@ -40,7 +49,16 @@ void OrderList::move_to_tail(Order* order) {
 		}
 	}
 }
+size_t OrderList::quantity_sum() {
+	PriceQuantityVec orderlist;
+	std::string rstr;
 
+	size_t quantity_sum = 0;
+	for (auto order : order_list) {
+		quantity_sum += order->get_quantity();
+	}
+	return quantity_sum;
+}
 //std::ostream& operator<< (std::ostream& out, const OrderList& obj)
 //{
 //	auto order_list = obj.get_order_list();

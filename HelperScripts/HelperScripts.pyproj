@@ -24,6 +24,9 @@
     <Compile Include="genOrders.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="genOrdersSlow.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HelperScripts.py" />
     <Compile Include="orderbook\order.py" />
     <Compile Include="orderbook\orderbook.py" />

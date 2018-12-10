@@ -1,4 +1,5 @@
 #pragma once
+#include "common.h"
 #include <memory>
 #include <vector>
 #include <list>
@@ -37,6 +38,8 @@ public:
 
 public:
 	void  print();
+	std::string  text();
+	PriceQuantity get_price_quantity();
 	//friend ostream& operator<<(ostream& os)
 	//{
 	//	//os << dt.mo << '/' << dt.da << '/' << dt.yr;

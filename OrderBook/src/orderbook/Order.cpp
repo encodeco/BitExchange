@@ -6,6 +6,7 @@
 
 #include "OrderList.h"
 
+
 Order::Order()
 {
 }
@@ -39,8 +40,48 @@ void Order::update_quantity(unsigned int new_quantity, long new_timestamp)
 
 void Order::print()
 {
-	cout << boost::format("%1% @ %2% / %3%  -  %4%") % this->quantity % this->price % this->trade_id % this->timestamp << endl ;
+	cout << boost::format("%1% @ %2% / %3%  -  %4%") % this->quantity % this->price % this->trade_id % this->timestamp << endl;
 }
+std::string Order::text()
+{
+	std::string rstr;
+	rstr = str(
+		boost::format("%1% @ %2% / %3%  -  %4% \n") % this->quantity % this->price % this->trade_id % this->timestamp
+		);
+	return rstr;
+}
+
+
+PriceQuantity Order::get_price_quantity()
+{
+	PriceQuantity output;
+	output.first = this->price;
+	output.second = this->quantity;
+	return output;
+}
+//
+//std::pair <std::string, size_t> Order::builder_price()
+//{
+//	std::pair <std::string, size_t> output;
+//
+//	output.first = "price";
+//	output.second = this->price;
+//
+//	return output;
+//}
+//std::pair <std::string, size_t> Order::builder_quantity()
+//{
+//	std::pair <std::string, size_t> output;
+//
+//	output.first = "quantity";
+//	output.second = this->quantity;
+//
+//	return output;
+//}
+
+//std::pair <std::string, size_t> Order::builder_order()
+//{
+//}
 
 //ostream& Order::operator<<(ostream& os, const Order& order)
 //{

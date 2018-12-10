@@ -303,3 +303,98 @@ void OrderBook::print()
 	}
 	
 }
+
+BidAsk OrderBook::builder()
+{
+	BidAsk bidask;
+
+	PriceQuantityVec &bid = bidask.first;
+	PriceQuantityVec &ask = bidask.second;
+	
+	std::string rstr;
+	rstr += "***Bids*** \n";
+	if (!this->bids->is_empty()) {
+		auto data = this->bids->get_data();
+		for (auto a_data : boost::adaptors::reverse(data)) {
+			PriceQuantity pq;
+
+			auto a_price_key = a_data.first;
+			auto a_value = a_data.second;
+
+			pq.first = a_price_key;
+			pq.second = (*a_value).quantity_sum();
+
+			bid.push_back(pq);
+		}
+	}
+
+	rstr += "***Asks*** \n";
+	if (!this->asks->is_empty()) {
+		auto data = this->asks->get_data();
+		for (auto a_data : data) {
+			PriceQuantity pq;
+
+			auto a_price_key = a_data.first;
+			auto a_value = a_data.second;
+
+			pq.first = a_price_key;
+			pq.second = (*a_value).quantity_sum();
+
+			bid.push_back(pq);
+		}
+	}
+
+	return bidask;
+}
+std::string OrderBook::text()
+{
+	std::string rstr;
+	rstr += "***Bids*** \n";
+	if (!this->bids->is_empty()) {
+		auto data = this->bids->get_data();
+		for (auto a_data : boost::adaptors::reverse(data)) {
+			auto a_key = a_data.first;
+			auto a_value = a_data.second;
+			rstr += (*a_value).text();
+		}
+	}
+
+	rstr += "***Asks*** \n";
+	if (!this->asks->is_empty()) {
+		auto data = this->asks->get_data();
+		for (auto a_data : data) {
+			auto a_key = a_data.first;
+			auto a_value = a_data.second;
+			rstr += (*a_value).text();
+		}
+	}
+
+
+	rstr += "***Trades*** \n";
+
+	if (!this->tape.empty()) {
+		int num = 0;
+		for (auto entry : this->tape) {
+			if (num < 10) // get last 5 entries
+			{
+				//tempfile.write(str(entry['quantity']) + " @ " + str(entry['price']) + " (" + str(entry['timestamp']) + ") " + str(entry['party1'][0]) + "/" + str(entry['party2'][0]) + "\n")
+
+				rstr += entry.quantity;
+				rstr += " @ ";
+				rstr += entry.price;
+				rstr += " ( ";
+				rstr += entry.timestamp;
+				rstr += " ) ";
+				rstr += entry.party1.counter_party;
+				rstr += " / ";
+				rstr += entry.party2.trade_id;
+				rstr += "\n";
+				num += 1;
+			}
+			else
+				break;
+		}
+	}
+	return rstr;
+
+}

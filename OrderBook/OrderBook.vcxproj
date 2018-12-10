@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3party\json11\json11.hpp" />
+    <ClInclude Include="MongoTask.h" />
     <ClInclude Include="src\orderbook\common.h" />
     <ClInclude Include="src\orderbook\Order.h" />
     <ClInclude Include="src\orderbook\OrderBook.h" />
@@ -148,7 +149,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>
       </LanguageStandard>
@@ -174,7 +175,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -200,7 +201,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -228,7 +229,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\boost_1_68_0\include\boost-1_68;..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3party;.\3party\;..\3party;.\src\;.\</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>

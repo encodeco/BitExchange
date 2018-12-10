@@ -1,0 +1,25 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Display Demo</title>
+</head>
+<body>
+    <h1> Display Demo </h1>
+
+    <h2>Data1:</h2>
+    <div id="display1"></div>
+    <h2>Data2:</h2>
+    <div id="display2"></div>
+
+    <script>
+        
+        var connection = new WebSocket('ws://127.0.0.1:9002');
+        connection.onmessage = function (e) {
+            document.getElementById("display1").textContent = JSON.parse(e.data)["data1"];
+            document.getElementById("display2").textContent = JSON.parse(e.data)["data2"];
+        };
+    </script>
+</body>
+</html>

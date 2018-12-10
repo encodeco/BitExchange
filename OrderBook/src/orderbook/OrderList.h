@@ -32,4 +32,6 @@ public:
 		return order_list;
 	}
 	void print();
+	std::string text();
+	size_t quantity_sum();
 };

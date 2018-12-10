@@ -28,6 +28,9 @@
     <Filter Include="reference\websocketapp">
       <UniqueIdentifier>{46ecf10b-83f7-4714-a71a-68c6a779a11a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="reference\mongodb">
+      <UniqueIdentifier>{0f2f16fd-f97b-4722-949e-c1233fe8de65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -150,6 +153,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\StreamingTask.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="MongoTask.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
