@@ -58,35 +58,35 @@ public:
 	bool make_json(BidAsk &bidask, bsoncxx::document::view &view) {
 		//auto builder = bsoncxx::builder::stream::document{};
 
-		PriceQuantityVec &bids = bidask.first;
-		//PriceQuantityVec &ask = bidask.second;
+		//PriceQuantityVec &bids = bidask.first;
+		////PriceQuantityVec &ask = bidask.second;
 
-		//builder << "bids" << bsoncxx::builder::stream::open_array;
-		auto builder_bids = bsoncxx::builder::basic::array{};
+		////builder << "bids" << bsoncxx::builder::stream::open_array;
+		//auto builder_bids = bsoncxx::builder::basic::array{};
 
-		for (auto order : bids) {
+		//for (auto order : bids) {
 
 
-			builder_bids = builder_bids << builder::stream::open_document << "key" << e
-				<< builder::stream::close_document;
-			
-		}
-		builder << close_array;
+		//	builder_bids = builder_bids << builder::stream::open_document << "key" << e
+		//		<< builder::stream::close_document;
+		//	
+		//}
+		//builder << close_array;
 
-		bsoncxx::document::value doc_value = builder
-			<< "name" << "MongoDB"
-			<< "type" << "database"
-			<< "count" << 1
-			<< "versions" << bsoncxx::builder::stream::open_array
-			<< "v3.2" << "v3.0" << "v2.6"
-			<< close_array
-			<< "info" << bsoncxx::builder::stream::open_document
-			<< "x" << 203
-			<< "y" << 102
-			<< bsoncxx::builder::stream::close_document
-			<< bsoncxx::builder::stream::finalize;
+		//bsoncxx::document::value doc_value = builder
+		//	<< "name" << "MongoDB"
+		//	<< "type" << "database"
+		//	<< "count" << 1
+		//	<< "versions" << bsoncxx::builder::stream::open_array
+		//	<< "v3.2" << "v3.0" << "v2.6"
+		//	<< close_array
+		//	<< "info" << bsoncxx::builder::stream::open_document
+		//	<< "x" << 203
+		//	<< "y" << 102
+		//	<< bsoncxx::builder::stream::close_document
+		//	<< bsoncxx::builder::stream::finalize;
 
-		view = doc_value.view();
+		//view = doc_value.view();
 		return true;
 	}
 

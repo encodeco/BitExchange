@@ -108,7 +108,7 @@ void RedisTask::run2()
 	{
 		redis.redisCommand( (std::string("lrange order 0 ") + std::to_string(GET_LIST_MAX) ).c_str() );
 
-		int deleted_count = 0;
+		size_t deleted_count = 0;
 		if (redis.resp->type == REDIS_REPLY_ARRAY) {
 			for ( deleted_count = 0; deleted_count < redis.resp->elements; deleted_count++) {
 

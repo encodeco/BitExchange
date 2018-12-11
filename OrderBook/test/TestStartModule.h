@@ -18,7 +18,7 @@ public:
 		TestData *test_data = nullptr;
 
 		//int test_kind = TC_JSON_TO_REDIS;
-		int test_kind = TC_JSON_TO_REDIS;
+		int test_kind = TC_JSON;
 
 		switch (test_kind) {
 		case TC_JSON:

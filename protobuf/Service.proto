@@ -1,0 +1,47 @@
+syntax = "proto3";
+package be.protobuf;
+
+message Service {
+
+    // 오더북에 들어고 나서에 오더 정보
+    message Order{
+        uint32      timestamp   = 1;
+        uint32      quantity    = 2;
+        uint64      price       = 3;
+        uint64      order_id    = 4;
+        uint32      trader_id   = 5;
+        
+        repeated    Order orders  = 6;
+    }
+
+    // 유저로 부터 들어오는 주문에 단위. 아직 오더북엔 들어가지 않은 상태
+    message Quote{
+        bytes       order_type  = 1;
+        bytes       order_side  = 2;
+
+        Order       order       = 3;
+    }
+
+    // 큐에서 쿼트정보를 가져와서, 오더북에 입력하기 위한
+    message QuoteList{
+        repeated Quote quotes = 1;
+    }
+
+    // 오더북에 저장될 오더
+    message OrderList{
+        repeated Order orders = 1;
+    }
+
+    // 오더북 전체
+    message OrderBook{
+        map < uint64, OrderList > bids_map  = 1;
+        map < uint64, OrderList > asks_map  = 2;
+    }
+
+    message OrderTree{
+        map < uint64, OrderList > price_map = 1;    // Key : price
+        map < uint64, Order > order_map = 2;        // key : Order ID
+    }
+
+
+}

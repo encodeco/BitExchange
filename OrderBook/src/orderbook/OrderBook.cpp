@@ -381,9 +381,9 @@ std::string OrderBook::text()
 
 				rstr += entry.quantity;
 				rstr += " @ ";
-				rstr += entry.price;
+				rstr += (unsigned int)entry.price;
 				rstr += " ( ";
-				rstr += entry.timestamp;
+				rstr += (unsigned int)entry.timestamp;
 				rstr += " ) ";
 				rstr += entry.party1.counter_party;
 				rstr += " / ";

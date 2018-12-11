@@ -51,7 +51,7 @@ class OrderBook(object):
 
     def process_order_list(self, side, order_list, quantity_still_to_trade, quote, verbose):
         '''
-        Takes an OrderList (stack of orders at one price) and an incoming order and matches
+        Takes an std::list<std::shared_ptr<Order>> (stack of orders at one price) and an incoming order and matches
         appropriate trades given the order's quantity.
         '''
         trades = []

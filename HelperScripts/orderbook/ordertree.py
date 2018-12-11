@@ -1,9 +1,9 @@
 from bintrees import RBTree
-from .orderlist import OrderList
+from .orderlist import std::list<std::shared_ptr<Order>>
 from .order import Order
 
 class OrderTree(object):
-    '''A red-black tree used to store OrderLists in price order
+    '''A red-black tree used to store std::list<std::shared_ptr<Order>>s in price order
 
     The exchange will be using the OrderTree to hold bid and ask data (one OrderTree for each side).
     Keeping the information in a red black tree makes it easier/faster to detect a match.
@@ -11,7 +11,7 @@ class OrderTree(object):
 
     def __init__(self):
         self.price_tree = RBTree()
-        self.price_map = {} # Dictionary containing price : OrderList object
+        self.price_map = {} # Dictionary containing price : std::list<std::shared_ptr<Order>> object
         self.order_map = {} # Dictionary containing order_id : Order object
         self.volume = 0 # Contains total quantity from all Orders in tree
         self.num_orders = 0 # Contains count of Orders in tree
@@ -28,7 +28,7 @@ class OrderTree(object):
 
     def create_price(self, price):
         self.depth += 1 # Add a price depth level to the tree
-        new_list = OrderList()
+        new_list = std::list<std::shared_ptr<Order>>()
         self.price_tree.insert(price, new_list) # Insert a new price into the tree
         self.price_map[price] = new_list # Can i just get this by using self.price_tree.get_value(price)? Maybe this is faster though.
 
@@ -50,7 +50,7 @@ class OrderTree(object):
         if quote['price'] not in self.price_map:
             self.create_price(quote['price']) # If price not in Price Map, create a node in RBtree
         order = Order(quote, self.price_map[quote['price']]) # Create an order
-        self.price_map[order.price].append_order(order) # Add the order to the OrderList in Price Map
+        self.price_map[order.price].append_order(order) # Add the order to the std::list<std::shared_ptr<Order>> in Price Map
         self.order_map[order.order_id] = order
         self.volume += order.quantity
 
@@ -61,7 +61,7 @@ class OrderTree(object):
             # Price changed. Remove order and update tree.
             order_list = self.price_map[order.price]
             order_list.remove_order(order)
-            if len(order_list) == 0: # If there is nothing else in the OrderList, remove the price from RBtree
+            if len(order_list) == 0: # If there is nothing else in the std::list<std::shared_ptr<Order>>, remove the price from RBtree
                 self.remove_price(order.price)
             self.insert_order(order_update)
         else:

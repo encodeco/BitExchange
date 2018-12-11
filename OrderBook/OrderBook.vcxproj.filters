@@ -31,6 +31,9 @@
     <Filter Include="reference\mongodb">
       <UniqueIdentifier>{0f2f16fd-f97b-4722-949e-c1233fe8de65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\protobuf">
+      <UniqueIdentifier>{52786cf8-2296-4b8d-b4cb-4d6992e26d30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -42,13 +45,7 @@
     <ClCompile Include="src\orderbook\OrderTree.cpp">
       <Filter>src\orderbook</Filter>
     </ClCompile>
-    <ClCompile Include="src\orderbook\RBTree.cpp">
-      <Filter>src\orderbook</Filter>
-    </ClCompile>
     <ClCompile Include="src\orderbook\OrderBook.cpp">
-      <Filter>src\orderbook</Filter>
-    </ClCompile>
-    <ClCompile Include="src\orderbook\OrderList.cpp">
       <Filter>src\orderbook</Filter>
     </ClCompile>
     <ClCompile Include="3party\json11\json11.cpp">
@@ -87,15 +84,15 @@
     <ClCompile Include="utils\BETime.cpp">
       <Filter>utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\orderbook\OrderList.cpp">
+      <Filter>src\orderbook</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\orderbook\Order.h">
       <Filter>src\orderbook</Filter>
     </ClInclude>
     <ClInclude Include="src\orderbook\OrderTree.h">
-      <Filter>src\orderbook</Filter>
-    </ClInclude>
-    <ClInclude Include="src\orderbook\RBTree.h">
       <Filter>src\orderbook</Filter>
     </ClInclude>
     <ClInclude Include="src\orderbook\common.h">
@@ -105,9 +102,6 @@
       <Filter>src\orderbook</Filter>
     </ClInclude>
     <ClInclude Include="src\orderbook\Quote.h">
-      <Filter>src\orderbook</Filter>
-    </ClInclude>
-    <ClInclude Include="src\orderbook\OrderList.h">
       <Filter>src\orderbook</Filter>
     </ClInclude>
     <ClInclude Include="3party\json11\json11.hpp">
@@ -157,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="MongoTask.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\orderbook\OrderList.h">
+      <Filter>src\orderbook</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

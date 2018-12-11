@@ -9,15 +9,15 @@ class OrderTree;
 class OrderList;
 
 struct TransactionRecord {
-	long			timestamp;
-	unsigned int	price;
-	unsigned int	quantity;
-	long			time;
+	time_t				timestamp;
+	unsigned __int64	price;
+	unsigned int		quantity;
+	time_t				time;
 
 	struct Party1_ {
 		unsigned int counter_party;
 		char side;
-		unsigned int order_id;
+		unsigned __int64 order_id;
 		unsigned int book_quantity;
 	}party1;
 
@@ -35,14 +35,13 @@ class OrderBook
 {
 private:
 	std::deque < TransactionRecord >	tape;
-	std::deque < TransactionRecord >	trades;
 
 	OrderTree							*bids;
 	OrderTree							*asks;
 
 	long								time_stamp;
 	unsigned int						tick_size;
-	long								time;
+	time_t								time;
 	unsigned int						next_order_id;
 
 public:

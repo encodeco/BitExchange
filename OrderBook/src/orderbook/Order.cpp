@@ -26,7 +26,7 @@ Order::~Order()
 }
 
 
-void Order::update_quantity(unsigned int new_quantity, long new_timestamp)
+void Order::update_quantity(unsigned int new_quantity, time_t new_timestamp)
 {
 	if (new_quantity > this->quantity && this->order_list->get_tail_order()->get_order_id() != this->get_order_id()) {
 		// check to see that the order is not the last order in list and the quantity is more
