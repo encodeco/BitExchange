@@ -25,7 +25,7 @@
     <ClCompile Include="src\orderbook\OrderBook.cpp" />
     <ClCompile Include="src\orderbook\OrderList.cpp" />
     <ClCompile Include="src\orderbook\OrderTree.cpp" />
-    <ClCompile Include="src\orderbook\Quote.cpp" />
+    <ClCompile Include="src\protobuf\Service.pb.cc" />
     <ClCompile Include="src\RedisTask.cpp" />
     <ClCompile Include="test\CSVTestData.cpp" />
     <ClCompile Include="test\JsonTestData.cpp" />
@@ -45,7 +45,7 @@
     <ClInclude Include="src\orderbook\OrderBook.h" />
     <ClInclude Include="src\orderbook\OrderList.h" />
     <ClInclude Include="src\orderbook\OrderTree.h" />
-    <ClInclude Include="src\orderbook\Quote.h" />
+    <ClInclude Include="src\protobuf\Service.pb.h" />
     <ClInclude Include="src\RedisTask.h" />
     <ClInclude Include="src\ServerStartModule.h" />
     <ClInclude Include="src\StreamingTask.h" />

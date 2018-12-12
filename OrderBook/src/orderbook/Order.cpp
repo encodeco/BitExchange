@@ -1,5 +1,4 @@
 #include "Order.h"
-#include "Quote.h"
 #include <iostream>
 #include <boost/format.hpp>
 #include <string>
@@ -10,13 +9,14 @@
 Order::Order()
 {
 }
-Order::Order(Quote &quote, std::shared_ptr<OrderList> order_list)
+
+Order::Order(be::protobuf::Service::Quote &quote, std::shared_ptr<OrderList> order_list)
 {
-	this->timestamp = quote.timestamp;
-	this->quantity = quote.quantity;
-	this->price = quote.price;
-	this->order_id = quote.order_id;
-	this->trade_id = quote.trade_id;
+	this->timestamp = quote.mutable_order()->timestamp();
+	this->quantity = quote.mutable_order()->quantity();
+	this->price = quote.mutable_order()->price();
+	this->order_id = quote.mutable_order()->order_id();
+	this->trade_id = quote.mutable_order()->trader_id();
 
 	this->order_list = order_list;
 }

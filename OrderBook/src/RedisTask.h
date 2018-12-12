@@ -5,20 +5,20 @@
 #include <mutex>
 #include <condition_variable>
 
-#include "./orderbook/Quote.h"
+#include "./protobuf/Service.pb.h"
 
 class RedisTask : public Stoppable
 {
 public:
-	std::deque< Quote > quotes;
-	std::mutex mu;
+	RedisTask();
+	~RedisTask();
+
+public:
+	//std::mutex mu;
 	std::condition_variable cond;
 
 public:
 	void run();
-	void run2();
+	void run(be::protobuf::Service::QuoteList &quotes, std::mutex &mu);
 
-public:
-	void safe_insert(Quote quote);
-	bool safe_pop(Quote &quote);
 };

@@ -2,6 +2,7 @@
 #include <map>
 #include <memory>
 #include "common.h"
+#include "./protobuf/Service.pb.h"
 
 class OrderList;
 class RBTree;
@@ -45,12 +46,10 @@ public:
 	void remove_order_by_id(unsigned __int64 order_id);
 	void remove_price(unsigned __int64 price);
 
-	void insert_order( Quote &quote );
+	void insert_order( be::protobuf::Service::Quote &quote );
 	bool order_exists(unsigned __int64 order_id);
 	bool price_exists(unsigned __int64 price);
 	void create_price(unsigned __int64 price);
-	void update_order(Order* update);
-
 
 	std::vector < PriceValuePair > get_data();
 };

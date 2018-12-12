@@ -26,7 +26,6 @@ public:
 	unsigned int get_volume() { return this->volume; }
 
 	void move_to_tail(Order* order);
-	//friend std::ostream& operator<< (std::ostream& os, const OrderList& obj);
 
 	const std::list<std::shared_ptr<Order>> &get_order_list() {
 		return order_list;

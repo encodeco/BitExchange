@@ -3,8 +3,6 @@
 #include <list>
 #include <memory>
 #include "Order.h"
-//#include "RBTree.h"
-#include "Quote.h"
 #include "OrderList.h"
 
 OrderTree::OrderTree() : volume(0), min_price(0), max_price(0), num_orders(0), depth(0)
@@ -51,17 +49,17 @@ void OrderTree::create_price(unsigned __int64 price)
 
 	return;
 }
-void OrderTree::insert_order(Quote &quote) 
+void OrderTree::insert_order(be::protobuf::Service::Quote &quote)
 {
-	if (order_exists(quote.order_id)) {
-		this->remove_order_by_id(quote.order_id);
+	if (order_exists(quote.mutable_order()->order_id())) {
+		this->remove_order_by_id(quote.mutable_order()->order_id());
 	}
 	this->num_orders += 1;
-	if (this->price_map.find(quote.price) == this->price_map.end()) {
-		this->create_price(quote.price);
+	if (this->price_map.find(quote.mutable_order()->price()) == this->price_map.end()) {
+		this->create_price(quote.mutable_order()->price());
 	}
 
-	std::shared_ptr<Order> order = std::make_shared<Order>(quote, this->price_map[quote.price]);
+	std::shared_ptr<Order> order = std::make_shared<Order>(quote, this->price_map[quote.mutable_order()->price()]);
 
 	this->price_map[order->get_price()]->append_order(order);
 	this->order_map[order->get_order_id()] = order;
@@ -129,23 +127,4 @@ std::shared_ptr < OrderList> OrderTree::get_price_list(unsigned __int64 price )
 	return this->price_map[price];
 }
 
-void OrderTree::update_order(Order *update) {
-
-	/*
-	    def update_order(self, order_update):
-        order = self.order_map[order_update['order_id']]
-        original_quantity = order.quantity
-        if order_update['price'] != order.price:
-            # Price changed. Remove order and update tree.
-            order_list = self.price_map[order.price]
-            order_list.remove_order(order)
-            if len(order_list) == 0: # If there is nothing else in the OrderList, remove the price from RBtree
-                self.remove_price(order.price)
-            self.insert_order(order_update)
-        else:
-            # Quantity changed. Price is the same.
-            order.update_quantity(order_update['quantity'], order_update['timestamp'])
-        self.volume += order.quantity - original_quantity
-	*/
-}
 	

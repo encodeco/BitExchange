@@ -8,7 +8,6 @@
 #include "OrderTree.h"
 #include "OrderBook.h"
 #include "OrderList.h"
-#include "Quote.h"
 
 
 OrderBook::OrderBook() : time(0), next_order_id(0), time_stamp(0), tick_size(0), bids(nullptr), asks(nullptr)
@@ -29,7 +28,7 @@ void OrderBook::update_time()
 	this->time += 1;
 }
 
-std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_order_list(char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, Quote& quote, bool verbose)
+std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_order_list(be::protobuf::Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose)
 {
 	//Takes an OrderList(stack of orders at one price) and an incoming order and matches
 	//	appropriate trades given the order's quantity.
@@ -38,11 +37,11 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 	std::vector<TransactionRecord> trades;
 	unsigned int quantity_to_trade = quantity_still_to_trade;
 
-	
+
 	while (order_list->length() > 0 && quantity_to_trade > 0)
 	{
 		// 두번째로 불려질땐, 처리할 쿼트에 양이 남아 있고, 첫번째 오더는 지워진상태이다.
-		auto head_order = order_list->get_head_order(); 
+		auto head_order = order_list->get_head_order();
 		auto traded_price = head_order->get_price();
 		auto counter_party = head_order->get_trade_id();
 		unsigned int traded_quantity = 0;
@@ -57,7 +56,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 			quantity_to_trade = 0;
 		}
 		// 쿼트 양과 오더북속 오더에 야이 같은경우 --> 쿼트 지우고, 오더북속 오더도 지워져야한다.
-		else if(quantity_to_trade == head_order->get_quantity()) {
+		else if (quantity_to_trade == head_order->get_quantity()) {
 			traded_quantity = quantity_to_trade;
 			if (side == 'B')
 				this->bids->remove_order_by_id(head_order->get_order_id());
@@ -81,7 +80,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 		if (verbose) {
 			//print(("TRADE: Time - {}, Price - {}, Quantity - {}, TradeID - {}, Matching TradeID - {}".format(self.time, traded_price, traded_quantity, counter_party, quote['trade_id'])))
 		}
-		
+
 		TransactionRecord transaction_record;
 		transaction_record.timestamp = this->time;
 		transaction_record.price = traded_price;
@@ -93,7 +92,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 			transaction_record.party1.side = 'B';
 			transaction_record.party1.order_id = head_order->get_order_id();
 			transaction_record.party1.book_quantity = new_book_quantity;
-			transaction_record.party2.trade_id = quote.trade_id;
+			transaction_record.party2.trade_id = quote.mutable_order()->trader_id();
 			transaction_record.party2.side = 'A';
 		}
 		else {
@@ -101,7 +100,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 			transaction_record.party1.side = 'A';
 			transaction_record.party1.order_id = head_order->get_order_id();
 			transaction_record.party1.book_quantity = new_book_quantity;
-			transaction_record.party2.trade_id = quote.trade_id;
+			transaction_record.party2.trade_id = quote.mutable_order()->trader_id();
 			transaction_record.party2.side = 'B';
 		}
 
@@ -113,26 +112,26 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 	return return_value;
 }
 
-std::vector<TransactionRecord> OrderBook::process_market_order(Quote &quote, bool verbose)
+std::vector<TransactionRecord> OrderBook::process_market_order(be::protobuf::Service::Quote &quote, bool verbose)
 {
 	std::vector<TransactionRecord> trades;
 
-	unsigned int quantity_to_trade = quote.quantity;
-	char side = quote.order_side;
+	unsigned int quantity_to_trade = quote.mutable_order()->quantity();
+	char order_side = quote.order_side().c_str()[0];
 	
-	if (side == 'B') {
+	if (order_side == 'B') {
 		while (quantity_to_trade > 0 && this->asks->length()) {
 			auto best_price_asks = this->asks->min_price_list();
-			auto value = this->process_order_list('A', best_price_asks, quantity_to_trade, quote, verbose);
+			auto value = this->process_order_list(quote, 'A', best_price_asks, quantity_to_trade, verbose);
 			quantity_to_trade = value.first;
 			auto new_trades = value.second;
 			trades.insert(trades.end(), new_trades.begin(), new_trades.end());
 		}
 	}
-	else if (side == 'A') {
+	else if (order_side == 'A') {
 		while (quantity_to_trade > 0 && this->bids->length()) {
 			auto best_price_bids = this->bids->max_price_list();
-			auto value = this->process_order_list('B', best_price_bids, quantity_to_trade, quote, verbose);
+			auto value = this->process_order_list(quote, 'B', best_price_bids, quantity_to_trade, verbose);
 			quantity_to_trade = value.first;
 			auto new_trades = value.second;
 			trades.insert(trades.end(), new_trades.begin(), new_trades.end());
@@ -146,15 +145,16 @@ std::vector<TransactionRecord> OrderBook::process_market_order(Quote &quote, boo
 	return trades;	
 }
 
-std::pair<std::vector<TransactionRecord>, Quote>   OrderBook::process_limit_order(Quote &quote, bool from_data, bool verbose)
+std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote>   OrderBook::process_limit_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose)
 {
-	std::pair<std::vector<TransactionRecord>, Quote> return_value;
 
-	Quote order_in_book;
+	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> return_value;
+
+	be::protobuf::Service::Quote order_in_book;
 	std::vector< TransactionRecord > trades;
-	unsigned int quantity_to_trade = quote.quantity;
-	char side = quote.order_side;
-	unsigned int price = quote.price;
+	unsigned int quantity_to_trade = quote.mutable_order()->quantity();
+	char side = quote.order_side().c_str()[0];
+	unsigned int price = quote.mutable_order()->price();
 	if (side == 'B') { // 사자 쿼트가 입력된경우
 
 		// 입력 쿼트가 BID (BUY)일 경우,  ASK (SELL)트리에서 가장 낮은 가격(get_min_price)을 꺼내와서 이력된 쿼트와 비교한다.
@@ -163,8 +163,8 @@ std::pair<std::vector<TransactionRecord>, Quote>   OrderBook::process_limit_orde
 			auto best_price_asks = this->asks->min_price_list();
 
 			// 가장 낮은 가격에 걸려있는 오더 리스트(best_price_asks)와 매칭시킨다. ( # 시간 우선 )
-			auto value = this->process_order_list('A', best_price_asks, quantity_to_trade, quote, verbose);
-			
+			auto value = this->process_order_list(quote, 'A', best_price_asks, quantity_to_trade, verbose);
+
 			quantity_to_trade = value.first;
 			auto new_trades = value.second;
 
@@ -174,11 +174,11 @@ std::pair<std::vector<TransactionRecord>, Quote>   OrderBook::process_limit_orde
 		// If volume remains, need to update the book with new quantity
 		if (quantity_to_trade > 0) {
 			if (!from_data) {
-				quote.order_id = this->next_order_id;
+				quote.mutable_order()->set_order_id( this->next_order_id );
 			}
-			quote.quantity = quantity_to_trade;
+			quote.mutable_order()->set_quantity( quantity_to_trade );
 			this->bids->insert_order(quote);
-			order_in_book = quote;
+			order_in_book.CopyFrom( quote );
 		}
 	}
 	else if (side == 'A') { // 팔자 쿼트가 입력된경우
@@ -187,7 +187,7 @@ std::pair<std::vector<TransactionRecord>, Quote>   OrderBook::process_limit_orde
 		// 사자 오더북중, 가장 높은 가격에 사려는 오더부터 처리한다.
 		while (!this->bids->is_empty() && this->bids->get_max_price() && quantity_to_trade > 0) {
 			auto best_price_bids = this->bids->max_price_list();
-			auto value = this->process_order_list('B', best_price_bids, quantity_to_trade, quote, verbose);
+			auto value = this->process_order_list( quote, 'B', best_price_bids, quantity_to_trade, verbose);
 
 			quantity_to_trade = value.first;
 			auto new_trades = value.second;
@@ -197,11 +197,11 @@ std::pair<std::vector<TransactionRecord>, Quote>   OrderBook::process_limit_orde
 		//If volume remains, need to update the book with new quantity
 		if (quantity_to_trade > 0) {
 			if (!from_data) {
-				quote.order_id = this->next_order_id;
+				quote.mutable_order()->set_order_id( this->next_order_id );
 			}
-			quote.quantity = quantity_to_trade;
+			quote.mutable_order()->set_quantity( quantity_to_trade );
 			this->asks->insert_order(quote);
-			order_in_book = quote;
+			order_in_book.CopyFrom(quote);
 		}
 	}
 	else {
@@ -214,21 +214,22 @@ std::pair<std::vector<TransactionRecord>, Quote>   OrderBook::process_limit_orde
 	return return_value;
 }
 
-std::pair<std::vector<TransactionRecord>, Quote> OrderBook::process_order(Quote &quote, bool from_data, bool verbose)
+std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> OrderBook::process_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose)
 {
-	const char order_type = quote.order_type;
-	Quote order_in_book;
+	const char order_type = quote.order_type().c_str()[0];
+
+	be::protobuf::Service::Quote order_in_book;
 
 	if (from_data)
-		this->time = quote.timestamp;
+		this->time = quote.mutable_order()->timestamp();
 	else {
 		this->update_time();
-		quote.timestamp = this->time;	
+		quote.mutable_order()->set_timestamp( this->time );
 	}
 
-	std::pair<std::vector<TransactionRecord>, Quote> return_value;
+	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> return_value;
 
-	if (quote.quantity <= 0) {
+	if (quote.mutable_order()->timestamp() <= 0) {
 		//sys.exit('process_order() given order of quantity <= 0')
 		return return_value;
 	}
@@ -237,30 +238,27 @@ std::pair<std::vector<TransactionRecord>, Quote> OrderBook::process_order(Quote 
 	}
 
 	std::vector< TransactionRecord > trades;
+
 	if (order_type == 'M') {
 		trades = this->process_market_order(quote, verbose);
 	}
 	else if (order_type == 'L') {
 		auto limit_order_result = this->process_limit_order(quote, from_data, verbose);
 		trades = limit_order_result.first;
-		order_in_book = limit_order_result.second;
+		order_in_book.CopyFrom( limit_order_result.second );
 	}
 	else {
 		//sys.exit("order_type for process_order() is neither 'market' or 'limit'")
 		return return_value;
 	}
 
-	//auto ask_min_price = this->asks->get_min_price();
-	//auto ask_max_price = this->asks->get_max_price();
-
-	//auto ask_min_price_list = this->asks->min_price_list();
-	//auto ask_max_price_list = this->asks->max_price_list();
 
 	return_value.first = trades;
 	return_value.second = order_in_book;
 
 	return return_value;
 }
+
 
 void OrderBook::print() 
 {
@@ -304,10 +302,10 @@ void OrderBook::print()
 	
 }
 
-BidAsk OrderBook::builder()
+void OrderBook::builder()
 {
 	BidAsk bidask;
-
+/*
 	PriceQuantityVec &bid = bidask.first;
 	PriceQuantityVec &ask = bidask.second;
 	
@@ -343,8 +341,8 @@ BidAsk OrderBook::builder()
 			bid.push_back(pq);
 		}
 	}
-
-	return bidask;
+*/
+	//return bidask;
 }
 std::string OrderBook::text()
 {

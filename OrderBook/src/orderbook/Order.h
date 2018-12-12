@@ -4,10 +4,11 @@
 #include <vector>
 #include <list>
 
+#include "./protobuf/Service.pb.h"
+
 using namespace std;
 
 class OrderList;
-class Quote;
 
 class Order
 {
@@ -20,10 +21,10 @@ private:
 
 public:
 	std::shared_ptr<OrderList>				order_list;
-
+	
 public:
 	Order();
-	Order(Quote &quote, std::shared_ptr<OrderList> order_list);
+	Order(be::protobuf::Service::Quote &quote, std::shared_ptr<OrderList> order_list);
 	~Order();
 
 public:

@@ -51,24 +51,6 @@
     <ClCompile Include="3party\json11\json11.cpp">
       <Filter>3party\json11</Filter>
     </ClCompile>
-    <ClCompile Include="test\JsonTestData.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\CSVTestData.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\TestData.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\RedisTestData.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="test\JsonToRedisTestData.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="src\orderbook\Quote.cpp">
-      <Filter>src\orderbook</Filter>
-    </ClCompile>
     <ClCompile Include="utils\parse.cpp">
       <Filter>utils</Filter>
     </ClCompile>
@@ -87,6 +69,24 @@
     <ClCompile Include="src\orderbook\OrderList.cpp">
       <Filter>src\orderbook</Filter>
     </ClCompile>
+    <ClCompile Include="src\protobuf\Service.pb.cc">
+      <Filter>src\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="test\JsonToRedisTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\RedisTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\TestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\CSVTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\JsonTestData.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\orderbook\Order.h">
@@ -101,26 +101,8 @@
     <ClInclude Include="src\orderbook\OrderBook.h">
       <Filter>src\orderbook</Filter>
     </ClInclude>
-    <ClInclude Include="src\orderbook\Quote.h">
-      <Filter>src\orderbook</Filter>
-    </ClInclude>
     <ClInclude Include="3party\json11\json11.hpp">
       <Filter>3party\json11</Filter>
-    </ClInclude>
-    <ClInclude Include="test\JsonTestData.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="test\CSVTestData.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="test\TestData.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="test\RedisTestData.h">
-      <Filter>test</Filter>
-    </ClInclude>
-    <ClInclude Include="test\JsonToRedisTestData.h">
-      <Filter>test</Filter>
     </ClInclude>
     <ClInclude Include="utils\parse.h">
       <Filter>utils</Filter>
@@ -140,9 +122,6 @@
     <ClInclude Include="utils\BETime.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="test\TestStartModule.h">
-      <Filter>test</Filter>
-    </ClInclude>
     <ClInclude Include="src\ServerStartModule.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -154,6 +133,27 @@
     </ClInclude>
     <ClInclude Include="src\orderbook\OrderList.h">
       <Filter>src\orderbook</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protobuf\Service.pb.h">
+      <Filter>src\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="test\JsonTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\JsonToRedisTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\RedisTestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\TestData.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\TestStartModule.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="test\CSVTestData.h">
+      <Filter>test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

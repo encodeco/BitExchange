@@ -3,7 +3,8 @@
 #include <deque>
 #include <vector>
 #include <iostream>
-#include "Quote.h"
+
+#include "./protobuf/Service.pb.h"
 
 class OrderTree;
 class OrderList;
@@ -49,18 +50,21 @@ public:
 	~OrderBook();
 
 public:
-	std::pair<std::vector<TransactionRecord>, Quote>  process_order( Quote &quote, bool from_data, bool verbose);
+
+	std::pair<unsigned int, std::vector<TransactionRecord>>  process_order_list(be::protobuf::Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose);
+	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> process_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose);
 	void update_time();
 
-	std::vector<TransactionRecord> process_market_order(Quote &quote, bool verbose);
-	std::pair<std::vector<TransactionRecord>, Quote>   process_limit_order(Quote &quote, bool from_data, bool verbose);
+	std::vector<TransactionRecord> process_market_order(be::protobuf::Service::Quote &quote, bool verbose);
+	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote>   process_limit_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose);
 
-	std::pair<unsigned int, std::vector<TransactionRecord>>  process_order_list(char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, Quote& quote, bool vervose);
 
 	// for debug
 public:
+	void builder();
+
+public:
 	void print();
 	std::string text();
-	BidAsk builder();
 };
 

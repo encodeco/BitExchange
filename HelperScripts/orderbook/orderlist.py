@@ -1,10 +1,10 @@
-class std::list<std::shared_ptr<Order>>(object):
+class OrderList(object):
     '''
     A doubly linked list of Orders. Used to iterate through Orders when
-    a price match is found. Each std::list<std::shared_ptr<Order>> is associated with a single
+    a price match is found. Each OrderList is associated with a single
     price. Since a single price match can have more quantity than a single 
     Order, we may need multiple Orders to fullfill a transaction. The
-    std::list<std::shared_ptr<Order>> makes this easy to do. std::list<std::shared_ptr<Order>> is naturally arranged by time.
+    OrderList makes this easy to do. OrderList is naturally arranged by time.
     Orders at the front of the list have priority.
     '''
 
@@ -60,7 +60,7 @@ class std::list<std::shared_ptr<Order>>(object):
         if len(self) == 0: # if there are no more Orders, stop/return
             return
         
-        # Remove an Order from the std::list<std::shared_ptr<Order>>. First grab next / prev order
+        # Remove an Order from the OrderList. First grab next / prev order
         # from the Order we are removing. Then relink everything. Finally
         # remove the Order.
         next_order = order.next_order
@@ -70,19 +70,19 @@ class std::list<std::shared_ptr<Order>>(object):
             prev_order.next_order = next_order
         elif next_order != None: # There is no previous order
             next_order.prev_order = None
-            self.head_order = next_order # The next order becomes the first order in the std::list<std::shared_ptr<Order>> after this Order is removed
+            self.head_order = next_order # The next order becomes the first order in the OrderList after this Order is removed
         elif prev_order != None: # There is no next order
             prev_order.next_order = None
-            self.tail_order = prev_order # The previous order becomes the last order in the std::list<std::shared_ptr<Order>> after this Order is removed
+            self.tail_order = prev_order # The previous order becomes the last order in the OrderList after this Order is removed
 
     def move_to_tail(self, order):
-        '''After updating the quantity of an existing Order, move it to the tail of the std::list<std::shared_ptr<Order>>
+        '''After updating the quantity of an existing Order, move it to the tail of the OrderList
 
         Check to see that the quantity is larger than existing, update the quantities, then move to tail.
         '''
-        if order.prev_order != None: # This Order is not the first Order in the std::list<std::shared_ptr<Order>>
+        if order.prev_order != None: # This Order is not the first Order in the OrderList
             order.prev_order.next_order = order.next_order # Link the previous Order to the next Order, then move the Order to tail
-        else: # This Order is the first Order in the std::list<std::shared_ptr<Order>>
+        else: # This Order is the first Order in the OrderList
             self.head_order = order.next_order # Make next order the first
 
         order.next_order.prev_order = order.prev_order

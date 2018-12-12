@@ -5,35 +5,31 @@
 #include "OrderBook/OrderBook.h"
 
 #include "./utils/BETime.h"
-//#include "./test/TestStartModule.h"
 
 #include "RedisTask.h"
 #include "MongoTask.h"
+#include <mutex>
+
+
+#include "./protobuf/Service.pb.h"
+
 
 class ServerStartModule {
 public:
 	static int run(int argc, char* argv[]) {
+
+
+		std::mutex mu;
+		be::protobuf::Service::QuoteList quotes;
+
 		// Creating REDIS Task
 		RedisTask redis_task;
 
 		//Creating a thread to execute REDIS task
 		std::thread redis_th([&]()
 		{
-			redis_task.run();
+			redis_task.run(quotes, mu);
 		});
-
-		// Creating MONOGO Task
-		MongoTask mongo_task;
-
-		//Creating a thread to execute MONOGO task
-		std::thread mongo_th([&]()
-		{
-			mongo_task.run();
-		});
-
-
-
-
 
 		// main thread
 		std::unique_ptr <OrderBook> orderbook = std::make_unique<OrderBook>();
@@ -43,13 +39,33 @@ public:
 		{
 			BETime timestamp;
 			timestamp.start();
-			Quote quote;
-			if (redis_task.safe_pop(quote)) {
 
-				std::pair<std::vector<TransactionRecord>, Quote> ret = orderbook->process_order(quote, false, false);
+			//Quote quote;
 
-				auto bidask = orderbook->builder();
+			std::unique_lock < std::mutex > locker(mu);
 
+			auto qu = quotes.mutable_quotes();
+
+			bool b_exist = false;
+			be::protobuf::Service::Quote searched_quote;
+
+			if (!qu->empty()) {
+				b_exist = true;
+				auto last_item = qu->rbegin();
+				searched_quote.CopyFrom((*last_item));
+
+				 
+				auto temp = searched_quote.order_type();
+
+				qu->RemoveLast();
+			}
+
+			locker.unlock();
+
+			if(b_exist)
+			{
+				// end lock
+				std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> ret = orderbook->process_order(searched_quote, false, false);
 
 				std::string ostr = orderbook->text();
 				std::cout << ostr;
@@ -57,8 +73,6 @@ public:
 
 				std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-				mongo_task.safe_insert(bidask);
-				//mongo_task.safe_insert(bidask);
 			}
 			timestamp.stop();
 
@@ -72,15 +86,9 @@ public:
 		//Waiting for thread to join
 		redis_th.join();
 
-		// Stop the Task
-		mongo_task.stop();
-		//Waiting for thread to join
-		mongo_th.join();
 
 		std::cout << "Thread Joined" << std::endl;
 		std::cout << "Exiting Main Function" << std::endl;
-
-		return 0;
 
 		return 0;
 	}
