@@ -10,6 +10,8 @@ using namespace std;
 
 class OrderList;
 
+using be::protobuf::Service;
+
 class Order
 {
 private:
@@ -24,7 +26,7 @@ public:
 	
 public:
 	Order();
-	Order(be::protobuf::Service::Quote &quote, std::shared_ptr<OrderList> order_list);
+	Order(Service::Quote &quote, std::shared_ptr<OrderList> order_list);
 	~Order();
 
 public:

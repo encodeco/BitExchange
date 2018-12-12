@@ -10,7 +10,7 @@ Order::Order()
 {
 }
 
-Order::Order(be::protobuf::Service::Quote &quote, std::shared_ptr<OrderList> order_list)
+Order::Order(Service::Quote &quote, std::shared_ptr<OrderList> order_list)
 {
 	this->timestamp = quote.mutable_order()->timestamp();
 	this->quantity = quote.mutable_order()->quantity();

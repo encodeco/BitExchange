@@ -13,6 +13,7 @@
 
 #include "./protobuf/Service.pb.h"
 
+using be::protobuf::Service;
 
 class ServerStartModule {
 public:
@@ -20,7 +21,7 @@ public:
 
 
 		std::mutex mu;
-		be::protobuf::Service::QuoteList quotes;
+		Service::QuoteList quotes;
 
 		// Creating REDIS Task
 		RedisTask redis_task;

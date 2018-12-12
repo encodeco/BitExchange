@@ -9,6 +9,8 @@
 class OrderTree;
 class OrderList;
 
+using be::protobuf::Service;
+
 struct TransactionRecord {
 	time_t				timestamp;
 	unsigned __int64	price;
@@ -51,12 +53,12 @@ public:
 
 public:
 
-	std::pair<unsigned int, std::vector<TransactionRecord>>  process_order_list(be::protobuf::Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose);
-	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> process_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose);
+	std::pair<unsigned int, std::vector<TransactionRecord>>  process_order_list(Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose);
+	std::pair<std::vector<TransactionRecord>, Service::Quote> process_order(Service::Quote &quote, bool from_data, bool verbose);
 	void update_time();
 
-	std::vector<TransactionRecord> process_market_order(be::protobuf::Service::Quote &quote, bool verbose);
-	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote>   process_limit_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose);
+	std::vector<TransactionRecord> process_market_order(Service::Quote &quote, bool verbose);
+	std::pair<std::vector<TransactionRecord>, Service::Quote>   process_limit_order(Service::Quote &quote, bool from_data, bool verbose);
 
 
 	// for debug

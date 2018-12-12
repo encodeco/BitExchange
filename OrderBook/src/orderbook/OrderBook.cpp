@@ -28,7 +28,7 @@ void OrderBook::update_time()
 	this->time += 1;
 }
 
-std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_order_list(be::protobuf::Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose)
+std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_order_list(Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose)
 {
 	//Takes an OrderList(stack of orders at one price) and an incoming order and matches
 	//	appropriate trades given the order's quantity.
@@ -112,7 +112,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 	return return_value;
 }
 
-std::vector<TransactionRecord> OrderBook::process_market_order(be::protobuf::Service::Quote &quote, bool verbose)
+std::vector<TransactionRecord> OrderBook::process_market_order(Service::Quote &quote, bool verbose)
 {
 	std::vector<TransactionRecord> trades;
 
@@ -145,12 +145,12 @@ std::vector<TransactionRecord> OrderBook::process_market_order(be::protobuf::Ser
 	return trades;	
 }
 
-std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote>   OrderBook::process_limit_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose)
+std::pair<std::vector<TransactionRecord>, Service::Quote>   OrderBook::process_limit_order(Service::Quote &quote, bool from_data, bool verbose)
 {
 
-	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> return_value;
+	std::pair<std::vector<TransactionRecord>, Service::Quote> return_value;
 
-	be::protobuf::Service::Quote order_in_book;
+	Service::Quote order_in_book;
 	std::vector< TransactionRecord > trades;
 	unsigned int quantity_to_trade = quote.mutable_order()->quantity();
 	char side = quote.order_side().c_str()[0];
@@ -214,11 +214,11 @@ std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote>   OrderB
 	return return_value;
 }
 
-std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> OrderBook::process_order(be::protobuf::Service::Quote &quote, bool from_data, bool verbose)
+std::pair<std::vector<TransactionRecord>, Service::Quote> OrderBook::process_order(Service::Quote &quote, bool from_data, bool verbose)
 {
 	const char order_type = quote.order_type().c_str()[0];
 
-	be::protobuf::Service::Quote order_in_book;
+	Service::Quote order_in_book;
 
 	if (from_data)
 		this->time = quote.mutable_order()->timestamp();
@@ -227,7 +227,7 @@ std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> OrderBoo
 		quote.mutable_order()->set_timestamp( this->time );
 	}
 
-	std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> return_value;
+	std::pair<std::vector<TransactionRecord>, Service::Quote> return_value;
 
 	if (quote.mutable_order()->timestamp() <= 0) {
 		//sys.exit('process_order() given order of quantity <= 0')
