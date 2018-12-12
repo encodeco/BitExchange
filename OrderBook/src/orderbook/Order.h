@@ -18,7 +18,7 @@ private:
 	unsigned __int64				price;
 	unsigned __int64				order_id;
 	unsigned int					quantity;
-	unsigned int					trade_id;
+	unsigned int					trader_id;
 	time_t							timestamp;
 
 public:
@@ -31,7 +31,7 @@ public:
 
 public:
 	unsigned __int64 get_order_id() { return order_id; }
-	unsigned int get_trade_id() { return trade_id; }
+	unsigned int get_trader_id() { return trader_id; }
 	unsigned int get_quantity() { return quantity; }
 	unsigned __int64 get_price() { return price; }
 	time_t get_timestamp() { return timestamp; }

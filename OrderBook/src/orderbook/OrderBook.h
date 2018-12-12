@@ -25,12 +25,12 @@ struct TransactionRecord {
 	}party1;
 
 	struct Party12 {
-		unsigned int trade_id;
+		unsigned int trader_id;
 		char side;
 	}party2;
 
 	void print() {
-		std::cout << party2.trade_id << " " <<  party1.side << std::endl;
+		std::cout << party2.trader_id << " " <<  party1.side << std::endl;
 	}
 };
 

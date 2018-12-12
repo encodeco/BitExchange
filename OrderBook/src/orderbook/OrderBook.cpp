@@ -43,7 +43,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 		// 두번째로 불려질땐, 처리할 쿼트에 양이 남아 있고, 첫번째 오더는 지워진상태이다.
 		auto head_order = order_list->get_head_order();
 		auto traded_price = head_order->get_price();
-		auto counter_party = head_order->get_trade_id();
+		auto counter_party = head_order->get_trader_id();
 		unsigned int traded_quantity = 0;
 
 		unsigned int new_book_quantity = 0;
@@ -92,7 +92,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 			transaction_record.party1.side = 'B';
 			transaction_record.party1.order_id = head_order->get_order_id();
 			transaction_record.party1.book_quantity = new_book_quantity;
-			transaction_record.party2.trade_id = quote.mutable_order()->trader_id();
+			transaction_record.party2.trader_id = quote.mutable_order()->trader_id();
 			transaction_record.party2.side = 'A';
 		}
 		else {
@@ -100,7 +100,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 			transaction_record.party1.side = 'A';
 			transaction_record.party1.order_id = head_order->get_order_id();
 			transaction_record.party1.book_quantity = new_book_quantity;
-			transaction_record.party2.trade_id = quote.mutable_order()->trader_id();
+			transaction_record.party2.trader_id = quote.mutable_order()->trader_id();
 			transaction_record.party2.side = 'B';
 		}
 
@@ -292,7 +292,7 @@ void OrderBook::print()
 			{
 				//tempfile.write(str(entry['quantity']) + " @ " + str(entry['price']) + " (" + str(entry['timestamp']) + ") " + str(entry['party1'][0]) + "/" + str(entry['party2'][0]) + "\n")
 
-				cout << entry.quantity << " @ " << entry.price << " ( " << entry.timestamp << +" ) " << entry.party1.counter_party << " / " << entry.party2.trade_id << endl;
+				cout << entry.quantity << " @ " << entry.price << " ( " << entry.timestamp << +" ) " << entry.party1.counter_party << " / " << entry.party2.trader_id << endl;
 				num += 1;
 			}
 			else
@@ -385,7 +385,7 @@ std::string OrderBook::text()
 				rstr += " ) ";
 				rstr += std::to_string(entry.party1.counter_party);
 				rstr += " / ";
-				rstr += std::to_string(entry.party2.trade_id);
+				rstr += std::to_string(entry.party2.trader_id);
 				rstr += "\n";
 				num += 1;
 			}

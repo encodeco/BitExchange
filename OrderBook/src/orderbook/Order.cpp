@@ -16,7 +16,7 @@ Order::Order(Service::Quote &quote, std::shared_ptr<OrderList> order_list)
 	this->quantity = quote.mutable_order()->quantity();
 	this->price = quote.mutable_order()->price();
 	this->order_id = quote.mutable_order()->order_id();
-	this->trade_id = quote.mutable_order()->trader_id();
+	this->trader_id = quote.mutable_order()->trader_id();
 
 	this->order_list = order_list;
 }
@@ -40,13 +40,13 @@ void Order::update_quantity(unsigned int new_quantity, time_t new_timestamp)
 
 void Order::print()
 {
-	cout << boost::format("%1% @ %2% / %3%  -  %4%") % this->quantity % this->price % this->trade_id % this->timestamp << endl;
+	cout << boost::format("%1% @ %2% / %3%  -  %4%") % this->quantity % this->price % this->trader_id % this->timestamp << endl;
 }
 std::string Order::text()
 {
 	std::string rstr;
 	rstr = str(
-		boost::format("%1% @ %2% / %3%  -  %4% \n") % this->quantity % this->price % this->trade_id % this->timestamp
+		boost::format("%1% @ %2% / %3%  -  %4% \n") % this->quantity % this->price % this->trader_id % this->timestamp
 		);
 	return rstr;
 }
