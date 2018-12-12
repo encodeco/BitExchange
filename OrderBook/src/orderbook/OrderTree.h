@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <map>
 #include <memory>
 #include "common.h"
@@ -17,7 +17,11 @@ typedef std::pair<unsigned __int64, std::shared_ptr<OrderList>> PriceValuePair;
 class OrderTree
 {
 private:
+	// 오더북을 위한 메인 트리
 	map< unsigned __int64, std::shared_ptr<OrderList> > price_map; // key : price
+
+	// 오더ID만으로 빠른 검색을 할 수 있다. 오더를 지울 경우, ID로 찾아서 PRICE를 구한다. 
+	// 그리고 PRICEMAP에서 PRICE로 검색, 오더를 지운다.
 	map< unsigned __int64, std::shared_ptr<Order> >		order_map; // key : id num
 
 	unsigned int										volume;
