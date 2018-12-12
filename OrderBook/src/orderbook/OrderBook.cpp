@@ -377,15 +377,15 @@ std::string OrderBook::text()
 			{
 				//tempfile.write(str(entry['quantity']) + " @ " + str(entry['price']) + " (" + str(entry['timestamp']) + ") " + str(entry['party1'][0]) + "/" + str(entry['party2'][0]) + "\n")
 
-				rstr += entry.quantity;
+				rstr += std::to_string(entry.quantity);
 				rstr += " @ ";
-				rstr += (unsigned int)entry.price;
+				rstr += std::to_string((unsigned int)entry.price);
 				rstr += " ( ";
-				rstr += (unsigned int)entry.timestamp;
+				rstr += std::to_string((unsigned int)entry.timestamp);
 				rstr += " ) ";
-				rstr += entry.party1.counter_party;
+				rstr += std::to_string(entry.party1.counter_party);
 				rstr += " / ";
-				rstr += entry.party2.trade_id;
+				rstr += std::to_string(entry.party2.trade_id);
 				rstr += "\n";
 				num += 1;
 			}
