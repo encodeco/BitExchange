@@ -69,23 +69,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>hiredis</TargetName>
-    <OutDir>$(SolutionDir)lib\x64\$(Configuration)\hiredis</OutDir>
-    <IntDir>$(SolutionDir)tmp\x64\$(Configuration)\win32_interop</IntDir>
+    <OutDir>$(SolutionDir)lib\x64\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)tmp\x64\$(Configuration)\hiredis</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>hiredis</TargetName>
-    <OutDir>$(SolutionDir)lib\x86\$(Configuration)\hiredis</OutDir>
-    <IntDir>$(SolutionDir)tmp\x86\$(Configuration)\win32_interop</IntDir>
+    <OutDir>$(SolutionDir)lib\x86\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)tmp\x86\$(Configuration)\hiredis</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>hiredis</TargetName>
-    <OutDir>$(SolutionDir)lib\x64\$(Configuration)\hiredis</OutDir>
-    <IntDir>$(SolutionDir)tmp\x64\$(Configuration)\win32_interop</IntDir>
+    <OutDir>$(SolutionDir)lib\x64\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)tmp\x64\$(Configuration)\hiredis</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>hiredis</TargetName>
-    <OutDir>$(SolutionDir)lib\x86\$(Configuration)\hiredis</OutDir>
-    <IntDir>$(SolutionDir)tmp\x86\$(Configuration)\win32_interop</IntDir>
+    <OutDir>$(SolutionDir)lib\x86\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)tmp\x86\$(Configuration)\hiredis</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

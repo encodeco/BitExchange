@@ -1,7 +1,0 @@
-package userdb;
- 
-message User {
-        required string id = 1;
-        required string pw = 2;
-        optional int32  age = 3;
-}

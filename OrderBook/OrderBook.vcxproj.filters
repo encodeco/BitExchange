@@ -69,9 +69,6 @@
     <ClCompile Include="src\orderbook\OrderList.cpp">
       <Filter>src\orderbook</Filter>
     </ClCompile>
-    <ClCompile Include="src\protobuf\Service.pb.cc">
-      <Filter>src\protobuf</Filter>
-    </ClCompile>
     <ClCompile Include="test\JsonToRedisTestData.cpp">
       <Filter>test</Filter>
     </ClCompile>
@@ -86,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="test\JsonTestData.cpp">
       <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protobuf\Trading.pb.cc">
+      <Filter>src\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protobuf\Trading.grpc.pb.cc">
+      <Filter>src\protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +119,6 @@
     <ClInclude Include="utils\asyncredis.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\RedisTask.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="utils\BETime.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -133,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="src\orderbook\OrderList.h">
       <Filter>src\orderbook</Filter>
-    </ClInclude>
-    <ClInclude Include="src\protobuf\Service.pb.h">
-      <Filter>src\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="test\JsonTestData.h">
       <Filter>test</Filter>
@@ -154,6 +151,21 @@
     </ClInclude>
     <ClInclude Include="test\CSVTestData.h">
       <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RandomWalkerImpl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RedisTask.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GRPCTask.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protobuf\Trading.pb.h">
+      <Filter>src\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protobuf\Trading.grpc.pb.h">
+      <Filter>src\protobuf</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

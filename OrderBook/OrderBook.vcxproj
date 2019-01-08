@@ -25,7 +25,8 @@
     <ClCompile Include="src\orderbook\OrderBook.cpp" />
     <ClCompile Include="src\orderbook\OrderList.cpp" />
     <ClCompile Include="src\orderbook\OrderTree.cpp" />
-    <ClCompile Include="src\protobuf\Service.pb.cc" />
+    <ClCompile Include="src\protobuf\Trading.grpc.pb.cc" />
+    <ClCompile Include="src\protobuf\Trading.pb.cc" />
     <ClCompile Include="src\RedisTask.cpp" />
     <ClCompile Include="test\CSVTestData.cpp" />
     <ClCompile Include="test\JsonTestData.cpp" />
@@ -40,12 +41,15 @@
   <ItemGroup>
     <ClInclude Include="3party\json11\json11.hpp" />
     <ClInclude Include="MongoTask.h" />
+    <ClInclude Include="src\GRPCTask.h" />
     <ClInclude Include="src\orderbook\common.h" />
     <ClInclude Include="src\orderbook\Order.h" />
     <ClInclude Include="src\orderbook\OrderBook.h" />
     <ClInclude Include="src\orderbook\OrderList.h" />
     <ClInclude Include="src\orderbook\OrderTree.h" />
-    <ClInclude Include="src\protobuf\Service.pb.h" />
+    <ClInclude Include="src\protobuf\Trading.grpc.pb.h" />
+    <ClInclude Include="src\protobuf\Trading.pb.h" />
+    <ClInclude Include="src\RandomWalkerImpl.h" />
     <ClInclude Include="src\RedisTask.h" />
     <ClInclude Include="src\ServerStartModule.h" />
     <ClInclude Include="src\StreamingTask.h" />
@@ -143,7 +147,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_WIN32_WINNT=0x800</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -169,7 +173,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_WIN32_WINNT=0x800</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -223,7 +227,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_WIN32_WINNT=0x800</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>

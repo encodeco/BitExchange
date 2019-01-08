@@ -28,7 +28,7 @@ RedisTask::~RedisTask()
 void RedisTask::run()
 {
 }
-void RedisTask::run(be::protobuf::Service::QuoteList &quotes, std::mutex &mu)
+void RedisTask::run(be::QuoteList &quotes, std::mutex &mu)
 {
 
 	redispp redis;

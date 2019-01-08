@@ -1,0 +1,78 @@
+syntax = "proto3";
+package be;
+
+service MyRandomWalker {
+    rpc Update (NumSteps) returns (Empty) {}
+    rpc GetPosition (Empty) returns (Position) {}
+}
+
+message Empty {
+}
+
+message NumSteps {
+    int32 n = 1;
+}
+
+message Position {
+    int32 x = 1;
+}
+
+service Trading{
+    rpc QuoteUpdate (Quote) returns (Empty) {}
+    rpc OrderBookUpdate (Empty) returns (OrderBook) {}
+}
+
+
+// 오더북에 들어고 나서에 오더 정보
+message Order{
+    uint32      timestamp   = 1;
+    uint32      quantity    = 2;
+    uint64      price       = 3;
+    uint64      order_id    = 4;
+    uint32      trader_id   = 5;
+    
+    OrderList   order_list      = 6;
+}
+
+// 유저로 부터 들어오는 주문에 단위. 아직 오더북엔 들어가지 않은 상태
+message Quote{
+    bytes       order_type  = 1;
+    bytes       order_side  = 2;
+
+    Order       order       = 3;
+}
+
+// 큐에서 쿼트정보를 가져와서, 오더북에 입력하기 위한
+message QuoteList{
+    repeated Quote quotes   = 1;
+    uint64   volumn         = 2;
+}
+
+// 오더북에 저장될 오더
+message OrderList{
+    repeated Order orders	= 1;
+	uint64	volumn			= 2;
+}
+
+message OrderBookList{
+	repeated OrderBook orderbooks = 1;
+}
+
+// 오더북 전체
+message OrderBook{
+    //map < uint64, OrderList > bids_map  = 1;
+   //map < uint64, OrderList > asks_map  = 2;
+   OrderTree bid_tree = 1;
+   OrderTree ask_tree = 2;
+}
+
+message OrderTree{
+    map < uint64, OrderList >   price_map = 1;    // Key : price
+    map < uint64, Order >       order_map = 2;    // key : Order ID
+
+    uint64                      volumn      = 3;
+    uint64                      min_price   = 4;
+    uint64                      max_price   = 5;
+    uint64                      num_orders = 7;
+    uint32                      depth      = 6;
+}

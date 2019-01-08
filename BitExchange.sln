@@ -11,7 +11,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win32_interop", "3party\hir
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hiredis", "3party\hiredis\msvs\vs-solutions\vs2015\hiredis.vcxproj", "{13E85053-54B3-487B-8DDB-3430B1C1B3BF}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HelperScripts", "HelperScripts\HelperScripts.pyproj", "{917775D9-BAAF-4A31-88B6-DB80ADEA2451}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "protobuf", "protobuf", "{1C3C7234-DC8C-4157-8C37-32C2E549620A}"
+	ProjectSection(SolutionItems) = preProject
+		protobuf\run.bat = protobuf\run.bat
+		protobuf\run.sh = protobuf\run.sh
+		protobuf\Trading.proto = protobuf\Trading.proto
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,12 +58,6 @@ Global
 		{13E85053-54B3-487B-8DDB-3430B1C1B3BF}.Release|x64.Build.0 = Release|x64
 		{13E85053-54B3-487B-8DDB-3430B1C1B3BF}.Release|x86.ActiveCfg = Release|Win32
 		{13E85053-54B3-487B-8DDB-3430B1C1B3BF}.Release|x86.Build.0 = Release|Win32
-		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Release|x64.ActiveCfg = Release|Any CPU
-		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

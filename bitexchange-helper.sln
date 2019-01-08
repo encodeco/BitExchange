@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperSharp", "HelperSharp\HelperSharp.csproj", "{CC11E184-2E07-4035-8D5B-089DC32EBFEF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HelperScripts", "HelperScripts\HelperScripts.pyproj", "{917775D9-BAAF-4A31-88B6-DB80ADEA2451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperSharpGUI", "HelperSharpGUI\HelperSharpGUI.csproj", "{3314524A-975F-48BE-9B94-CD55FC5BF374}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC11E184-2E07-4035-8D5B-089DC32EBFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC11E184-2E07-4035-8D5B-089DC32EBFEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC11E184-2E07-4035-8D5B-089DC32EBFEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC11E184-2E07-4035-8D5B-089DC32EBFEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{917775D9-BAAF-4A31-88B6-DB80ADEA2451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3314524A-975F-48BE-9B94-CD55FC5BF374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3314524A-975F-48BE-9B94-CD55FC5BF374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3314524A-975F-48BE-9B94-CD55FC5BF374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3314524A-975F-48BE-9B94-CD55FC5BF374}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CAB0269-A706-4041-B4AE-759D570638B5}
+	EndGlobalSection
+EndGlobal

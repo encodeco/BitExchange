@@ -10,27 +10,42 @@
 #include "MongoTask.h"
 #include <mutex>
 
+#include "./protobuf/Trading.pb.h"
 
-#include "./protobuf/Service.pb.h"
+#include "./GRPCTask.h"
 
-using be::protobuf::Service;
+
+struct SafeQuotes {
+	std::mutex mu;
+	be::QuoteList quotes;
+};
+
+struct SafeOrderbooks {
+	std::mutex mu;
+	be::OrderBookList orderbooks;
+};
 
 class ServerStartModule {
 public:
 	static int run(int argc, char* argv[]) {
 
+		std::pair< std::mutex, be::QuoteList > safe_quotes;
+		std::pair< std::mutex, be::OrderBookList > safe_orderbooks;
+		
 
-		std::mutex mu;
-		Service::QuoteList quotes;
+		std::string server_address("0.0.0.0:50051");
+		GRPCTask grpc_task(safe_quotes, safe_orderbooks);
 
-		// Creating REDIS Task
-		RedisTask redis_task;
+		grpc::ServerBuilder builder;
+		builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+		builder.RegisterService(&grpc_task);
+		std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+		std::cout << "Server listening on " << server_address << std::endl;
 
-		//Creating a thread to execute REDIS task
-		std::thread redis_th([&]()
-		{
-			redis_task.run(quotes, mu);
-		});
+
+
+		BETime timestamp;
+		timestamp.start();
 
 		// main thread
 		std::unique_ptr <OrderBook> orderbook = std::make_unique<OrderBook>();
@@ -38,17 +53,13 @@ public:
 		int count_of_processed = 0;
 		while (true)
 		{
-			BETime timestamp;
-			timestamp.start();
-
 			//Quote quote;
+			std::unique_lock < std::mutex > locker(safe_quotes.first);
 
-			std::unique_lock < std::mutex > locker(mu);
-
-			auto qu = quotes.mutable_quotes();
+			auto qu = safe_quotes.second.mutable_quotes();
 
 			bool b_exist = false;
-			be::protobuf::Service::Quote searched_quote;
+			be::Quote searched_quote;
 
 			if (!qu->empty()) {
 				b_exist = true;
@@ -66,27 +77,48 @@ public:
 			if(b_exist)
 			{
 				// end lock
-				std::pair<std::vector<TransactionRecord>, be::protobuf::Service::Quote> ret = orderbook->process_order(searched_quote, false, false);
+				std::pair<std::vector<TransactionRecord>, be::Quote> ret = orderbook->process_order(searched_quote, false, false);
 
 				std::string ostr = orderbook->text();
 				std::cout << ostr;
-				std::cout << ++count_of_processed << " " << std::endl;
+				std::cout << count_of_processed << "th " << std::endl;
+				++count_of_processed;
 
-				std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+				// update tree!
 
+				be::OrderBook ob;
+				orderbook->get_orderbook(ob);
+
+				//// debug
+				//auto ask_tree = ob.ask_tree();
+				//for (auto ask : ask_tree.price_map()) {
+				//	std::cout << ask.second.volumn();
+				//}
+				///////////////////////////////////////////
+
+				std::unique_lock < std::mutex > locker(safe_orderbooks.first);
+
+				auto new_ob = safe_orderbooks.second.add_orderbooks();
+				new_ob->CopyFrom(ob);
+
+				//// debug
+				//auto new_ask_tree = new_ob->mutable_ask_tree();
+				//for (auto ask : ask_tree.price_map()) {
+				//	std::cout << ask.second.volumn();
+				//}
+				/////////////////////////////////////////////
+
+				locker.unlock();
 			}
-			timestamp.stop();
-
-			//cout << timestamp.diff().count() << std::endl;
 		}
+
 
 		std::cout << "Asking Task to Stop" << std::endl;
 
 		// Stop the Task
-		redis_task.stop();
+		//redis_task.stop();
 		//Waiting for thread to join
-		redis_th.join();
-
+		//redis_th.join();
 
 		std::cout << "Thread Joined" << std::endl;
 		std::cout << "Exiting Main Function" << std::endl;

@@ -28,7 +28,7 @@ void OrderBook::update_time()
 	this->time += 1;
 }
 
-std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_order_list(Service::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose)
+std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_order_list(be::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose)
 {
 	//Takes an OrderList(stack of orders at one price) and an incoming order and matches
 	//	appropriate trades given the order's quantity.
@@ -112,7 +112,7 @@ std::pair<unsigned int, std::vector<TransactionRecord>>  OrderBook::process_orde
 	return return_value;
 }
 
-std::vector<TransactionRecord> OrderBook::process_market_order(Service::Quote &quote, bool verbose)
+std::vector<TransactionRecord> OrderBook::process_market_order(be::Quote &quote, bool verbose)
 {
 	std::vector<TransactionRecord> trades;
 
@@ -145,12 +145,12 @@ std::vector<TransactionRecord> OrderBook::process_market_order(Service::Quote &q
 	return trades;	
 }
 
-std::pair<std::vector<TransactionRecord>, Service::Quote>   OrderBook::process_limit_order(Service::Quote &quote, bool from_data, bool verbose)
+std::pair<std::vector<TransactionRecord>, be::Quote>   OrderBook::process_limit_order(be::Quote &quote, bool from_data, bool verbose)
 {
 
-	std::pair<std::vector<TransactionRecord>, Service::Quote> return_value;
+	std::pair<std::vector<TransactionRecord>, be::Quote> return_value;
 
-	Service::Quote order_in_book;
+	be::Quote order_in_book;
 	std::vector< TransactionRecord > trades;
 	unsigned int quantity_to_trade = quote.mutable_order()->quantity();
 	char side = quote.order_side().c_str()[0];
@@ -185,7 +185,7 @@ std::pair<std::vector<TransactionRecord>, Service::Quote>   OrderBook::process_l
 
 		// 입력 쿼트가 ASK (SELL)일 경우, BID (BUY) 트리에서 가장 높은 가격(get_max_price)을 꺼내와서 이력된 쿼트와 비교한다.
 		// 사자 오더북중, 가장 높은 가격에 사려는 오더부터 처리한다.
-		while (!this->bids->is_empty() && this->bids->get_max_price() && quantity_to_trade > 0) {
+		while (!this->bids->is_empty() && price <= this->bids->get_max_price() && quantity_to_trade > 0) {
 			auto best_price_bids = this->bids->max_price_list();
 			auto value = this->process_order_list( quote, 'B', best_price_bids, quantity_to_trade, verbose);
 
@@ -214,11 +214,11 @@ std::pair<std::vector<TransactionRecord>, Service::Quote>   OrderBook::process_l
 	return return_value;
 }
 
-std::pair<std::vector<TransactionRecord>, Service::Quote> OrderBook::process_order(Service::Quote &quote, bool from_data, bool verbose)
+std::pair<std::vector<TransactionRecord>, be::Quote> OrderBook::process_order(be::Quote &quote, bool from_data, bool verbose)
 {
 	const char order_type = quote.order_type().c_str()[0];
 
-	Service::Quote order_in_book;
+	be::Quote order_in_book;
 
 	if (from_data)
 		this->time = quote.mutable_order()->timestamp();
@@ -227,7 +227,7 @@ std::pair<std::vector<TransactionRecord>, Service::Quote> OrderBook::process_ord
 		quote.mutable_order()->set_timestamp( this->time );
 	}
 
-	std::pair<std::vector<TransactionRecord>, Service::Quote> return_value;
+	std::pair<std::vector<TransactionRecord>, be::Quote> return_value;
 
 	if (quote.mutable_order()->timestamp() <= 0) {
 		//sys.exit('process_order() given order of quantity <= 0')
@@ -343,6 +343,46 @@ void OrderBook::builder()
 	}
 */
 	//return bidask;
+}
+
+
+void OrderBook::get_orderbook(be::OrderBook &orderbook)
+{
+
+	// "***Bids*** \n";
+	if (!this->bids->is_empty()) {
+		auto p_map = orderbook.mutable_bid_tree()->mutable_price_map();
+		auto data = this->bids->get_data();
+
+		for (auto a_data : boost::adaptors::reverse(data)) {
+			auto a_key = a_data.first;
+			auto a_value = a_data.second;
+
+			be::OrderList ol;
+			ol.set_volumn((*a_value).get_volume());
+			(*p_map)[a_key] = ol;
+
+			//auto new_item = (*p_map)[a_key];
+			//new_item.set_volumn( (*a_value).get_volume() );
+		}
+	}
+
+	//  "***Asks*** \n";
+	if (!this->asks->is_empty()) {
+		auto p_map = orderbook.mutable_ask_tree()->mutable_price_map();
+		auto data = this->asks->get_data();
+		for (auto a_data : data) {
+			auto a_key = a_data.first;
+			auto a_value = a_data.second;
+
+			be::OrderList ol;
+			ol.set_volumn((*a_value).get_volume());
+			(*p_map)[a_key] = ol;
+
+			//auto new_item = (*p_map)[a_key];
+			//new_item.set_volumn((*a_value).get_volume());
+		}
+	}
 }
 std::string OrderBook::text()
 {

@@ -49,7 +49,7 @@ void OrderTree::create_price(unsigned __int64 price)
 
 	return;
 }
-void OrderTree::insert_order(be::protobuf::Service::Quote &quote)
+void OrderTree::insert_order(be::Quote &quote)
 {
 	if (order_exists(quote.mutable_order()->order_id())) {
 		this->remove_order_by_id(quote.mutable_order()->order_id());

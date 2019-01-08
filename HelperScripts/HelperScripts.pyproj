@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>917775d9-baaf-4a31-88b6-db80adea2451</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>genOrders.py</StartupFile>
+    <StartupFile>client.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>HelperScripts</Name>
     <RootNamespace>HelperScripts</RootNamespace>
+    <InterpreterId>MSBuild|BE|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="client.py" />
     <Compile Include="genOrders.py">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +37,7 @@
     <Compile Include="orderbook\test\example.py" />
     <Compile Include="orderbook\test\genOrders.py" />
     <Compile Include="orderbook\__init__.py" />
+    <Compile Include="Service_pb2_grpc.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="orderbook\" />
@@ -48,6 +51,17 @@
     <Content Include="orderbook\__pycache__\orderlist.cpython-36.pyc" />
     <Content Include="orderbook\__pycache__\ordertree.cpython-36.pyc" />
     <Content Include="orderbook\__pycache__\__init__.cpython-36.pyc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="BE\">
+      <Id>BE</Id>
+      <Version>3.6</Version>
+      <Description>BE (Python 3.6 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
