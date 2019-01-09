@@ -15,7 +15,6 @@ struct TransactionRecord {
 	time_t				timestamp;
 	unsigned __int64	price;
 	unsigned int		quantity;
-	time_t				time;
 
 	struct Party1_ {
 		unsigned int counter_party;
@@ -24,7 +23,7 @@ struct TransactionRecord {
 		unsigned int book_quantity;
 	}party1;
 
-	struct Party12 {
+	struct Party2 {
 		unsigned int trader_id;
 		char side;
 	}party2;
@@ -54,7 +53,7 @@ public:
 public:
 
 	std::pair<unsigned int, std::vector<TransactionRecord>>  process_order_list(be::Quote &quote, char side, std::shared_ptr<OrderList> order_list, unsigned int quantity_still_to_trade, bool verbose);
-	std::pair<std::vector<TransactionRecord>, be::Quote> process_order(be::Quote &quote, bool from_data, bool verbose);
+	std::pair<std::vector<TransactionRecord>, be::Quote> process_order( be::Quote &quote, bool from_data, bool verbose);
 	void update_time();
 
 	std::vector<TransactionRecord> process_market_order(be::Quote &quote, bool verbose);

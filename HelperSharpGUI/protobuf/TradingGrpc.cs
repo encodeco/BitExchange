@@ -129,14 +129,22 @@ namespace Be {
 
     static readonly grpc::Marshaller<global::Be.Quote> __Marshaller_be_Quote = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Be.Quote.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Be.Empty> __Marshaller_be_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Be.Empty.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Be.MatchingResult> __Marshaller_be_MatchingResult = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Be.MatchingResult.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Be.OrderBook> __Marshaller_be_OrderBook = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Be.OrderBook.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::Be.Quote, global::Be.Empty> __Method_QuoteUpdate = new grpc::Method<global::Be.Quote, global::Be.Empty>(
+    static readonly grpc::Method<global::Be.Quote, global::Be.Empty> __Method_QuoteUpdateAsync = new grpc::Method<global::Be.Quote, global::Be.Empty>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "QuoteUpdate",
+        "QuoteUpdateAsync",
         __Marshaller_be_Quote,
         __Marshaller_be_Empty);
+
+    static readonly grpc::Method<global::Be.Quote, global::Be.MatchingResult> __Method_QuoteUpdateSync = new grpc::Method<global::Be.Quote, global::Be.MatchingResult>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "QuoteUpdateSync",
+        __Marshaller_be_Quote,
+        __Marshaller_be_MatchingResult);
 
     static readonly grpc::Method<global::Be.Empty, global::Be.OrderBook> __Method_OrderBookUpdate = new grpc::Method<global::Be.Empty, global::Be.OrderBook>(
         grpc::MethodType.Unary,
@@ -154,7 +162,12 @@ namespace Be {
     /// <summary>Base class for server-side implementations of Trading</summary>
     public abstract partial class TradingBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Be.Empty> QuoteUpdate(global::Be.Quote request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Be.Empty> QuoteUpdateAsync(global::Be.Quote request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Be.MatchingResult> QuoteUpdateSync(global::Be.Quote request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -189,21 +202,37 @@ namespace Be {
       {
       }
 
-      public virtual global::Be.Empty QuoteUpdate(global::Be.Quote request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return QuoteUpdate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual global::Be.Empty QuoteUpdate(global::Be.Quote request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_QuoteUpdate, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Be.Empty> QuoteUpdateAsync(global::Be.Quote request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Be.Empty QuoteUpdateAsync(global::Be.Quote request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return QuoteUpdateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Be.Empty> QuoteUpdateAsync(global::Be.Quote request, grpc::CallOptions options)
+      public virtual global::Be.Empty QuoteUpdateAsync(global::Be.Quote request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_QuoteUpdate, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_QuoteUpdateAsync, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Be.Empty> QuoteUpdateAsyncAsync(global::Be.Quote request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return QuoteUpdateAsyncAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Be.Empty> QuoteUpdateAsyncAsync(global::Be.Quote request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_QuoteUpdateAsync, null, options, request);
+      }
+      public virtual global::Be.MatchingResult QuoteUpdateSync(global::Be.Quote request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return QuoteUpdateSync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Be.MatchingResult QuoteUpdateSync(global::Be.Quote request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_QuoteUpdateSync, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Be.MatchingResult> QuoteUpdateSyncAsync(global::Be.Quote request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return QuoteUpdateSyncAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Be.MatchingResult> QuoteUpdateSyncAsync(global::Be.Quote request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_QuoteUpdateSync, null, options, request);
       }
       public virtual global::Be.OrderBook OrderBookUpdate(global::Be.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -233,7 +262,8 @@ namespace Be {
     public static grpc::ServerServiceDefinition BindService(TradingBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_QuoteUpdate, serviceImpl.QuoteUpdate)
+          .AddMethod(__Method_QuoteUpdateAsync, serviceImpl.QuoteUpdateAsync)
+          .AddMethod(__Method_QuoteUpdateSync, serviceImpl.QuoteUpdateSync)
           .AddMethod(__Method_OrderBookUpdate, serviceImpl.OrderBookUpdate).Build();
     }
 

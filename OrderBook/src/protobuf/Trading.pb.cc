@@ -20,6 +20,7 @@
 // @@protoc_insertion_point(includes)
 
 namespace protobuf_Trading_2eproto {
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_Trading_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Execution;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_Trading_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Order;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_Trading_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_OrderBook;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_Trading_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_OrderTree_OrderMapEntry_DoNotUse;
@@ -43,6 +44,16 @@ class PositionDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<Position>
       _instance;
 } _Position_default_instance_;
+class MatchingResultDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<MatchingResult>
+      _instance;
+} _MatchingResult_default_instance_;
+class ExecutionDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Execution>
+      _instance;
+} _Execution_default_instance_;
 class OrderDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Order>
@@ -131,6 +142,37 @@ static void InitDefaultsPosition() {
 
 ::google::protobuf::internal::SCCInfo<0> scc_info_Position =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsPosition}, {}};
+
+static void InitDefaultsMatchingResult() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::be::_MatchingResult_default_instance_;
+    new (ptr) ::be::MatchingResult();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::be::MatchingResult::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<3> scc_info_MatchingResult =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 3, InitDefaultsMatchingResult}, {
+      &protobuf_Trading_2eproto::scc_info_Order.base,
+      &protobuf_Trading_2eproto::scc_info_Execution.base,
+      &protobuf_Trading_2eproto::scc_info_OrderBook.base,}};
+
+static void InitDefaultsExecution() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::be::_Execution_default_instance_;
+    new (ptr) ::be::Execution();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::be::Execution::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_Execution =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsExecution}, {}};
 
 static void InitDefaultsOrder() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -260,6 +302,8 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_Empty.base);
   ::google::protobuf::internal::InitSCC(&scc_info_NumSteps.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Position.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_MatchingResult.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Execution.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Order.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Quote.base);
   ::google::protobuf::internal::InitSCC(&scc_info_QuoteList.base);
@@ -270,7 +314,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_OrderTree.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[12];
+::google::protobuf::Metadata file_level_metadata[14];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -290,6 +334,24 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Position, x_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, timestamp_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, orders_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, executions_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, orderbook_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, price_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, quantity_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, order_side_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, role_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Order, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -371,21 +433,25 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 0, -1, sizeof(::be::Empty)},
   { 5, -1, sizeof(::be::NumSteps)},
   { 11, -1, sizeof(::be::Position)},
-  { 17, -1, sizeof(::be::Order)},
-  { 28, -1, sizeof(::be::Quote)},
-  { 36, -1, sizeof(::be::QuoteList)},
-  { 43, -1, sizeof(::be::OrderList)},
-  { 50, -1, sizeof(::be::OrderBookList)},
-  { 56, -1, sizeof(::be::OrderBook)},
-  { 63, 70, sizeof(::be::OrderTree_PriceMapEntry_DoNotUse)},
-  { 72, 79, sizeof(::be::OrderTree_OrderMapEntry_DoNotUse)},
-  { 81, -1, sizeof(::be::OrderTree)},
+  { 17, -1, sizeof(::be::MatchingResult)},
+  { 26, -1, sizeof(::be::Execution)},
+  { 35, -1, sizeof(::be::Order)},
+  { 46, -1, sizeof(::be::Quote)},
+  { 54, -1, sizeof(::be::QuoteList)},
+  { 61, -1, sizeof(::be::OrderList)},
+  { 68, -1, sizeof(::be::OrderBookList)},
+  { 74, -1, sizeof(::be::OrderBook)},
+  { 81, 88, sizeof(::be::OrderTree_PriceMapEntry_DoNotUse)},
+  { 90, 97, sizeof(::be::OrderTree_OrderMapEntry_DoNotUse)},
+  { 99, -1, sizeof(::be::OrderTree)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::be::_Empty_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::be::_NumSteps_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::be::_Position_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::be::_MatchingResult_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::be::_Execution_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::be::_Order_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::be::_Quote_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::be::_QuoteList_default_instance_),
@@ -412,42 +478,49 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 12);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 14);
 }
 
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\rTrading.proto\022\002be\"\007\n\005Empty\"\025\n\010NumSteps"
-      "\022\t\n\001n\030\001 \001(\005\"\025\n\010Position\022\t\n\001x\030\001 \001(\005\"\203\001\n\005O"
-      "rder\022\021\n\ttimestamp\030\001 \001(\r\022\020\n\010quantity\030\002 \001("
-      "\r\022\r\n\005price\030\003 \001(\004\022\020\n\010order_id\030\004 \001(\004\022\021\n\ttr"
-      "ader_id\030\005 \001(\r\022!\n\norder_list\030\006 \001(\0132\r.be.O"
-      "rderList\"I\n\005Quote\022\022\n\norder_type\030\001 \001(\014\022\022\n"
-      "\norder_side\030\002 \001(\014\022\030\n\005order\030\003 \001(\0132\t.be.Or"
-      "der\"6\n\tQuoteList\022\031\n\006quotes\030\001 \003(\0132\t.be.Qu"
-      "ote\022\016\n\006volumn\030\002 \001(\004\"6\n\tOrderList\022\031\n\006orde"
-      "rs\030\001 \003(\0132\t.be.Order\022\016\n\006volumn\030\002 \001(\004\"2\n\rO"
-      "rderBookList\022!\n\norderbooks\030\001 \003(\0132\r.be.Or"
-      "derBook\"M\n\tOrderBook\022\037\n\010bid_tree\030\001 \001(\0132\r"
-      ".be.OrderTree\022\037\n\010ask_tree\030\002 \001(\0132\r.be.Ord"
-      "erTree\"\300\002\n\tOrderTree\022.\n\tprice_map\030\001 \003(\0132"
-      "\033.be.OrderTree.PriceMapEntry\022.\n\torder_ma"
-      "p\030\002 \003(\0132\033.be.OrderTree.OrderMapEntry\022\016\n\006"
-      "volumn\030\003 \001(\004\022\021\n\tmin_price\030\004 \001(\004\022\021\n\tmax_p"
-      "rice\030\005 \001(\004\022\022\n\nnum_orders\030\007 \001(\004\022\r\n\005depth\030"
-      "\006 \001(\r\032>\n\rPriceMapEntry\022\013\n\003key\030\001 \001(\004\022\034\n\005v"
-      "alue\030\002 \001(\0132\r.be.OrderList:\0028\001\032:\n\rOrderMa"
-      "pEntry\022\013\n\003key\030\001 \001(\004\022\030\n\005value\030\002 \001(\0132\t.be."
-      "Order:\0028\0012_\n\016MyRandomWalker\022#\n\006Update\022\014."
-      "be.NumSteps\032\t.be.Empty\"\000\022(\n\013GetPosition\022"
-      "\t.be.Empty\032\014.be.Position\"\0002_\n\007Trading\022%\n"
-      "\013QuoteUpdate\022\t.be.Quote\032\t.be.Empty\"\000\022-\n\017"
-      "OrderBookUpdate\022\t.be.Empty\032\r.be.OrderBoo"
-      "k\"\000b\006proto3"
+      "\022\t\n\001n\030\001 \001(\005\"\025\n\010Position\022\t\n\001x\030\001 \001(\005\"\203\001\n\016M"
+      "atchingResult\022\021\n\ttimestamp\030\001 \001(\r\022\031\n\006orde"
+      "rs\030\002 \003(\0132\t.be.Order\022!\n\nexecutions\030\003 \003(\0132"
+      "\r.be.Execution\022 \n\torderbook\030\004 \001(\0132\r.be.O"
+      "rderBook\"N\n\tExecution\022\r\n\005price\030\002 \001(\004\022\020\n\010"
+      "quantity\030\003 \001(\r\022\022\n\norder_side\030\004 \001(\014\022\014\n\004ro"
+      "le\030\005 \001(\014\"\203\001\n\005Order\022\021\n\ttimestamp\030\001 \001(\r\022\020\n"
+      "\010quantity\030\002 \001(\r\022\r\n\005price\030\003 \001(\004\022\020\n\010order_"
+      "id\030\004 \001(\004\022\021\n\ttrader_id\030\005 \001(\r\022!\n\norder_lis"
+      "t\030\006 \001(\0132\r.be.OrderList\"I\n\005Quote\022\022\n\norder"
+      "_type\030\001 \001(\014\022\022\n\norder_side\030\002 \001(\014\022\030\n\005order"
+      "\030\003 \001(\0132\t.be.Order\"6\n\tQuoteList\022\031\n\006quotes"
+      "\030\001 \003(\0132\t.be.Quote\022\016\n\006volumn\030\002 \001(\004\"6\n\tOrd"
+      "erList\022\031\n\006orders\030\001 \003(\0132\t.be.Order\022\016\n\006vol"
+      "umn\030\002 \001(\004\"2\n\rOrderBookList\022!\n\norderbooks"
+      "\030\001 \003(\0132\r.be.OrderBook\"M\n\tOrderBook\022\037\n\010bi"
+      "d_tree\030\001 \001(\0132\r.be.OrderTree\022\037\n\010ask_tree\030"
+      "\002 \001(\0132\r.be.OrderTree\"\300\002\n\tOrderTree\022.\n\tpr"
+      "ice_map\030\001 \003(\0132\033.be.OrderTree.PriceMapEnt"
+      "ry\022.\n\torder_map\030\002 \003(\0132\033.be.OrderTree.Ord"
+      "erMapEntry\022\016\n\006volumn\030\003 \001(\004\022\021\n\tmin_price\030"
+      "\004 \001(\004\022\021\n\tmax_price\030\005 \001(\004\022\022\n\nnum_orders\030\007"
+      " \001(\004\022\r\n\005depth\030\006 \001(\r\032>\n\rPriceMapEntry\022\013\n\003"
+      "key\030\001 \001(\004\022\034\n\005value\030\002 \001(\0132\r.be.OrderList:"
+      "\0028\001\032:\n\rOrderMapEntry\022\013\n\003key\030\001 \001(\004\022\030\n\005val"
+      "ue\030\002 \001(\0132\t.be.Order:\0028\0012_\n\016MyRandomWalke"
+      "r\022#\n\006Update\022\014.be.NumSteps\032\t.be.Empty\"\000\022("
+      "\n\013GetPosition\022\t.be.Empty\032\014.be.Position\"\000"
+      "2\230\001\n\007Trading\022*\n\020QuoteUpdateAsync\022\t.be.Qu"
+      "ote\032\t.be.Empty\"\000\0222\n\017QuoteUpdateSync\022\t.be"
+      ".Quote\032\022.be.MatchingResult\"\000\022-\n\017OrderBoo"
+      "kUpdate\022\t.be.Empty\032\r.be.OrderBook\"\000b\006pro"
+      "to3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1051);
+      descriptor, 1323);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Trading.proto", &protobuf_RegisterTypes);
 }
@@ -1085,6 +1158,727 @@ void Position::InternalSwap(Position* other) {
 }
 
 ::google::protobuf::Metadata Position::GetMetadata() const {
+  protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_Trading_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void MatchingResult::InitAsDefaultInstance() {
+  ::be::_MatchingResult_default_instance_._instance.get_mutable()->orderbook_ = const_cast< ::be::OrderBook*>(
+      ::be::OrderBook::internal_default_instance());
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MatchingResult::kTimestampFieldNumber;
+const int MatchingResult::kOrdersFieldNumber;
+const int MatchingResult::kExecutionsFieldNumber;
+const int MatchingResult::kOrderbookFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MatchingResult::MatchingResult()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_Trading_2eproto::scc_info_MatchingResult.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:be.MatchingResult)
+}
+MatchingResult::MatchingResult(const MatchingResult& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      orders_(from.orders_),
+      executions_(from.executions_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_orderbook()) {
+    orderbook_ = new ::be::OrderBook(*from.orderbook_);
+  } else {
+    orderbook_ = NULL;
+  }
+  timestamp_ = from.timestamp_;
+  // @@protoc_insertion_point(copy_constructor:be.MatchingResult)
+}
+
+void MatchingResult::SharedCtor() {
+  ::memset(&orderbook_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&timestamp_) -
+      reinterpret_cast<char*>(&orderbook_)) + sizeof(timestamp_));
+}
+
+MatchingResult::~MatchingResult() {
+  // @@protoc_insertion_point(destructor:be.MatchingResult)
+  SharedDtor();
+}
+
+void MatchingResult::SharedDtor() {
+  if (this != internal_default_instance()) delete orderbook_;
+}
+
+void MatchingResult::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* MatchingResult::descriptor() {
+  ::protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_Trading_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const MatchingResult& MatchingResult::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_Trading_2eproto::scc_info_MatchingResult.base);
+  return *internal_default_instance();
+}
+
+
+void MatchingResult::Clear() {
+// @@protoc_insertion_point(message_clear_start:be.MatchingResult)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  orders_.Clear();
+  executions_.Clear();
+  if (GetArenaNoVirtual() == NULL && orderbook_ != NULL) {
+    delete orderbook_;
+  }
+  orderbook_ = NULL;
+  timestamp_ = 0u;
+  _internal_metadata_.Clear();
+}
+
+bool MatchingResult::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:be.MatchingResult)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 timestamp = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &timestamp_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .be.Order orders = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_orders()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .be.Execution executions = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_executions()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .be.OrderBook orderbook = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_orderbook()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:be.MatchingResult)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:be.MatchingResult)
+  return false;
+#undef DO_
+}
+
+void MatchingResult::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:be.MatchingResult)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 timestamp = 1;
+  if (this->timestamp() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->timestamp(), output);
+  }
+
+  // repeated .be.Order orders = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->orders_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2,
+      this->orders(static_cast<int>(i)),
+      output);
+  }
+
+  // repeated .be.Execution executions = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->executions_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3,
+      this->executions(static_cast<int>(i)),
+      output);
+  }
+
+  // .be.OrderBook orderbook = 4;
+  if (this->has_orderbook()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      4, this->_internal_orderbook(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:be.MatchingResult)
+}
+
+::google::protobuf::uint8* MatchingResult::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:be.MatchingResult)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint32 timestamp = 1;
+  if (this->timestamp() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->timestamp(), target);
+  }
+
+  // repeated .be.Order orders = 2;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->orders_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->orders(static_cast<int>(i)), deterministic, target);
+  }
+
+  // repeated .be.Execution executions = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->executions_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        3, this->executions(static_cast<int>(i)), deterministic, target);
+  }
+
+  // .be.OrderBook orderbook = 4;
+  if (this->has_orderbook()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        4, this->_internal_orderbook(), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:be.MatchingResult)
+  return target;
+}
+
+size_t MatchingResult::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:be.MatchingResult)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .be.Order orders = 2;
+  {
+    unsigned int count = static_cast<unsigned int>(this->orders_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->orders(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .be.Execution executions = 3;
+  {
+    unsigned int count = static_cast<unsigned int>(this->executions_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->executions(static_cast<int>(i)));
+    }
+  }
+
+  // .be.OrderBook orderbook = 4;
+  if (this->has_orderbook()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *orderbook_);
+  }
+
+  // uint32 timestamp = 1;
+  if (this->timestamp() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->timestamp());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void MatchingResult::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:be.MatchingResult)
+  GOOGLE_DCHECK_NE(&from, this);
+  const MatchingResult* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const MatchingResult>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:be.MatchingResult)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:be.MatchingResult)
+    MergeFrom(*source);
+  }
+}
+
+void MatchingResult::MergeFrom(const MatchingResult& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:be.MatchingResult)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  orders_.MergeFrom(from.orders_);
+  executions_.MergeFrom(from.executions_);
+  if (from.has_orderbook()) {
+    mutable_orderbook()->::be::OrderBook::MergeFrom(from.orderbook());
+  }
+  if (from.timestamp() != 0) {
+    set_timestamp(from.timestamp());
+  }
+}
+
+void MatchingResult::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:be.MatchingResult)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MatchingResult::CopyFrom(const MatchingResult& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:be.MatchingResult)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MatchingResult::IsInitialized() const {
+  return true;
+}
+
+void MatchingResult::Swap(MatchingResult* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MatchingResult::InternalSwap(MatchingResult* other) {
+  using std::swap;
+  CastToBase(&orders_)->InternalSwap(CastToBase(&other->orders_));
+  CastToBase(&executions_)->InternalSwap(CastToBase(&other->executions_));
+  swap(orderbook_, other->orderbook_);
+  swap(timestamp_, other->timestamp_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata MatchingResult::GetMetadata() const {
+  protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_Trading_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Execution::InitAsDefaultInstance() {
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Execution::kPriceFieldNumber;
+const int Execution::kQuantityFieldNumber;
+const int Execution::kOrderSideFieldNumber;
+const int Execution::kRoleFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Execution::Execution()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_Trading_2eproto::scc_info_Execution.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:be.Execution)
+}
+Execution::Execution(const Execution& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  order_side_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.order_side().size() > 0) {
+    order_side_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.order_side_);
+  }
+  role_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.role().size() > 0) {
+    role_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.role_);
+  }
+  ::memcpy(&price_, &from.price_,
+    static_cast<size_t>(reinterpret_cast<char*>(&quantity_) -
+    reinterpret_cast<char*>(&price_)) + sizeof(quantity_));
+  // @@protoc_insertion_point(copy_constructor:be.Execution)
+}
+
+void Execution::SharedCtor() {
+  order_side_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  role_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&price_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&quantity_) -
+      reinterpret_cast<char*>(&price_)) + sizeof(quantity_));
+}
+
+Execution::~Execution() {
+  // @@protoc_insertion_point(destructor:be.Execution)
+  SharedDtor();
+}
+
+void Execution::SharedDtor() {
+  order_side_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  role_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void Execution::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* Execution::descriptor() {
+  ::protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_Trading_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Execution& Execution::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_Trading_2eproto::scc_info_Execution.base);
+  return *internal_default_instance();
+}
+
+
+void Execution::Clear() {
+// @@protoc_insertion_point(message_clear_start:be.Execution)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  order_side_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  role_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&price_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&quantity_) -
+      reinterpret_cast<char*>(&price_)) + sizeof(quantity_));
+  _internal_metadata_.Clear();
+}
+
+bool Execution::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:be.Execution)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint64 price = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &price_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 quantity = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &quantity_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bytes order_side = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+                input, this->mutable_order_side()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // bytes role = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+                input, this->mutable_role()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:be.Execution)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:be.Execution)
+  return false;
+#undef DO_
+}
+
+void Execution::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:be.Execution)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 price = 2;
+  if (this->price() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(2, this->price(), output);
+  }
+
+  // uint32 quantity = 3;
+  if (this->quantity() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->quantity(), output);
+  }
+
+  // bytes order_side = 4;
+  if (this->order_side().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
+      4, this->order_side(), output);
+  }
+
+  // bytes role = 5;
+  if (this->role().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
+      5, this->role(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:be.Execution)
+}
+
+::google::protobuf::uint8* Execution::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:be.Execution)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 price = 2;
+  if (this->price() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(2, this->price(), target);
+  }
+
+  // uint32 quantity = 3;
+  if (this->quantity() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->quantity(), target);
+  }
+
+  // bytes order_side = 4;
+  if (this->order_side().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        4, this->order_side(), target);
+  }
+
+  // bytes role = 5;
+  if (this->role().size() > 0) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        5, this->role(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:be.Execution)
+  return target;
+}
+
+size_t Execution::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:be.Execution)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // bytes order_side = 4;
+  if (this->order_side().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
+        this->order_side());
+  }
+
+  // bytes role = 5;
+  if (this->role().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
+        this->role());
+  }
+
+  // uint64 price = 2;
+  if (this->price() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->price());
+  }
+
+  // uint32 quantity = 3;
+  if (this->quantity() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->quantity());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Execution::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:be.Execution)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Execution* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Execution>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:be.Execution)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:be.Execution)
+    MergeFrom(*source);
+  }
+}
+
+void Execution::MergeFrom(const Execution& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:be.Execution)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.order_side().size() > 0) {
+
+    order_side_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.order_side_);
+  }
+  if (from.role().size() > 0) {
+
+    role_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.role_);
+  }
+  if (from.price() != 0) {
+    set_price(from.price());
+  }
+  if (from.quantity() != 0) {
+    set_quantity(from.quantity());
+  }
+}
+
+void Execution::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:be.Execution)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Execution::CopyFrom(const Execution& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:be.Execution)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Execution::IsInitialized() const {
+  return true;
+}
+
+void Execution::Swap(Execution* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Execution::InternalSwap(Execution* other) {
+  using std::swap;
+  order_side_.Swap(&other->order_side_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  role_.Swap(&other->role_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(price_, other->price_);
+  swap(quantity_, other->quantity_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata Execution::GetMetadata() const {
   protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
   return ::protobuf_Trading_2eproto::file_level_metadata[kIndexInFileMessages];
 }
@@ -2897,7 +3691,7 @@ void OrderTree_PriceMapEntry_DoNotUse::MergeFrom(const OrderTree_PriceMapEntry_D
 }
 ::google::protobuf::Metadata OrderTree_PriceMapEntry_DoNotUse::GetMetadata() const {
   ::protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_Trading_2eproto::file_level_metadata[9];
+  return ::protobuf_Trading_2eproto::file_level_metadata[11];
 }
 void OrderTree_PriceMapEntry_DoNotUse::MergeFrom(
     const ::google::protobuf::Message& other) {
@@ -2914,7 +3708,7 @@ void OrderTree_OrderMapEntry_DoNotUse::MergeFrom(const OrderTree_OrderMapEntry_D
 }
 ::google::protobuf::Metadata OrderTree_OrderMapEntry_DoNotUse::GetMetadata() const {
   ::protobuf_Trading_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_Trading_2eproto::file_level_metadata[10];
+  return ::protobuf_Trading_2eproto::file_level_metadata[12];
 }
 void OrderTree_OrderMapEntry_DoNotUse::MergeFrom(
     const ::google::protobuf::Message& other) {
@@ -3547,6 +4341,12 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::be::NumSteps* Arena::CreateMaybe
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::be::Position* Arena::CreateMaybeMessage< ::be::Position >(Arena* arena) {
   return Arena::CreateInternal< ::be::Position >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::be::MatchingResult* Arena::CreateMaybeMessage< ::be::MatchingResult >(Arena* arena) {
+  return Arena::CreateInternal< ::be::MatchingResult >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::be::Execution* Arena::CreateMaybeMessage< ::be::Execution >(Arena* arena) {
+  return Arena::CreateInternal< ::be::Execution >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::be::Order* Arena::CreateMaybeMessage< ::be::Order >(Arena* arena) {
   return Arena::CreateInternal< ::be::Order >(arena);

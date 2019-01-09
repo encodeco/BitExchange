@@ -18,10 +18,28 @@ message Position {
 }
 
 service Trading{
-    rpc QuoteUpdate (Quote) returns (Empty) {}
+    rpc QuoteUpdateAsync (Quote) returns (Empty) {}
+    rpc QuoteUpdateSync (Quote) returns (MatchingResult) {}
+
     rpc OrderBookUpdate (Empty) returns (OrderBook) {}
 }
 
+// 
+message MatchingResult{
+    // 업데이트된 오더들
+    uint32              timestamp   = 1;
+    repeated Order      orders	    = 2;
+    repeated Execution  executions	= 3;
+    OrderBook           orderbook   = 4;
+}
+
+message Execution{
+    uint64      price       = 2;
+    uint32      quantity    = 3;
+
+    bytes       order_side  = 4;
+    bytes       role        = 5;
+}
 
 // 오더북에 들어고 나서에 오더 정보
 message Order{

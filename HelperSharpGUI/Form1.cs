@@ -71,6 +71,39 @@ namespace HelperSharpGUI
             Console.WriteLine("Press any key to exit...");
         }
 
+        private void ProcessResponse(MatchingResult mr)
+        {
+            var orderbook = mr.Orderbook;
+
+            // debug
+            ListBox lb_ask = (ListBox)this.Controls["ListBoxAsk"];
+            ListBox lb_bid = (ListBox)this.Controls["ListBoxBid"];
+
+            var asks_tree = orderbook.AskTree;
+            if (asks_tree != null)
+            {
+                lb_ask.Items.Clear();
+                var p_map = asks_tree.PriceMap;
+                foreach (var ask in p_map)
+                {
+                    Console.WriteLine(ask.ToString());
+
+                    lb_ask.Items.Add(ask.ToString());
+                }
+            }
+            var bidss_tree = orderbook.BidTree;
+            if (bidss_tree != null)
+            {
+                lb_bid.Items.Clear();
+                var p_map = bidss_tree.PriceMap;
+                foreach (var ask in p_map)
+                {
+                    Console.WriteLine(ask.ToString());
+
+                    lb_bid.Items.Add(ask.ToString());
+                }
+            }
+        }
         private void BtnSetQuote_Click(object sender, EventArgs e)
         {
             channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
@@ -79,21 +112,31 @@ namespace HelperSharpGUI
             for( int i = 0; i < 1; i++)
             {
                 {
-                    Quote request = gen_order.generate("B", "L", false);
-                    var reply = client.QuoteUpdate(request);
-                }
-                {
                     Quote request = gen_order.generate("A", "L", false);
-                    var reply = client.QuoteUpdate(request);
+                    var reply = client.QuoteUpdateSync(request);
+                    ProcessResponse(reply);
                 }
                 {
-                    Quote request = gen_order.generate("B", "L", true);
-                    var reply = client.QuoteUpdate(request);
+                    Quote request = gen_order.generate("B", "L", false);
+                    var reply = client.QuoteUpdateSync(request);
+                    ProcessResponse(reply);
                 }
-                {
-                    Quote request = gen_order.generate("A", "L", true);
-                    var reply = client.QuoteUpdate(request);
-                }
+
+                //{
+                //    Quote request = gen_order.generate("A", "L", false);
+                //    var reply = client.QuoteUpdateSync(request);
+                //    ProcessResponse(reply);
+                //}
+                //{
+                //    Quote request = gen_order.generate("B", "L", true);
+                //    var reply = client.QuoteUpdateSync(request);
+                //    ProcessResponse(reply);
+                //}
+                //{
+                //    Quote request = gen_order.generate("A", "L", true);
+                //    var reply = client.QuoteUpdateSync(request);
+                //    ProcessResponse(reply);
+                //}
             }
 
 

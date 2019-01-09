@@ -87,7 +87,8 @@ MyRandomWalker::Service::~Service() {
 
 
 static const char* Trading_method_names[] = {
-  "/be.Trading/QuoteUpdate",
+  "/be.Trading/QuoteUpdateAsync",
+  "/be.Trading/QuoteUpdateSync",
   "/be.Trading/OrderBookUpdate",
 };
 
@@ -98,20 +99,33 @@ std::unique_ptr< Trading::Stub> Trading::NewStub(const std::shared_ptr< ::grpc::
 }
 
 Trading::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_QuoteUpdate_(Trading_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_OrderBookUpdate_(Trading_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_QuoteUpdateAsync_(Trading_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_QuoteUpdateSync_(Trading_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_OrderBookUpdate_(Trading_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Trading::Stub::QuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::be::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_QuoteUpdate_, context, request, response);
+::grpc::Status Trading::Stub::QuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::be::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_QuoteUpdateAsync_, context, request, response);
 }
 
-::grpc::ClientAsyncResponseReader< ::be::Empty>* Trading::Stub::AsyncQuoteUpdateRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::be::Empty>::Create(channel_.get(), cq, rpcmethod_QuoteUpdate_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::be::Empty>* Trading::Stub::AsyncQuoteUpdateAsyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::be::Empty>::Create(channel_.get(), cq, rpcmethod_QuoteUpdateAsync_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::be::Empty>* Trading::Stub::PrepareAsyncQuoteUpdateRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::be::Empty>::Create(channel_.get(), cq, rpcmethod_QuoteUpdate_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::be::Empty>* Trading::Stub::PrepareAsyncQuoteUpdateAsyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::be::Empty>::Create(channel_.get(), cq, rpcmethod_QuoteUpdateAsync_, context, request, false);
+}
+
+::grpc::Status Trading::Stub::QuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::be::MatchingResult* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_QuoteUpdateSync_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::be::MatchingResult>* Trading::Stub::AsyncQuoteUpdateSyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::be::MatchingResult>::Create(channel_.get(), cq, rpcmethod_QuoteUpdateSync_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::be::MatchingResult>* Trading::Stub::PrepareAsyncQuoteUpdateSyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::be::MatchingResult>::Create(channel_.get(), cq, rpcmethod_QuoteUpdateSync_, context, request, false);
 }
 
 ::grpc::Status Trading::Stub::OrderBookUpdate(::grpc::ClientContext* context, const ::be::Empty& request, ::be::OrderBook* response) {
@@ -131,9 +145,14 @@ Trading::Service::Service() {
       Trading_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Trading::Service, ::be::Quote, ::be::Empty>(
-          std::mem_fn(&Trading::Service::QuoteUpdate), this)));
+          std::mem_fn(&Trading::Service::QuoteUpdateAsync), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Trading_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Trading::Service, ::be::Quote, ::be::MatchingResult>(
+          std::mem_fn(&Trading::Service::QuoteUpdateSync), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Trading_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Trading::Service, ::be::Empty, ::be::OrderBook>(
           std::mem_fn(&Trading::Service::OrderBookUpdate), this)));
@@ -142,7 +161,14 @@ Trading::Service::Service() {
 Trading::Service::~Service() {
 }
 
-::grpc::Status Trading::Service::QuoteUpdate(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) {
+::grpc::Status Trading::Service::QuoteUpdateAsync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Trading::Service::QuoteUpdateSync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::MatchingResult* response) {
   (void) context;
   (void) request;
   (void) response;

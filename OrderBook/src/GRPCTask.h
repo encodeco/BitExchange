@@ -16,6 +16,8 @@
 #include <mutex>
 #include "./orderbook/common.h"
 
+#include "OrderBook/OrderBook.h"
+
 #pragma comment(lib,"WS2_32")
 #pragma comment(lib, "grpc++.lib")
 
@@ -23,21 +25,47 @@ class GRPCTask : public be::Trading::Service {
 public:
 	std::pair< std::mutex, be::QuoteList >		&safe_quotes;
 	std::pair< std::mutex, be::OrderBookList >	&safe_orderbooks;
+	std::unique_ptr <OrderBook>					&orderbook;
 
 public:
-	GRPCTask(std::pair< std::mutex, be::QuoteList > &safe_quotes, std::pair< std::mutex, be::OrderBookList > &safe_orderbooks) : be::Trading::Service(), safe_quotes(safe_quotes), safe_orderbooks(safe_orderbooks) {
+	GRPCTask(std::pair< std::mutex, be::QuoteList > &safe_quotes, std::pair< std::mutex, be::OrderBookList > &safe_orderbooks, std::unique_ptr <OrderBook> &orderbook) : be::Trading::Service(), safe_quotes(safe_quotes), safe_orderbooks(safe_orderbooks), orderbook(orderbook){
 		//pos = 0; 
 	}
 
-	::grpc::Status QuoteUpdate(::grpc::ServerContext* context, const be::Quote* request, be::Empty* response) {
-
+	::grpc::Status QuoteUpdateAsync(::grpc::ServerContext* context, const be::Quote* request, be::Empty* response) {
 		{
 			std::unique_lock < std::mutex > locker(safe_quotes.first);
 
+			// 
 			auto new_quotes = safe_quotes.second.add_quotes();
 			new_quotes->CopyFrom(*request);
 
 			locker.unlock();
+		}
+
+		return grpc::Status::OK;
+	}
+
+	::grpc::Status QuoteUpdateSync(::grpc::ServerContext* context, const be::Quote* request, be::MatchingResult* response) {
+		{
+			be::Quote new_quotes;
+			new_quotes.CopyFrom(*request);
+
+			{
+				if (const char order_type = new_quotes.order_type().c_str()[0] == 0)
+					return grpc::Status::OK;
+
+				std::pair<std::vector<TransactionRecord>, be::Quote> ret = orderbook->process_order(new_quotes, false, false);
+
+				std::string ostr = orderbook->text();
+				std::cout << ostr;
+
+				be::OrderBook ob;
+				orderbook->get_orderbook(ob);
+
+				auto res_ob = response->mutable_orderbook();
+				res_ob->CopyFrom(ob);
+			}
 		}
 
 		return grpc::Status::OK;

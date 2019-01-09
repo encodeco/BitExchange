@@ -25,35 +25,43 @@ namespace Be {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg1UcmFkaW5nLnByb3RvEgJiZSIHCgVFbXB0eSIVCghOdW1TdGVwcxIJCgFu",
-            "GAEgASgFIhUKCFBvc2l0aW9uEgkKAXgYASABKAUigwEKBU9yZGVyEhEKCXRp",
-            "bWVzdGFtcBgBIAEoDRIQCghxdWFudGl0eRgCIAEoDRINCgVwcmljZRgDIAEo",
-            "BBIQCghvcmRlcl9pZBgEIAEoBBIRCgl0cmFkZXJfaWQYBSABKA0SIQoKb3Jk",
-            "ZXJfbGlzdBgGIAEoCzINLmJlLk9yZGVyTGlzdCJJCgVRdW90ZRISCgpvcmRl",
-            "cl90eXBlGAEgASgMEhIKCm9yZGVyX3NpZGUYAiABKAwSGAoFb3JkZXIYAyAB",
-            "KAsyCS5iZS5PcmRlciI2CglRdW90ZUxpc3QSGQoGcXVvdGVzGAEgAygLMgku",
-            "YmUuUXVvdGUSDgoGdm9sdW1uGAIgASgEIjYKCU9yZGVyTGlzdBIZCgZvcmRl",
-            "cnMYASADKAsyCS5iZS5PcmRlchIOCgZ2b2x1bW4YAiABKAQiMgoNT3JkZXJC",
-            "b29rTGlzdBIhCgpvcmRlcmJvb2tzGAEgAygLMg0uYmUuT3JkZXJCb29rIk0K",
-            "CU9yZGVyQm9vaxIfCghiaWRfdHJlZRgBIAEoCzINLmJlLk9yZGVyVHJlZRIf",
-            "Cghhc2tfdHJlZRgCIAEoCzINLmJlLk9yZGVyVHJlZSLAAgoJT3JkZXJUcmVl",
-            "Ei4KCXByaWNlX21hcBgBIAMoCzIbLmJlLk9yZGVyVHJlZS5QcmljZU1hcEVu",
-            "dHJ5Ei4KCW9yZGVyX21hcBgCIAMoCzIbLmJlLk9yZGVyVHJlZS5PcmRlck1h",
-            "cEVudHJ5Eg4KBnZvbHVtbhgDIAEoBBIRCgltaW5fcHJpY2UYBCABKAQSEQoJ",
-            "bWF4X3ByaWNlGAUgASgEEhIKCm51bV9vcmRlcnMYByABKAQSDQoFZGVwdGgY",
-            "BiABKA0aPgoNUHJpY2VNYXBFbnRyeRILCgNrZXkYASABKAQSHAoFdmFsdWUY",
-            "AiABKAsyDS5iZS5PcmRlckxpc3Q6AjgBGjoKDU9yZGVyTWFwRW50cnkSCwoD",
-            "a2V5GAEgASgEEhgKBXZhbHVlGAIgASgLMgkuYmUuT3JkZXI6AjgBMl8KDk15",
-            "UmFuZG9tV2Fsa2VyEiMKBlVwZGF0ZRIMLmJlLk51bVN0ZXBzGgkuYmUuRW1w",
-            "dHkiABIoCgtHZXRQb3NpdGlvbhIJLmJlLkVtcHR5GgwuYmUuUG9zaXRpb24i",
-            "ADJfCgdUcmFkaW5nEiUKC1F1b3RlVXBkYXRlEgkuYmUuUXVvdGUaCS5iZS5F",
-            "bXB0eSIAEi0KD09yZGVyQm9va1VwZGF0ZRIJLmJlLkVtcHR5Gg0uYmUuT3Jk",
-            "ZXJCb29rIgBiBnByb3RvMw=="));
+            "GAEgASgFIhUKCFBvc2l0aW9uEgkKAXgYASABKAUigwEKDk1hdGNoaW5nUmVz",
+            "dWx0EhEKCXRpbWVzdGFtcBgBIAEoDRIZCgZvcmRlcnMYAiADKAsyCS5iZS5P",
+            "cmRlchIhCgpleGVjdXRpb25zGAMgAygLMg0uYmUuRXhlY3V0aW9uEiAKCW9y",
+            "ZGVyYm9vaxgEIAEoCzINLmJlLk9yZGVyQm9vayJOCglFeGVjdXRpb24SDQoF",
+            "cHJpY2UYAiABKAQSEAoIcXVhbnRpdHkYAyABKA0SEgoKb3JkZXJfc2lkZRgE",
+            "IAEoDBIMCgRyb2xlGAUgASgMIoMBCgVPcmRlchIRCgl0aW1lc3RhbXAYASAB",
+            "KA0SEAoIcXVhbnRpdHkYAiABKA0SDQoFcHJpY2UYAyABKAQSEAoIb3JkZXJf",
+            "aWQYBCABKAQSEQoJdHJhZGVyX2lkGAUgASgNEiEKCm9yZGVyX2xpc3QYBiAB",
+            "KAsyDS5iZS5PcmRlckxpc3QiSQoFUXVvdGUSEgoKb3JkZXJfdHlwZRgBIAEo",
+            "DBISCgpvcmRlcl9zaWRlGAIgASgMEhgKBW9yZGVyGAMgASgLMgkuYmUuT3Jk",
+            "ZXIiNgoJUXVvdGVMaXN0EhkKBnF1b3RlcxgBIAMoCzIJLmJlLlF1b3RlEg4K",
+            "BnZvbHVtbhgCIAEoBCI2CglPcmRlckxpc3QSGQoGb3JkZXJzGAEgAygLMgku",
+            "YmUuT3JkZXISDgoGdm9sdW1uGAIgASgEIjIKDU9yZGVyQm9va0xpc3QSIQoK",
+            "b3JkZXJib29rcxgBIAMoCzINLmJlLk9yZGVyQm9vayJNCglPcmRlckJvb2sS",
+            "HwoIYmlkX3RyZWUYASABKAsyDS5iZS5PcmRlclRyZWUSHwoIYXNrX3RyZWUY",
+            "AiABKAsyDS5iZS5PcmRlclRyZWUiwAIKCU9yZGVyVHJlZRIuCglwcmljZV9t",
+            "YXAYASADKAsyGy5iZS5PcmRlclRyZWUuUHJpY2VNYXBFbnRyeRIuCglvcmRl",
+            "cl9tYXAYAiADKAsyGy5iZS5PcmRlclRyZWUuT3JkZXJNYXBFbnRyeRIOCgZ2",
+            "b2x1bW4YAyABKAQSEQoJbWluX3ByaWNlGAQgASgEEhEKCW1heF9wcmljZRgF",
+            "IAEoBBISCgpudW1fb3JkZXJzGAcgASgEEg0KBWRlcHRoGAYgASgNGj4KDVBy",
+            "aWNlTWFwRW50cnkSCwoDa2V5GAEgASgEEhwKBXZhbHVlGAIgASgLMg0uYmUu",
+            "T3JkZXJMaXN0OgI4ARo6Cg1PcmRlck1hcEVudHJ5EgsKA2tleRgBIAEoBBIY",
+            "CgV2YWx1ZRgCIAEoCzIJLmJlLk9yZGVyOgI4ATJfCg5NeVJhbmRvbVdhbGtl",
+            "chIjCgZVcGRhdGUSDC5iZS5OdW1TdGVwcxoJLmJlLkVtcHR5IgASKAoLR2V0",
+            "UG9zaXRpb24SCS5iZS5FbXB0eRoMLmJlLlBvc2l0aW9uIgAymAEKB1RyYWRp",
+            "bmcSKgoQUXVvdGVVcGRhdGVBc3luYxIJLmJlLlF1b3RlGgkuYmUuRW1wdHki",
+            "ABIyCg9RdW90ZVVwZGF0ZVN5bmMSCS5iZS5RdW90ZRoSLmJlLk1hdGNoaW5n",
+            "UmVzdWx0IgASLQoPT3JkZXJCb29rVXBkYXRlEgkuYmUuRW1wdHkaDS5iZS5P",
+            "cmRlckJvb2siAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Empty), global::Be.Empty.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.NumSteps), global::Be.NumSteps.Parser, new[]{ "N" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Position), global::Be.Position.Parser, new[]{ "X" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Be.MatchingResult), global::Be.MatchingResult.Parser, new[]{ "Timestamp", "Orders", "Executions", "Orderbook" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Be.Execution), global::Be.Execution.Parser, new[]{ "Price", "Quantity", "OrderSide", "Role" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Order), global::Be.Order.Parser, new[]{ "Timestamp", "Quantity", "Price", "OrderId", "TraderId", "OrderList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Quote), global::Be.Quote.Parser, new[]{ "OrderType", "OrderSide", "Order" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.QuoteList), global::Be.QuoteList.Parser, new[]{ "Quotes", "Volumn" }, null, null, null),
@@ -427,6 +435,428 @@ namespace Be {
   }
 
   /// <summary>
+  /// 
+  /// </summary>
+  public sealed partial class MatchingResult : pb::IMessage<MatchingResult> {
+    private static readonly pb::MessageParser<MatchingResult> _parser = new pb::MessageParser<MatchingResult>(() => new MatchingResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MatchingResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MatchingResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MatchingResult(MatchingResult other) : this() {
+      timestamp_ = other.timestamp_;
+      orders_ = other.orders_.Clone();
+      executions_ = other.executions_.Clone();
+      orderbook_ = other.orderbook_ != null ? other.orderbook_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MatchingResult Clone() {
+      return new MatchingResult(this);
+    }
+
+    /// <summary>Field number for the "timestamp" field.</summary>
+    public const int TimestampFieldNumber = 1;
+    private uint timestamp_;
+    /// <summary>
+    /// 업데이트된 오더들
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Timestamp {
+      get { return timestamp_; }
+      set {
+        timestamp_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "orders" field.</summary>
+    public const int OrdersFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Be.Order> _repeated_orders_codec
+        = pb::FieldCodec.ForMessage(18, global::Be.Order.Parser);
+    private readonly pbc::RepeatedField<global::Be.Order> orders_ = new pbc::RepeatedField<global::Be.Order>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Be.Order> Orders {
+      get { return orders_; }
+    }
+
+    /// <summary>Field number for the "executions" field.</summary>
+    public const int ExecutionsFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::Be.Execution> _repeated_executions_codec
+        = pb::FieldCodec.ForMessage(26, global::Be.Execution.Parser);
+    private readonly pbc::RepeatedField<global::Be.Execution> executions_ = new pbc::RepeatedField<global::Be.Execution>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Be.Execution> Executions {
+      get { return executions_; }
+    }
+
+    /// <summary>Field number for the "orderbook" field.</summary>
+    public const int OrderbookFieldNumber = 4;
+    private global::Be.OrderBook orderbook_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Be.OrderBook Orderbook {
+      get { return orderbook_; }
+      set {
+        orderbook_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MatchingResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MatchingResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Timestamp != other.Timestamp) return false;
+      if(!orders_.Equals(other.orders_)) return false;
+      if(!executions_.Equals(other.executions_)) return false;
+      if (!object.Equals(Orderbook, other.Orderbook)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Timestamp != 0) hash ^= Timestamp.GetHashCode();
+      hash ^= orders_.GetHashCode();
+      hash ^= executions_.GetHashCode();
+      if (orderbook_ != null) hash ^= Orderbook.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Timestamp != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Timestamp);
+      }
+      orders_.WriteTo(output, _repeated_orders_codec);
+      executions_.WriteTo(output, _repeated_executions_codec);
+      if (orderbook_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Orderbook);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Timestamp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Timestamp);
+      }
+      size += orders_.CalculateSize(_repeated_orders_codec);
+      size += executions_.CalculateSize(_repeated_executions_codec);
+      if (orderbook_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Orderbook);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MatchingResult other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Timestamp != 0) {
+        Timestamp = other.Timestamp;
+      }
+      orders_.Add(other.orders_);
+      executions_.Add(other.executions_);
+      if (other.orderbook_ != null) {
+        if (orderbook_ == null) {
+          orderbook_ = new global::Be.OrderBook();
+        }
+        Orderbook.MergeFrom(other.Orderbook);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Timestamp = input.ReadUInt32();
+            break;
+          }
+          case 18: {
+            orders_.AddEntriesFrom(input, _repeated_orders_codec);
+            break;
+          }
+          case 26: {
+            executions_.AddEntriesFrom(input, _repeated_executions_codec);
+            break;
+          }
+          case 34: {
+            if (orderbook_ == null) {
+              orderbook_ = new global::Be.OrderBook();
+            }
+            input.ReadMessage(orderbook_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Execution : pb::IMessage<Execution> {
+    private static readonly pb::MessageParser<Execution> _parser = new pb::MessageParser<Execution>(() => new Execution());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Execution> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Execution() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Execution(Execution other) : this() {
+      price_ = other.price_;
+      quantity_ = other.quantity_;
+      orderSide_ = other.orderSide_;
+      role_ = other.role_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Execution Clone() {
+      return new Execution(this);
+    }
+
+    /// <summary>Field number for the "price" field.</summary>
+    public const int PriceFieldNumber = 2;
+    private ulong price_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Price {
+      get { return price_; }
+      set {
+        price_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "quantity" field.</summary>
+    public const int QuantityFieldNumber = 3;
+    private uint quantity_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Quantity {
+      get { return quantity_; }
+      set {
+        quantity_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "order_side" field.</summary>
+    public const int OrderSideFieldNumber = 4;
+    private pb::ByteString orderSide_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString OrderSide {
+      get { return orderSide_; }
+      set {
+        orderSide_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "role" field.</summary>
+    public const int RoleFieldNumber = 5;
+    private pb::ByteString role_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Role {
+      get { return role_; }
+      set {
+        role_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Execution);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Execution other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Price != other.Price) return false;
+      if (Quantity != other.Quantity) return false;
+      if (OrderSide != other.OrderSide) return false;
+      if (Role != other.Role) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Price != 0UL) hash ^= Price.GetHashCode();
+      if (Quantity != 0) hash ^= Quantity.GetHashCode();
+      if (OrderSide.Length != 0) hash ^= OrderSide.GetHashCode();
+      if (Role.Length != 0) hash ^= Role.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Price != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(Price);
+      }
+      if (Quantity != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Quantity);
+      }
+      if (OrderSide.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteBytes(OrderSide);
+      }
+      if (Role.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteBytes(Role);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Price != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Price);
+      }
+      if (Quantity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Quantity);
+      }
+      if (OrderSide.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(OrderSide);
+      }
+      if (Role.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Role);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Execution other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Price != 0UL) {
+        Price = other.Price;
+      }
+      if (other.Quantity != 0) {
+        Quantity = other.Quantity;
+      }
+      if (other.OrderSide.Length != 0) {
+        OrderSide = other.OrderSide;
+      }
+      if (other.Role.Length != 0) {
+        Role = other.Role;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 16: {
+            Price = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            Quantity = input.ReadUInt32();
+            break;
+          }
+          case 34: {
+            OrderSide = input.ReadBytes();
+            break;
+          }
+          case 42: {
+            Role = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
   /// 오더북에 들어고 나서에 오더 정보
   /// </summary>
   public sealed partial class Order : pb::IMessage<Order> {
@@ -437,7 +867,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -715,7 +1145,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -909,7 +1339,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1061,7 +1491,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1210,7 +1640,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1334,7 +1764,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1507,7 +1937,7 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Be.TradingReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Be.TradingReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

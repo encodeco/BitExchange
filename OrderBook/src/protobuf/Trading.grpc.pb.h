@@ -258,12 +258,19 @@ class Trading final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status QuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::be::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>> AsyncQuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>>(AsyncQuoteUpdateRaw(context, request, cq));
+    virtual ::grpc::Status QuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::be::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>> AsyncQuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>>(AsyncQuoteUpdateAsyncRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>> PrepareAsyncQuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>>(PrepareAsyncQuoteUpdateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>> PrepareAsyncQuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>>(PrepareAsyncQuoteUpdateAsyncRaw(context, request, cq));
+    }
+    virtual ::grpc::Status QuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::be::MatchingResult* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::MatchingResult>> AsyncQuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::MatchingResult>>(AsyncQuoteUpdateSyncRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::MatchingResult>> PrepareAsyncQuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::MatchingResult>>(PrepareAsyncQuoteUpdateSyncRaw(context, request, cq));
     }
     virtual ::grpc::Status OrderBookUpdate(::grpc::ClientContext* context, const ::be::Empty& request, ::be::OrderBook* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::OrderBook>> AsyncOrderBookUpdate(::grpc::ClientContext* context, const ::be::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -273,20 +280,29 @@ class Trading final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::be::OrderBook>>(PrepareAsyncOrderBookUpdateRaw(context, request, cq));
     }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>* AsyncQuoteUpdateRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>* PrepareAsyncQuoteUpdateRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>* AsyncQuoteUpdateAsyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::Empty>* PrepareAsyncQuoteUpdateAsyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::MatchingResult>* AsyncQuoteUpdateSyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::MatchingResult>* PrepareAsyncQuoteUpdateSyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::OrderBook>* AsyncOrderBookUpdateRaw(::grpc::ClientContext* context, const ::be::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::be::OrderBook>* PrepareAsyncOrderBookUpdateRaw(::grpc::ClientContext* context, const ::be::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status QuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::be::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>> AsyncQuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>>(AsyncQuoteUpdateRaw(context, request, cq));
+    ::grpc::Status QuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::be::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>> AsyncQuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>>(AsyncQuoteUpdateAsyncRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>> PrepareAsyncQuoteUpdate(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>>(PrepareAsyncQuoteUpdateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>> PrepareAsyncQuoteUpdateAsync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::Empty>>(PrepareAsyncQuoteUpdateAsyncRaw(context, request, cq));
+    }
+    ::grpc::Status QuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::be::MatchingResult* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::MatchingResult>> AsyncQuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::MatchingResult>>(AsyncQuoteUpdateSyncRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::MatchingResult>> PrepareAsyncQuoteUpdateSync(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::MatchingResult>>(PrepareAsyncQuoteUpdateSyncRaw(context, request, cq));
     }
     ::grpc::Status OrderBookUpdate(::grpc::ClientContext* context, const ::be::Empty& request, ::be::OrderBook* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::be::OrderBook>> AsyncOrderBookUpdate(::grpc::ClientContext* context, const ::be::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -298,11 +314,14 @@ class Trading final {
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
-    ::grpc::ClientAsyncResponseReader< ::be::Empty>* AsyncQuoteUpdateRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::be::Empty>* PrepareAsyncQuoteUpdateRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::be::Empty>* AsyncQuoteUpdateAsyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::be::Empty>* PrepareAsyncQuoteUpdateAsyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::be::MatchingResult>* AsyncQuoteUpdateSyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::be::MatchingResult>* PrepareAsyncQuoteUpdateSyncRaw(::grpc::ClientContext* context, const ::be::Quote& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::be::OrderBook>* AsyncOrderBookUpdateRaw(::grpc::ClientContext* context, const ::be::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::be::OrderBook>* PrepareAsyncOrderBookUpdateRaw(::grpc::ClientContext* context, const ::be::Empty& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_QuoteUpdate_;
+    const ::grpc::internal::RpcMethod rpcmethod_QuoteUpdateAsync_;
+    const ::grpc::internal::RpcMethod rpcmethod_QuoteUpdateSync_;
     const ::grpc::internal::RpcMethod rpcmethod_OrderBookUpdate_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -311,27 +330,48 @@ class Trading final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status QuoteUpdate(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response);
+    virtual ::grpc::Status QuoteUpdateAsync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response);
+    virtual ::grpc::Status QuoteUpdateSync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::MatchingResult* response);
     virtual ::grpc::Status OrderBookUpdate(::grpc::ServerContext* context, const ::be::Empty* request, ::be::OrderBook* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_QuoteUpdate : public BaseClass {
+  class WithAsyncMethod_QuoteUpdateAsync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithAsyncMethod_QuoteUpdate() {
+    WithAsyncMethod_QuoteUpdateAsync() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_QuoteUpdate() override {
+    ~WithAsyncMethod_QuoteUpdateAsync() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QuoteUpdate(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
+    ::grpc::Status QuoteUpdateAsync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestQuoteUpdate(::grpc::ServerContext* context, ::be::Quote* request, ::grpc::ServerAsyncResponseWriter< ::be::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestQuoteUpdateAsync(::grpc::ServerContext* context, ::be::Quote* request, ::grpc::ServerAsyncResponseWriter< ::be::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_QuoteUpdateSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_QuoteUpdateSync() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_QuoteUpdateSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status QuoteUpdateSync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::MatchingResult* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestQuoteUpdateSync(::grpc::ServerContext* context, ::be::Quote* request, ::grpc::ServerAsyncResponseWriter< ::be::MatchingResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -340,7 +380,7 @@ class Trading final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_OrderBookUpdate() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_OrderBookUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -351,23 +391,40 @@ class Trading final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestOrderBookUpdate(::grpc::ServerContext* context, ::be::Empty* request, ::grpc::ServerAsyncResponseWriter< ::be::OrderBook>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_QuoteUpdate<WithAsyncMethod_OrderBookUpdate<Service > > AsyncService;
+  typedef WithAsyncMethod_QuoteUpdateAsync<WithAsyncMethod_QuoteUpdateSync<WithAsyncMethod_OrderBookUpdate<Service > > > AsyncService;
   template <class BaseClass>
-  class WithGenericMethod_QuoteUpdate : public BaseClass {
+  class WithGenericMethod_QuoteUpdateAsync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithGenericMethod_QuoteUpdate() {
+    WithGenericMethod_QuoteUpdateAsync() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_QuoteUpdate() override {
+    ~WithGenericMethod_QuoteUpdateAsync() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QuoteUpdate(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
+    ::grpc::Status QuoteUpdateAsync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_QuoteUpdateSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_QuoteUpdateSync() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_QuoteUpdateSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status QuoteUpdateSync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::MatchingResult* response) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -378,7 +435,7 @@ class Trading final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_OrderBookUpdate() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_OrderBookUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -390,23 +447,43 @@ class Trading final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_QuoteUpdate : public BaseClass {
+  class WithRawMethod_QuoteUpdateAsync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithRawMethod_QuoteUpdate() {
+    WithRawMethod_QuoteUpdateAsync() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_QuoteUpdate() override {
+    ~WithRawMethod_QuoteUpdateAsync() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status QuoteUpdate(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
+    ::grpc::Status QuoteUpdateAsync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestQuoteUpdate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestQuoteUpdateAsync(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_QuoteUpdateSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_QuoteUpdateSync() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_QuoteUpdateSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status QuoteUpdateSync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::MatchingResult* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestQuoteUpdateSync(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -415,7 +492,7 @@ class Trading final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_OrderBookUpdate() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_OrderBookUpdate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -426,28 +503,48 @@ class Trading final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestOrderBookUpdate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_QuoteUpdate : public BaseClass {
+  class WithStreamedUnaryMethod_QuoteUpdateAsync : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
-    WithStreamedUnaryMethod_QuoteUpdate() {
+    WithStreamedUnaryMethod_QuoteUpdateAsync() {
       ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler< ::be::Quote, ::be::Empty>(std::bind(&WithStreamedUnaryMethod_QuoteUpdate<BaseClass>::StreamedQuoteUpdate, this, std::placeholders::_1, std::placeholders::_2)));
+        new ::grpc::internal::StreamedUnaryHandler< ::be::Quote, ::be::Empty>(std::bind(&WithStreamedUnaryMethod_QuoteUpdateAsync<BaseClass>::StreamedQuoteUpdateAsync, this, std::placeholders::_1, std::placeholders::_2)));
     }
-    ~WithStreamedUnaryMethod_QuoteUpdate() override {
+    ~WithStreamedUnaryMethod_QuoteUpdateAsync() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status QuoteUpdate(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
+    ::grpc::Status QuoteUpdateAsync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::Empty* response) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedQuoteUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::be::Quote,::be::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedQuoteUpdateAsync(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::be::Quote,::be::Empty>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_QuoteUpdateSync : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_QuoteUpdateSync() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::be::Quote, ::be::MatchingResult>(std::bind(&WithStreamedUnaryMethod_QuoteUpdateSync<BaseClass>::StreamedQuoteUpdateSync, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_QuoteUpdateSync() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status QuoteUpdateSync(::grpc::ServerContext* context, const ::be::Quote* request, ::be::MatchingResult* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedQuoteUpdateSync(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::be::Quote,::be::MatchingResult>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_OrderBookUpdate : public BaseClass {
@@ -455,7 +552,7 @@ class Trading final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_OrderBookUpdate() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler< ::be::Empty, ::be::OrderBook>(std::bind(&WithStreamedUnaryMethod_OrderBookUpdate<BaseClass>::StreamedOrderBookUpdate, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_OrderBookUpdate() override {
@@ -469,9 +566,9 @@ class Trading final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedOrderBookUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::be::Empty,::be::OrderBook>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_QuoteUpdate<WithStreamedUnaryMethod_OrderBookUpdate<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_QuoteUpdateAsync<WithStreamedUnaryMethod_QuoteUpdateSync<WithStreamedUnaryMethod_OrderBookUpdate<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_QuoteUpdate<WithStreamedUnaryMethod_OrderBookUpdate<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_QuoteUpdateAsync<WithStreamedUnaryMethod_QuoteUpdateSync<WithStreamedUnaryMethod_OrderBookUpdate<Service > > > StreamedService;
 };
 
 }  // namespace be

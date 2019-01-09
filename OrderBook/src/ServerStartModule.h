@@ -29,12 +29,14 @@ class ServerStartModule {
 public:
 	static int run(int argc, char* argv[]) {
 
+		std::unique_ptr <OrderBook> orderbook = std::make_unique<OrderBook>();
+
 		std::pair< std::mutex, be::QuoteList > safe_quotes;
 		std::pair< std::mutex, be::OrderBookList > safe_orderbooks;
 		
 
 		std::string server_address("0.0.0.0:50051");
-		GRPCTask grpc_task(safe_quotes, safe_orderbooks);
+		GRPCTask grpc_task(safe_quotes, safe_orderbooks, orderbook);
 
 		grpc::ServerBuilder builder;
 		builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
@@ -48,8 +50,6 @@ public:
 		timestamp.start();
 
 		// main thread
-		std::unique_ptr <OrderBook> orderbook = std::make_unique<OrderBook>();
-
 		int count_of_processed = 0;
 		while (true)
 		{

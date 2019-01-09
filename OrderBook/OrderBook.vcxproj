@@ -52,6 +52,7 @@
     <ClInclude Include="src\RandomWalkerImpl.h" />
     <ClInclude Include="src\RedisTask.h" />
     <ClInclude Include="src\ServerStartModule.h" />
+    <ClInclude Include="src\SingleServerStartModule.h" />
     <ClInclude Include="src\StreamingTask.h" />
     <ClInclude Include="test\CSVTestData.h" />
     <ClInclude Include="test\JsonTestData.h" />
