@@ -50,7 +50,7 @@ public:
 	void remove_order_by_id(unsigned __int64 order_id);
 	void remove_price(unsigned __int64 price);
 
-	void insert_order( be::Quote &quote );
+	std::shared_ptr<Order> insert_order( be::Quote &quote );
 	bool order_exists(unsigned __int64 order_id);
 	bool price_exists(unsigned __int64 price);
 	void create_price(unsigned __int64 price);

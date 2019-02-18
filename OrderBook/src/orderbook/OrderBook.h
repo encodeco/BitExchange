@@ -59,6 +59,9 @@ public:
 	std::vector<TransactionRecord> process_market_order(be::Quote &quote, bool verbose);
 	std::pair<std::vector<TransactionRecord>, be::Quote>   process_limit_order(be::Quote &quote, bool from_data, bool verbose);
 
+	bool process_order_pb(be::Quote &quote, be::MatchingResult &matching_result, bool verbose);
+	bool process_limit_order_pb(be::Quote &quote, be::MatchingResult &matching_result, bool verbose);
+	int process_order_list_pb(be::Quote &quote, be::MatchingResult &matching_result, char side, std::shared_ptr<OrderList> order_list, unsigned int &quantity_still_to_trade, bool verbose);
 
 	// for debug
 public:

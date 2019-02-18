@@ -49,7 +49,7 @@ void OrderTree::create_price(unsigned __int64 price)
 
 	return;
 }
-void OrderTree::insert_order(be::Quote &quote)
+std::shared_ptr<Order> OrderTree::insert_order(be::Quote &quote)
 {
 	if (order_exists(quote.mutable_order()->order_id())) {
 		this->remove_order_by_id(quote.mutable_order()->order_id());
@@ -64,6 +64,8 @@ void OrderTree::insert_order(be::Quote &quote)
 	this->price_map[order->get_price()]->append_order(order);
 	this->order_map[order->get_order_id()] = order;
 	this->volume += order->get_quantity();
+
+	return order;
 }
 
 

@@ -55,7 +55,9 @@ public:
 				if (const char order_type = new_quotes.order_type().c_str()[0] == 0)
 					return grpc::Status::OK;
 
-				std::pair<std::vector<TransactionRecord>, be::Quote> ret = orderbook->process_order(new_quotes, false, false);
+				//be::MatchingResult matching_result;
+				//std::pair<std::vector<TransactionRecord>, be::Quote> ret = 
+				orderbook->process_order_pb(new_quotes, *response, false);
 
 				std::string ostr = orderbook->text();
 				std::cout << ostr;

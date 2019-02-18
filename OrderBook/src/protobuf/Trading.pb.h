@@ -503,17 +503,17 @@ class MatchingResult : public ::google::protobuf::Message /* @@protoc_insertion_
 
   // accessors -------------------------------------------------------
 
-  // repeated .be.Order orders = 2;
-  int orders_size() const;
-  void clear_orders();
-  static const int kOrdersFieldNumber = 2;
-  ::be::Order* mutable_orders(int index);
-  ::google::protobuf::RepeatedPtrField< ::be::Order >*
-      mutable_orders();
-  const ::be::Order& orders(int index) const;
-  ::be::Order* add_orders();
-  const ::google::protobuf::RepeatedPtrField< ::be::Order >&
-      orders() const;
+  // repeated .be.Quote quotes = 2;
+  int quotes_size() const;
+  void clear_quotes();
+  static const int kQuotesFieldNumber = 2;
+  ::be::Quote* mutable_quotes(int index);
+  ::google::protobuf::RepeatedPtrField< ::be::Quote >*
+      mutable_quotes();
+  const ::be::Quote& quotes(int index) const;
+  ::be::Quote* add_quotes();
+  const ::google::protobuf::RepeatedPtrField< ::be::Quote >&
+      quotes() const;
 
   // repeated .be.Execution executions = 3;
   int executions_size() const;
@@ -549,7 +549,7 @@ class MatchingResult : public ::google::protobuf::Message /* @@protoc_insertion_
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::be::Order > orders_;
+  ::google::protobuf::RepeatedPtrField< ::be::Quote > quotes_;
   ::google::protobuf::RepeatedPtrField< ::be::Execution > executions_;
   ::be::OrderBook* orderbook_;
   ::google::protobuf::uint32 timestamp_;
@@ -645,39 +645,17 @@ class Execution : public ::google::protobuf::Message /* @@protoc_insertion_point
 
   // accessors -------------------------------------------------------
 
-  // bytes order_side = 4;
-  void clear_order_side();
-  static const int kOrderSideFieldNumber = 4;
-  const ::std::string& order_side() const;
-  void set_order_side(const ::std::string& value);
-  #if LANG_CXX11
-  void set_order_side(::std::string&& value);
-  #endif
-  void set_order_side(const char* value);
-  void set_order_side(const void* value, size_t size);
-  ::std::string* mutable_order_side();
-  ::std::string* release_order_side();
-  void set_allocated_order_side(::std::string* order_side);
-
-  // bytes role = 5;
-  void clear_role();
-  static const int kRoleFieldNumber = 5;
-  const ::std::string& role() const;
-  void set_role(const ::std::string& value);
-  #if LANG_CXX11
-  void set_role(::std::string&& value);
-  #endif
-  void set_role(const char* value);
-  void set_role(const void* value, size_t size);
-  ::std::string* mutable_role();
-  ::std::string* release_role();
-  void set_allocated_role(::std::string* role);
-
   // uint64 price = 2;
   void clear_price();
   static const int kPriceFieldNumber = 2;
   ::google::protobuf::uint64 price() const;
   void set_price(::google::protobuf::uint64 value);
+
+  // uint32 timestamp = 1;
+  void clear_timestamp();
+  static const int kTimestampFieldNumber = 1;
+  ::google::protobuf::uint32 timestamp() const;
+  void set_timestamp(::google::protobuf::uint32 value);
 
   // uint32 quantity = 3;
   void clear_quantity();
@@ -685,14 +663,34 @@ class Execution : public ::google::protobuf::Message /* @@protoc_insertion_point
   ::google::protobuf::uint32 quantity() const;
   void set_quantity(::google::protobuf::uint32 value);
 
+  // uint32 maker_id = 4;
+  void clear_maker_id();
+  static const int kMakerIdFieldNumber = 4;
+  ::google::protobuf::uint32 maker_id() const;
+  void set_maker_id(::google::protobuf::uint32 value);
+
+  // uint32 taker_id = 5;
+  void clear_taker_id();
+  static const int kTakerIdFieldNumber = 5;
+  ::google::protobuf::uint32 taker_id() const;
+  void set_taker_id(::google::protobuf::uint32 value);
+
+  // uint32 executed_order_id = 6;
+  void clear_executed_order_id();
+  static const int kExecutedOrderIdFieldNumber = 6;
+  ::google::protobuf::uint32 executed_order_id() const;
+  void set_executed_order_id(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:be.Execution)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::internal::ArenaStringPtr order_side_;
-  ::google::protobuf::internal::ArenaStringPtr role_;
   ::google::protobuf::uint64 price_;
+  ::google::protobuf::uint32 timestamp_;
   ::google::protobuf::uint32 quantity_;
+  ::google::protobuf::uint32 maker_id_;
+  ::google::protobuf::uint32 taker_id_;
+  ::google::protobuf::uint32 executed_order_id_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_Trading_2eproto::TableStruct;
 };
@@ -1711,34 +1709,34 @@ inline void MatchingResult::set_timestamp(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:be.MatchingResult.timestamp)
 }
 
-// repeated .be.Order orders = 2;
-inline int MatchingResult::orders_size() const {
-  return orders_.size();
+// repeated .be.Quote quotes = 2;
+inline int MatchingResult::quotes_size() const {
+  return quotes_.size();
 }
-inline void MatchingResult::clear_orders() {
-  orders_.Clear();
+inline void MatchingResult::clear_quotes() {
+  quotes_.Clear();
 }
-inline ::be::Order* MatchingResult::mutable_orders(int index) {
-  // @@protoc_insertion_point(field_mutable:be.MatchingResult.orders)
-  return orders_.Mutable(index);
+inline ::be::Quote* MatchingResult::mutable_quotes(int index) {
+  // @@protoc_insertion_point(field_mutable:be.MatchingResult.quotes)
+  return quotes_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::be::Order >*
-MatchingResult::mutable_orders() {
-  // @@protoc_insertion_point(field_mutable_list:be.MatchingResult.orders)
-  return &orders_;
+inline ::google::protobuf::RepeatedPtrField< ::be::Quote >*
+MatchingResult::mutable_quotes() {
+  // @@protoc_insertion_point(field_mutable_list:be.MatchingResult.quotes)
+  return &quotes_;
 }
-inline const ::be::Order& MatchingResult::orders(int index) const {
-  // @@protoc_insertion_point(field_get:be.MatchingResult.orders)
-  return orders_.Get(index);
+inline const ::be::Quote& MatchingResult::quotes(int index) const {
+  // @@protoc_insertion_point(field_get:be.MatchingResult.quotes)
+  return quotes_.Get(index);
 }
-inline ::be::Order* MatchingResult::add_orders() {
-  // @@protoc_insertion_point(field_add:be.MatchingResult.orders)
-  return orders_.Add();
+inline ::be::Quote* MatchingResult::add_quotes() {
+  // @@protoc_insertion_point(field_add:be.MatchingResult.quotes)
+  return quotes_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::be::Order >&
-MatchingResult::orders() const {
-  // @@protoc_insertion_point(field_list:be.MatchingResult.orders)
-  return orders_;
+inline const ::google::protobuf::RepeatedPtrField< ::be::Quote >&
+MatchingResult::quotes() const {
+  // @@protoc_insertion_point(field_list:be.MatchingResult.quotes)
+  return quotes_;
 }
 
 // repeated .be.Execution executions = 3;
@@ -1829,6 +1827,20 @@ inline void MatchingResult::set_allocated_orderbook(::be::OrderBook* orderbook) 
 
 // Execution
 
+// uint32 timestamp = 1;
+inline void Execution::clear_timestamp() {
+  timestamp_ = 0u;
+}
+inline ::google::protobuf::uint32 Execution::timestamp() const {
+  // @@protoc_insertion_point(field_get:be.Execution.timestamp)
+  return timestamp_;
+}
+inline void Execution::set_timestamp(::google::protobuf::uint32 value) {
+  
+  timestamp_ = value;
+  // @@protoc_insertion_point(field_set:be.Execution.timestamp)
+}
+
 // uint64 price = 2;
 inline void Execution::clear_price() {
   price_ = GOOGLE_ULONGLONG(0);
@@ -1857,110 +1869,46 @@ inline void Execution::set_quantity(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:be.Execution.quantity)
 }
 
-// bytes order_side = 4;
-inline void Execution::clear_order_side() {
-  order_side_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// uint32 maker_id = 4;
+inline void Execution::clear_maker_id() {
+  maker_id_ = 0u;
 }
-inline const ::std::string& Execution::order_side() const {
-  // @@protoc_insertion_point(field_get:be.Execution.order_side)
-  return order_side_.GetNoArena();
+inline ::google::protobuf::uint32 Execution::maker_id() const {
+  // @@protoc_insertion_point(field_get:be.Execution.maker_id)
+  return maker_id_;
 }
-inline void Execution::set_order_side(const ::std::string& value) {
+inline void Execution::set_maker_id(::google::protobuf::uint32 value) {
   
-  order_side_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:be.Execution.order_side)
-}
-#if LANG_CXX11
-inline void Execution::set_order_side(::std::string&& value) {
-  
-  order_side_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:be.Execution.order_side)
-}
-#endif
-inline void Execution::set_order_side(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  order_side_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:be.Execution.order_side)
-}
-inline void Execution::set_order_side(const void* value, size_t size) {
-  
-  order_side_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:be.Execution.order_side)
-}
-inline ::std::string* Execution::mutable_order_side() {
-  
-  // @@protoc_insertion_point(field_mutable:be.Execution.order_side)
-  return order_side_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* Execution::release_order_side() {
-  // @@protoc_insertion_point(field_release:be.Execution.order_side)
-  
-  return order_side_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void Execution::set_allocated_order_side(::std::string* order_side) {
-  if (order_side != NULL) {
-    
-  } else {
-    
-  }
-  order_side_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), order_side);
-  // @@protoc_insertion_point(field_set_allocated:be.Execution.order_side)
+  maker_id_ = value;
+  // @@protoc_insertion_point(field_set:be.Execution.maker_id)
 }
 
-// bytes role = 5;
-inline void Execution::clear_role() {
-  role_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// uint32 taker_id = 5;
+inline void Execution::clear_taker_id() {
+  taker_id_ = 0u;
 }
-inline const ::std::string& Execution::role() const {
-  // @@protoc_insertion_point(field_get:be.Execution.role)
-  return role_.GetNoArena();
+inline ::google::protobuf::uint32 Execution::taker_id() const {
+  // @@protoc_insertion_point(field_get:be.Execution.taker_id)
+  return taker_id_;
 }
-inline void Execution::set_role(const ::std::string& value) {
+inline void Execution::set_taker_id(::google::protobuf::uint32 value) {
   
-  role_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:be.Execution.role)
+  taker_id_ = value;
+  // @@protoc_insertion_point(field_set:be.Execution.taker_id)
 }
-#if LANG_CXX11
-inline void Execution::set_role(::std::string&& value) {
+
+// uint32 executed_order_id = 6;
+inline void Execution::clear_executed_order_id() {
+  executed_order_id_ = 0u;
+}
+inline ::google::protobuf::uint32 Execution::executed_order_id() const {
+  // @@protoc_insertion_point(field_get:be.Execution.executed_order_id)
+  return executed_order_id_;
+}
+inline void Execution::set_executed_order_id(::google::protobuf::uint32 value) {
   
-  role_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:be.Execution.role)
-}
-#endif
-inline void Execution::set_role(const char* value) {
-  GOOGLE_DCHECK(value != NULL);
-  
-  role_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:be.Execution.role)
-}
-inline void Execution::set_role(const void* value, size_t size) {
-  
-  role_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:be.Execution.role)
-}
-inline ::std::string* Execution::mutable_role() {
-  
-  // @@protoc_insertion_point(field_mutable:be.Execution.role)
-  return role_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* Execution::release_role() {
-  // @@protoc_insertion_point(field_release:be.Execution.role)
-  
-  return role_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void Execution::set_allocated_role(::std::string* role) {
-  if (role != NULL) {
-    
-  } else {
-    
-  }
-  role_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), role);
-  // @@protoc_insertion_point(field_set_allocated:be.Execution.role)
+  executed_order_id_ = value;
+  // @@protoc_insertion_point(field_set:be.Execution.executed_order_id)
 }
 
 // -------------------------------------------------------------------

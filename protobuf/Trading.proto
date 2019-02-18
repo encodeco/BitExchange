@@ -26,19 +26,22 @@ service Trading{
 
 // 
 message MatchingResult{
-    // 업데이트된 오더들
+    // 업데이트된 Order들
     uint32              timestamp   = 1;
-    repeated Order      orders	    = 2;
+    repeated Quote      quotes	    = 2;
     repeated Execution  executions	= 3;
     OrderBook           orderbook   = 4;
 }
 
 message Execution{
+    uint32      timestamp   = 1;
     uint64      price       = 2;
     uint32      quantity    = 3;
 
-    bytes       order_side  = 4;
-    bytes       role        = 5;
+    // taker ID는 request파라메터에 있는 값이다.
+    uint32      maker_id    = 4;
+    uint32      taker_id    = 5;
+    uint32      executed_order_id = 6;
 }
 
 // 오더북에 들어고 나서에 오더 정보

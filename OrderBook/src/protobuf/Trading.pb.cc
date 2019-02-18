@@ -156,7 +156,7 @@ static void InitDefaultsMatchingResult() {
 
 ::google::protobuf::internal::SCCInfo<3> scc_info_MatchingResult =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 3, InitDefaultsMatchingResult}, {
-      &protobuf_Trading_2eproto::scc_info_Order.base,
+      &protobuf_Trading_2eproto::scc_info_Quote.base,
       &protobuf_Trading_2eproto::scc_info_Execution.base,
       &protobuf_Trading_2eproto::scc_info_OrderBook.base,}};
 
@@ -340,7 +340,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, timestamp_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, orders_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, quotes_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, executions_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::MatchingResult, orderbook_),
   ~0u,  // no _has_bits_
@@ -348,10 +348,12 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, timestamp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, price_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, quantity_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, order_side_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, role_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, maker_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, taker_id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Execution, executed_order_id_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::be::Order, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -435,15 +437,15 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 11, -1, sizeof(::be::Position)},
   { 17, -1, sizeof(::be::MatchingResult)},
   { 26, -1, sizeof(::be::Execution)},
-  { 35, -1, sizeof(::be::Order)},
-  { 46, -1, sizeof(::be::Quote)},
-  { 54, -1, sizeof(::be::QuoteList)},
-  { 61, -1, sizeof(::be::OrderList)},
-  { 68, -1, sizeof(::be::OrderBookList)},
-  { 74, -1, sizeof(::be::OrderBook)},
-  { 81, 88, sizeof(::be::OrderTree_PriceMapEntry_DoNotUse)},
-  { 90, 97, sizeof(::be::OrderTree_OrderMapEntry_DoNotUse)},
-  { 99, -1, sizeof(::be::OrderTree)},
+  { 37, -1, sizeof(::be::Order)},
+  { 48, -1, sizeof(::be::Quote)},
+  { 56, -1, sizeof(::be::QuoteList)},
+  { 63, -1, sizeof(::be::OrderList)},
+  { 70, -1, sizeof(::be::OrderBookList)},
+  { 76, -1, sizeof(::be::OrderBook)},
+  { 83, 90, sizeof(::be::OrderTree_PriceMapEntry_DoNotUse)},
+  { 92, 99, sizeof(::be::OrderTree_OrderMapEntry_DoNotUse)},
+  { 101, -1, sizeof(::be::OrderTree)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -486,41 +488,42 @@ void AddDescriptorsImpl() {
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\rTrading.proto\022\002be\"\007\n\005Empty\"\025\n\010NumSteps"
       "\022\t\n\001n\030\001 \001(\005\"\025\n\010Position\022\t\n\001x\030\001 \001(\005\"\203\001\n\016M"
-      "atchingResult\022\021\n\ttimestamp\030\001 \001(\r\022\031\n\006orde"
-      "rs\030\002 \003(\0132\t.be.Order\022!\n\nexecutions\030\003 \003(\0132"
+      "atchingResult\022\021\n\ttimestamp\030\001 \001(\r\022\031\n\006quot"
+      "es\030\002 \003(\0132\t.be.Quote\022!\n\nexecutions\030\003 \003(\0132"
       "\r.be.Execution\022 \n\torderbook\030\004 \001(\0132\r.be.O"
-      "rderBook\"N\n\tExecution\022\r\n\005price\030\002 \001(\004\022\020\n\010"
-      "quantity\030\003 \001(\r\022\022\n\norder_side\030\004 \001(\014\022\014\n\004ro"
-      "le\030\005 \001(\014\"\203\001\n\005Order\022\021\n\ttimestamp\030\001 \001(\r\022\020\n"
-      "\010quantity\030\002 \001(\r\022\r\n\005price\030\003 \001(\004\022\020\n\010order_"
-      "id\030\004 \001(\004\022\021\n\ttrader_id\030\005 \001(\r\022!\n\norder_lis"
-      "t\030\006 \001(\0132\r.be.OrderList\"I\n\005Quote\022\022\n\norder"
-      "_type\030\001 \001(\014\022\022\n\norder_side\030\002 \001(\014\022\030\n\005order"
-      "\030\003 \001(\0132\t.be.Order\"6\n\tQuoteList\022\031\n\006quotes"
-      "\030\001 \003(\0132\t.be.Quote\022\016\n\006volumn\030\002 \001(\004\"6\n\tOrd"
-      "erList\022\031\n\006orders\030\001 \003(\0132\t.be.Order\022\016\n\006vol"
-      "umn\030\002 \001(\004\"2\n\rOrderBookList\022!\n\norderbooks"
-      "\030\001 \003(\0132\r.be.OrderBook\"M\n\tOrderBook\022\037\n\010bi"
-      "d_tree\030\001 \001(\0132\r.be.OrderTree\022\037\n\010ask_tree\030"
-      "\002 \001(\0132\r.be.OrderTree\"\300\002\n\tOrderTree\022.\n\tpr"
-      "ice_map\030\001 \003(\0132\033.be.OrderTree.PriceMapEnt"
-      "ry\022.\n\torder_map\030\002 \003(\0132\033.be.OrderTree.Ord"
-      "erMapEntry\022\016\n\006volumn\030\003 \001(\004\022\021\n\tmin_price\030"
-      "\004 \001(\004\022\021\n\tmax_price\030\005 \001(\004\022\022\n\nnum_orders\030\007"
-      " \001(\004\022\r\n\005depth\030\006 \001(\r\032>\n\rPriceMapEntry\022\013\n\003"
-      "key\030\001 \001(\004\022\034\n\005value\030\002 \001(\0132\r.be.OrderList:"
-      "\0028\001\032:\n\rOrderMapEntry\022\013\n\003key\030\001 \001(\004\022\030\n\005val"
-      "ue\030\002 \001(\0132\t.be.Order:\0028\0012_\n\016MyRandomWalke"
-      "r\022#\n\006Update\022\014.be.NumSteps\032\t.be.Empty\"\000\022("
-      "\n\013GetPosition\022\t.be.Empty\032\014.be.Position\"\000"
-      "2\230\001\n\007Trading\022*\n\020QuoteUpdateAsync\022\t.be.Qu"
-      "ote\032\t.be.Empty\"\000\0222\n\017QuoteUpdateSync\022\t.be"
-      ".Quote\032\022.be.MatchingResult\"\000\022-\n\017OrderBoo"
-      "kUpdate\022\t.be.Empty\032\r.be.OrderBook\"\000b\006pro"
-      "to3"
+      "rderBook\"~\n\tExecution\022\021\n\ttimestamp\030\001 \001(\r"
+      "\022\r\n\005price\030\002 \001(\004\022\020\n\010quantity\030\003 \001(\r\022\020\n\010mak"
+      "er_id\030\004 \001(\r\022\020\n\010taker_id\030\005 \001(\r\022\031\n\021execute"
+      "d_order_id\030\006 \001(\r\"\203\001\n\005Order\022\021\n\ttimestamp\030"
+      "\001 \001(\r\022\020\n\010quantity\030\002 \001(\r\022\r\n\005price\030\003 \001(\004\022\020"
+      "\n\010order_id\030\004 \001(\004\022\021\n\ttrader_id\030\005 \001(\r\022!\n\no"
+      "rder_list\030\006 \001(\0132\r.be.OrderList\"I\n\005Quote\022"
+      "\022\n\norder_type\030\001 \001(\014\022\022\n\norder_side\030\002 \001(\014\022"
+      "\030\n\005order\030\003 \001(\0132\t.be.Order\"6\n\tQuoteList\022\031"
+      "\n\006quotes\030\001 \003(\0132\t.be.Quote\022\016\n\006volumn\030\002 \001("
+      "\004\"6\n\tOrderList\022\031\n\006orders\030\001 \003(\0132\t.be.Orde"
+      "r\022\016\n\006volumn\030\002 \001(\004\"2\n\rOrderBookList\022!\n\nor"
+      "derbooks\030\001 \003(\0132\r.be.OrderBook\"M\n\tOrderBo"
+      "ok\022\037\n\010bid_tree\030\001 \001(\0132\r.be.OrderTree\022\037\n\010a"
+      "sk_tree\030\002 \001(\0132\r.be.OrderTree\"\300\002\n\tOrderTr"
+      "ee\022.\n\tprice_map\030\001 \003(\0132\033.be.OrderTree.Pri"
+      "ceMapEntry\022.\n\torder_map\030\002 \003(\0132\033.be.Order"
+      "Tree.OrderMapEntry\022\016\n\006volumn\030\003 \001(\004\022\021\n\tmi"
+      "n_price\030\004 \001(\004\022\021\n\tmax_price\030\005 \001(\004\022\022\n\nnum_"
+      "orders\030\007 \001(\004\022\r\n\005depth\030\006 \001(\r\032>\n\rPriceMapE"
+      "ntry\022\013\n\003key\030\001 \001(\004\022\034\n\005value\030\002 \001(\0132\r.be.Or"
+      "derList:\0028\001\032:\n\rOrderMapEntry\022\013\n\003key\030\001 \001("
+      "\004\022\030\n\005value\030\002 \001(\0132\t.be.Order:\0028\0012_\n\016MyRan"
+      "domWalker\022#\n\006Update\022\014.be.NumSteps\032\t.be.E"
+      "mpty\"\000\022(\n\013GetPosition\022\t.be.Empty\032\014.be.Po"
+      "sition\"\0002\230\001\n\007Trading\022*\n\020QuoteUpdateAsync"
+      "\022\t.be.Quote\032\t.be.Empty\"\000\0222\n\017QuoteUpdateS"
+      "ync\022\t.be.Quote\032\022.be.MatchingResult\"\000\022-\n\017"
+      "OrderBookUpdate\022\t.be.Empty\032\r.be.OrderBoo"
+      "k\"\000b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 1323);
+      descriptor, 1371);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Trading.proto", &protobuf_RegisterTypes);
 }
@@ -1171,7 +1174,7 @@ void MatchingResult::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int MatchingResult::kTimestampFieldNumber;
-const int MatchingResult::kOrdersFieldNumber;
+const int MatchingResult::kQuotesFieldNumber;
 const int MatchingResult::kExecutionsFieldNumber;
 const int MatchingResult::kOrderbookFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -1186,7 +1189,7 @@ MatchingResult::MatchingResult()
 MatchingResult::MatchingResult(const MatchingResult& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL),
-      orders_(from.orders_),
+      quotes_(from.quotes_),
       executions_(from.executions_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   if (from.has_orderbook()) {
@@ -1233,7 +1236,7 @@ void MatchingResult::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  orders_.Clear();
+  quotes_.Clear();
   executions_.Clear();
   if (GetArenaNoVirtual() == NULL && orderbook_ != NULL) {
     delete orderbook_;
@@ -1267,12 +1270,12 @@ bool MatchingResult::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .be.Order orders = 2;
+      // repeated .be.Quote quotes = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-                input, add_orders()));
+                input, add_quotes()));
         } else {
           goto handle_unusual;
         }
@@ -1334,12 +1337,12 @@ void MatchingResult::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->timestamp(), output);
   }
 
-  // repeated .be.Order orders = 2;
+  // repeated .be.Quote quotes = 2;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->orders_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->quotes_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2,
-      this->orders(static_cast<int>(i)),
+      this->quotes(static_cast<int>(i)),
       output);
   }
 
@@ -1377,12 +1380,12 @@ void MatchingResult::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->timestamp(), target);
   }
 
-  // repeated .be.Order orders = 2;
+  // repeated .be.Quote quotes = 2;
   for (unsigned int i = 0,
-      n = static_cast<unsigned int>(this->orders_size()); i < n; i++) {
+      n = static_cast<unsigned int>(this->quotes_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
-        2, this->orders(static_cast<int>(i)), deterministic, target);
+        2, this->quotes(static_cast<int>(i)), deterministic, target);
   }
 
   // repeated .be.Execution executions = 3;
@@ -1417,14 +1420,14 @@ size_t MatchingResult::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .be.Order orders = 2;
+  // repeated .be.Quote quotes = 2;
   {
-    unsigned int count = static_cast<unsigned int>(this->orders_size());
+    unsigned int count = static_cast<unsigned int>(this->quotes_size());
     total_size += 1UL * count;
     for (unsigned int i = 0; i < count; i++) {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
-          this->orders(static_cast<int>(i)));
+          this->quotes(static_cast<int>(i)));
     }
   }
 
@@ -1480,7 +1483,7 @@ void MatchingResult::MergeFrom(const MatchingResult& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  orders_.MergeFrom(from.orders_);
+  quotes_.MergeFrom(from.quotes_);
   executions_.MergeFrom(from.executions_);
   if (from.has_orderbook()) {
     mutable_orderbook()->::be::OrderBook::MergeFrom(from.orderbook());
@@ -1514,7 +1517,7 @@ void MatchingResult::Swap(MatchingResult* other) {
 }
 void MatchingResult::InternalSwap(MatchingResult* other) {
   using std::swap;
-  CastToBase(&orders_)->InternalSwap(CastToBase(&other->orders_));
+  CastToBase(&quotes_)->InternalSwap(CastToBase(&other->quotes_));
   CastToBase(&executions_)->InternalSwap(CastToBase(&other->executions_));
   swap(orderbook_, other->orderbook_);
   swap(timestamp_, other->timestamp_);
@@ -1532,10 +1535,12 @@ void MatchingResult::InternalSwap(MatchingResult* other) {
 void Execution::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Execution::kTimestampFieldNumber;
 const int Execution::kPriceFieldNumber;
 const int Execution::kQuantityFieldNumber;
-const int Execution::kOrderSideFieldNumber;
-const int Execution::kRoleFieldNumber;
+const int Execution::kMakerIdFieldNumber;
+const int Execution::kTakerIdFieldNumber;
+const int Execution::kExecutedOrderIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Execution::Execution()
@@ -1549,26 +1554,16 @@ Execution::Execution(const Execution& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  order_side_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.order_side().size() > 0) {
-    order_side_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.order_side_);
-  }
-  role_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.role().size() > 0) {
-    role_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.role_);
-  }
   ::memcpy(&price_, &from.price_,
-    static_cast<size_t>(reinterpret_cast<char*>(&quantity_) -
-    reinterpret_cast<char*>(&price_)) + sizeof(quantity_));
+    static_cast<size_t>(reinterpret_cast<char*>(&executed_order_id_) -
+    reinterpret_cast<char*>(&price_)) + sizeof(executed_order_id_));
   // @@protoc_insertion_point(copy_constructor:be.Execution)
 }
 
 void Execution::SharedCtor() {
-  order_side_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  role_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&price_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&quantity_) -
-      reinterpret_cast<char*>(&price_)) + sizeof(quantity_));
+      reinterpret_cast<char*>(&executed_order_id_) -
+      reinterpret_cast<char*>(&price_)) + sizeof(executed_order_id_));
 }
 
 Execution::~Execution() {
@@ -1577,8 +1572,6 @@ Execution::~Execution() {
 }
 
 void Execution::SharedDtor() {
-  order_side_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  role_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void Execution::SetCachedSize(int size) const {
@@ -1601,11 +1594,9 @@ void Execution::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  order_side_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  role_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&price_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&quantity_) -
-      reinterpret_cast<char*>(&price_)) + sizeof(quantity_));
+      reinterpret_cast<char*>(&executed_order_id_) -
+      reinterpret_cast<char*>(&price_)) + sizeof(executed_order_id_));
   _internal_metadata_.Clear();
 }
 
@@ -1619,6 +1610,20 @@ bool Execution::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // uint32 timestamp = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &timestamp_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       // uint64 price = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
@@ -1647,24 +1652,42 @@ bool Execution::MergePartialFromCodedStream(
         break;
       }
 
-      // bytes order_side = 4;
+      // uint32 maker_id = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_order_side()));
+            static_cast< ::google::protobuf::uint8>(32u /* 32 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &maker_id_)));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // bytes role = 5;
+      // uint32 taker_id = 5;
       case 5: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_role()));
+            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &taker_id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint32 executed_order_id = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
+                 input, &executed_order_id_)));
         } else {
           goto handle_unusual;
         }
@@ -1697,6 +1720,11 @@ void Execution::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  // uint32 timestamp = 1;
+  if (this->timestamp() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->timestamp(), output);
+  }
+
   // uint64 price = 2;
   if (this->price() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(2, this->price(), output);
@@ -1707,16 +1735,19 @@ void Execution::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(3, this->quantity(), output);
   }
 
-  // bytes order_side = 4;
-  if (this->order_side().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      4, this->order_side(), output);
+  // uint32 maker_id = 4;
+  if (this->maker_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->maker_id(), output);
   }
 
-  // bytes role = 5;
-  if (this->role().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
-      5, this->role(), output);
+  // uint32 taker_id = 5;
+  if (this->taker_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(5, this->taker_id(), output);
+  }
+
+  // uint32 executed_order_id = 6;
+  if (this->executed_order_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(6, this->executed_order_id(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1733,6 +1764,11 @@ void Execution::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  // uint32 timestamp = 1;
+  if (this->timestamp() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->timestamp(), target);
+  }
+
   // uint64 price = 2;
   if (this->price() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(2, this->price(), target);
@@ -1743,18 +1779,19 @@ void Execution::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(3, this->quantity(), target);
   }
 
-  // bytes order_side = 4;
-  if (this->order_side().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        4, this->order_side(), target);
+  // uint32 maker_id = 4;
+  if (this->maker_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->maker_id(), target);
   }
 
-  // bytes role = 5;
-  if (this->role().size() > 0) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        5, this->role(), target);
+  // uint32 taker_id = 5;
+  if (this->taker_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(5, this->taker_id(), target);
+  }
+
+  // uint32 executed_order_id = 6;
+  if (this->executed_order_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(6, this->executed_order_id(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1774,20 +1811,6 @@ size_t Execution::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // bytes order_side = 4;
-  if (this->order_side().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->order_side());
-  }
-
-  // bytes role = 5;
-  if (this->role().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::BytesSize(
-        this->role());
-  }
-
   // uint64 price = 2;
   if (this->price() != 0) {
     total_size += 1 +
@@ -1795,11 +1818,39 @@ size_t Execution::ByteSizeLong() const {
         this->price());
   }
 
+  // uint32 timestamp = 1;
+  if (this->timestamp() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->timestamp());
+  }
+
   // uint32 quantity = 3;
   if (this->quantity() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::UInt32Size(
         this->quantity());
+  }
+
+  // uint32 maker_id = 4;
+  if (this->maker_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->maker_id());
+  }
+
+  // uint32 taker_id = 5;
+  if (this->taker_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->taker_id());
+  }
+
+  // uint32 executed_order_id = 6;
+  if (this->executed_order_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt32Size(
+        this->executed_order_id());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -1829,19 +1880,23 @@ void Execution::MergeFrom(const Execution& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.order_side().size() > 0) {
-
-    order_side_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.order_side_);
-  }
-  if (from.role().size() > 0) {
-
-    role_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.role_);
-  }
   if (from.price() != 0) {
     set_price(from.price());
   }
+  if (from.timestamp() != 0) {
+    set_timestamp(from.timestamp());
+  }
   if (from.quantity() != 0) {
     set_quantity(from.quantity());
+  }
+  if (from.maker_id() != 0) {
+    set_maker_id(from.maker_id());
+  }
+  if (from.taker_id() != 0) {
+    set_taker_id(from.taker_id());
+  }
+  if (from.executed_order_id() != 0) {
+    set_executed_order_id(from.executed_order_id());
   }
 }
 
@@ -1869,12 +1924,12 @@ void Execution::Swap(Execution* other) {
 }
 void Execution::InternalSwap(Execution* other) {
   using std::swap;
-  order_side_.Swap(&other->order_side_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  role_.Swap(&other->role_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
   swap(price_, other->price_);
+  swap(timestamp_, other->timestamp_);
   swap(quantity_, other->quantity_);
+  swap(maker_id_, other->maker_id_);
+  swap(taker_id_, other->taker_id_);
+  swap(executed_order_id_, other->executed_order_id_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

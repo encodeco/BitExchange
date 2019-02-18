@@ -26,42 +26,43 @@ namespace Be {
           string.Concat(
             "Cg1UcmFkaW5nLnByb3RvEgJiZSIHCgVFbXB0eSIVCghOdW1TdGVwcxIJCgFu",
             "GAEgASgFIhUKCFBvc2l0aW9uEgkKAXgYASABKAUigwEKDk1hdGNoaW5nUmVz",
-            "dWx0EhEKCXRpbWVzdGFtcBgBIAEoDRIZCgZvcmRlcnMYAiADKAsyCS5iZS5P",
-            "cmRlchIhCgpleGVjdXRpb25zGAMgAygLMg0uYmUuRXhlY3V0aW9uEiAKCW9y",
-            "ZGVyYm9vaxgEIAEoCzINLmJlLk9yZGVyQm9vayJOCglFeGVjdXRpb24SDQoF",
-            "cHJpY2UYAiABKAQSEAoIcXVhbnRpdHkYAyABKA0SEgoKb3JkZXJfc2lkZRgE",
-            "IAEoDBIMCgRyb2xlGAUgASgMIoMBCgVPcmRlchIRCgl0aW1lc3RhbXAYASAB",
-            "KA0SEAoIcXVhbnRpdHkYAiABKA0SDQoFcHJpY2UYAyABKAQSEAoIb3JkZXJf",
-            "aWQYBCABKAQSEQoJdHJhZGVyX2lkGAUgASgNEiEKCm9yZGVyX2xpc3QYBiAB",
-            "KAsyDS5iZS5PcmRlckxpc3QiSQoFUXVvdGUSEgoKb3JkZXJfdHlwZRgBIAEo",
-            "DBISCgpvcmRlcl9zaWRlGAIgASgMEhgKBW9yZGVyGAMgASgLMgkuYmUuT3Jk",
-            "ZXIiNgoJUXVvdGVMaXN0EhkKBnF1b3RlcxgBIAMoCzIJLmJlLlF1b3RlEg4K",
-            "BnZvbHVtbhgCIAEoBCI2CglPcmRlckxpc3QSGQoGb3JkZXJzGAEgAygLMgku",
-            "YmUuT3JkZXISDgoGdm9sdW1uGAIgASgEIjIKDU9yZGVyQm9va0xpc3QSIQoK",
-            "b3JkZXJib29rcxgBIAMoCzINLmJlLk9yZGVyQm9vayJNCglPcmRlckJvb2sS",
-            "HwoIYmlkX3RyZWUYASABKAsyDS5iZS5PcmRlclRyZWUSHwoIYXNrX3RyZWUY",
-            "AiABKAsyDS5iZS5PcmRlclRyZWUiwAIKCU9yZGVyVHJlZRIuCglwcmljZV9t",
-            "YXAYASADKAsyGy5iZS5PcmRlclRyZWUuUHJpY2VNYXBFbnRyeRIuCglvcmRl",
-            "cl9tYXAYAiADKAsyGy5iZS5PcmRlclRyZWUuT3JkZXJNYXBFbnRyeRIOCgZ2",
-            "b2x1bW4YAyABKAQSEQoJbWluX3ByaWNlGAQgASgEEhEKCW1heF9wcmljZRgF",
-            "IAEoBBISCgpudW1fb3JkZXJzGAcgASgEEg0KBWRlcHRoGAYgASgNGj4KDVBy",
-            "aWNlTWFwRW50cnkSCwoDa2V5GAEgASgEEhwKBXZhbHVlGAIgASgLMg0uYmUu",
-            "T3JkZXJMaXN0OgI4ARo6Cg1PcmRlck1hcEVudHJ5EgsKA2tleRgBIAEoBBIY",
-            "CgV2YWx1ZRgCIAEoCzIJLmJlLk9yZGVyOgI4ATJfCg5NeVJhbmRvbVdhbGtl",
-            "chIjCgZVcGRhdGUSDC5iZS5OdW1TdGVwcxoJLmJlLkVtcHR5IgASKAoLR2V0",
-            "UG9zaXRpb24SCS5iZS5FbXB0eRoMLmJlLlBvc2l0aW9uIgAymAEKB1RyYWRp",
-            "bmcSKgoQUXVvdGVVcGRhdGVBc3luYxIJLmJlLlF1b3RlGgkuYmUuRW1wdHki",
-            "ABIyCg9RdW90ZVVwZGF0ZVN5bmMSCS5iZS5RdW90ZRoSLmJlLk1hdGNoaW5n",
-            "UmVzdWx0IgASLQoPT3JkZXJCb29rVXBkYXRlEgkuYmUuRW1wdHkaDS5iZS5P",
-            "cmRlckJvb2siAGIGcHJvdG8z"));
+            "dWx0EhEKCXRpbWVzdGFtcBgBIAEoDRIZCgZxdW90ZXMYAiADKAsyCS5iZS5R",
+            "dW90ZRIhCgpleGVjdXRpb25zGAMgAygLMg0uYmUuRXhlY3V0aW9uEiAKCW9y",
+            "ZGVyYm9vaxgEIAEoCzINLmJlLk9yZGVyQm9vayJ+CglFeGVjdXRpb24SEQoJ",
+            "dGltZXN0YW1wGAEgASgNEg0KBXByaWNlGAIgASgEEhAKCHF1YW50aXR5GAMg",
+            "ASgNEhAKCG1ha2VyX2lkGAQgASgNEhAKCHRha2VyX2lkGAUgASgNEhkKEWV4",
+            "ZWN1dGVkX29yZGVyX2lkGAYgASgNIoMBCgVPcmRlchIRCgl0aW1lc3RhbXAY",
+            "ASABKA0SEAoIcXVhbnRpdHkYAiABKA0SDQoFcHJpY2UYAyABKAQSEAoIb3Jk",
+            "ZXJfaWQYBCABKAQSEQoJdHJhZGVyX2lkGAUgASgNEiEKCm9yZGVyX2xpc3QY",
+            "BiABKAsyDS5iZS5PcmRlckxpc3QiSQoFUXVvdGUSEgoKb3JkZXJfdHlwZRgB",
+            "IAEoDBISCgpvcmRlcl9zaWRlGAIgASgMEhgKBW9yZGVyGAMgASgLMgkuYmUu",
+            "T3JkZXIiNgoJUXVvdGVMaXN0EhkKBnF1b3RlcxgBIAMoCzIJLmJlLlF1b3Rl",
+            "Eg4KBnZvbHVtbhgCIAEoBCI2CglPcmRlckxpc3QSGQoGb3JkZXJzGAEgAygL",
+            "MgkuYmUuT3JkZXISDgoGdm9sdW1uGAIgASgEIjIKDU9yZGVyQm9va0xpc3QS",
+            "IQoKb3JkZXJib29rcxgBIAMoCzINLmJlLk9yZGVyQm9vayJNCglPcmRlckJv",
+            "b2sSHwoIYmlkX3RyZWUYASABKAsyDS5iZS5PcmRlclRyZWUSHwoIYXNrX3Ry",
+            "ZWUYAiABKAsyDS5iZS5PcmRlclRyZWUiwAIKCU9yZGVyVHJlZRIuCglwcmlj",
+            "ZV9tYXAYASADKAsyGy5iZS5PcmRlclRyZWUuUHJpY2VNYXBFbnRyeRIuCglv",
+            "cmRlcl9tYXAYAiADKAsyGy5iZS5PcmRlclRyZWUuT3JkZXJNYXBFbnRyeRIO",
+            "CgZ2b2x1bW4YAyABKAQSEQoJbWluX3ByaWNlGAQgASgEEhEKCW1heF9wcmlj",
+            "ZRgFIAEoBBISCgpudW1fb3JkZXJzGAcgASgEEg0KBWRlcHRoGAYgASgNGj4K",
+            "DVByaWNlTWFwRW50cnkSCwoDa2V5GAEgASgEEhwKBXZhbHVlGAIgASgLMg0u",
+            "YmUuT3JkZXJMaXN0OgI4ARo6Cg1PcmRlck1hcEVudHJ5EgsKA2tleRgBIAEo",
+            "BBIYCgV2YWx1ZRgCIAEoCzIJLmJlLk9yZGVyOgI4ATJfCg5NeVJhbmRvbVdh",
+            "bGtlchIjCgZVcGRhdGUSDC5iZS5OdW1TdGVwcxoJLmJlLkVtcHR5IgASKAoL",
+            "R2V0UG9zaXRpb24SCS5iZS5FbXB0eRoMLmJlLlBvc2l0aW9uIgAymAEKB1Ry",
+            "YWRpbmcSKgoQUXVvdGVVcGRhdGVBc3luYxIJLmJlLlF1b3RlGgkuYmUuRW1w",
+            "dHkiABIyCg9RdW90ZVVwZGF0ZVN5bmMSCS5iZS5RdW90ZRoSLmJlLk1hdGNo",
+            "aW5nUmVzdWx0IgASLQoPT3JkZXJCb29rVXBkYXRlEgkuYmUuRW1wdHkaDS5i",
+            "ZS5PcmRlckJvb2siAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Empty), global::Be.Empty.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.NumSteps), global::Be.NumSteps.Parser, new[]{ "N" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Position), global::Be.Position.Parser, new[]{ "X" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Be.MatchingResult), global::Be.MatchingResult.Parser, new[]{ "Timestamp", "Orders", "Executions", "Orderbook" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Be.Execution), global::Be.Execution.Parser, new[]{ "Price", "Quantity", "OrderSide", "Role" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Be.MatchingResult), global::Be.MatchingResult.Parser, new[]{ "Timestamp", "Quotes", "Executions", "Orderbook" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Be.Execution), global::Be.Execution.Parser, new[]{ "Timestamp", "Price", "Quantity", "MakerId", "TakerId", "ExecutedOrderId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Order), global::Be.Order.Parser, new[]{ "Timestamp", "Quantity", "Price", "OrderId", "TraderId", "OrderList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.Quote), global::Be.Quote.Parser, new[]{ "OrderType", "OrderSide", "Order" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Be.QuoteList), global::Be.QuoteList.Parser, new[]{ "Quotes", "Volumn" }, null, null, null),
@@ -463,7 +464,7 @@ namespace Be {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MatchingResult(MatchingResult other) : this() {
       timestamp_ = other.timestamp_;
-      orders_ = other.orders_.Clone();
+      quotes_ = other.quotes_.Clone();
       executions_ = other.executions_.Clone();
       orderbook_ = other.orderbook_ != null ? other.orderbook_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -478,7 +479,7 @@ namespace Be {
     public const int TimestampFieldNumber = 1;
     private uint timestamp_;
     /// <summary>
-    /// 업데이트된 오더들
+    /// 업데이트된 Order들
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint Timestamp {
@@ -488,14 +489,14 @@ namespace Be {
       }
     }
 
-    /// <summary>Field number for the "orders" field.</summary>
-    public const int OrdersFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Be.Order> _repeated_orders_codec
-        = pb::FieldCodec.ForMessage(18, global::Be.Order.Parser);
-    private readonly pbc::RepeatedField<global::Be.Order> orders_ = new pbc::RepeatedField<global::Be.Order>();
+    /// <summary>Field number for the "quotes" field.</summary>
+    public const int QuotesFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Be.Quote> _repeated_quotes_codec
+        = pb::FieldCodec.ForMessage(18, global::Be.Quote.Parser);
+    private readonly pbc::RepeatedField<global::Be.Quote> quotes_ = new pbc::RepeatedField<global::Be.Quote>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Be.Order> Orders {
-      get { return orders_; }
+    public pbc::RepeatedField<global::Be.Quote> Quotes {
+      get { return quotes_; }
     }
 
     /// <summary>Field number for the "executions" field.</summary>
@@ -533,7 +534,7 @@ namespace Be {
         return true;
       }
       if (Timestamp != other.Timestamp) return false;
-      if(!orders_.Equals(other.orders_)) return false;
+      if(!quotes_.Equals(other.quotes_)) return false;
       if(!executions_.Equals(other.executions_)) return false;
       if (!object.Equals(Orderbook, other.Orderbook)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -543,7 +544,7 @@ namespace Be {
     public override int GetHashCode() {
       int hash = 1;
       if (Timestamp != 0) hash ^= Timestamp.GetHashCode();
-      hash ^= orders_.GetHashCode();
+      hash ^= quotes_.GetHashCode();
       hash ^= executions_.GetHashCode();
       if (orderbook_ != null) hash ^= Orderbook.GetHashCode();
       if (_unknownFields != null) {
@@ -563,7 +564,7 @@ namespace Be {
         output.WriteRawTag(8);
         output.WriteUInt32(Timestamp);
       }
-      orders_.WriteTo(output, _repeated_orders_codec);
+      quotes_.WriteTo(output, _repeated_quotes_codec);
       executions_.WriteTo(output, _repeated_executions_codec);
       if (orderbook_ != null) {
         output.WriteRawTag(34);
@@ -580,7 +581,7 @@ namespace Be {
       if (Timestamp != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Timestamp);
       }
-      size += orders_.CalculateSize(_repeated_orders_codec);
+      size += quotes_.CalculateSize(_repeated_quotes_codec);
       size += executions_.CalculateSize(_repeated_executions_codec);
       if (orderbook_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Orderbook);
@@ -599,7 +600,7 @@ namespace Be {
       if (other.Timestamp != 0) {
         Timestamp = other.Timestamp;
       }
-      orders_.Add(other.orders_);
+      quotes_.Add(other.quotes_);
       executions_.Add(other.executions_);
       if (other.orderbook_ != null) {
         if (orderbook_ == null) {
@@ -623,7 +624,7 @@ namespace Be {
             break;
           }
           case 18: {
-            orders_.AddEntriesFrom(input, _repeated_orders_codec);
+            quotes_.AddEntriesFrom(input, _repeated_quotes_codec);
             break;
           }
           case 26: {
@@ -668,16 +669,29 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Execution(Execution other) : this() {
+      timestamp_ = other.timestamp_;
       price_ = other.price_;
       quantity_ = other.quantity_;
-      orderSide_ = other.orderSide_;
-      role_ = other.role_;
+      makerId_ = other.makerId_;
+      takerId_ = other.takerId_;
+      executedOrderId_ = other.executedOrderId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Execution Clone() {
       return new Execution(this);
+    }
+
+    /// <summary>Field number for the "timestamp" field.</summary>
+    public const int TimestampFieldNumber = 1;
+    private uint timestamp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Timestamp {
+      get { return timestamp_; }
+      set {
+        timestamp_ = value;
+      }
     }
 
     /// <summary>Field number for the "price" field.</summary>
@@ -702,25 +716,39 @@ namespace Be {
       }
     }
 
-    /// <summary>Field number for the "order_side" field.</summary>
-    public const int OrderSideFieldNumber = 4;
-    private pb::ByteString orderSide_ = pb::ByteString.Empty;
+    /// <summary>Field number for the "maker_id" field.</summary>
+    public const int MakerIdFieldNumber = 4;
+    private uint makerId_;
+    /// <summary>
+    /// taker ID는 request파라메터에 있는 값이다.
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString OrderSide {
-      get { return orderSide_; }
+    public uint MakerId {
+      get { return makerId_; }
       set {
-        orderSide_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        makerId_ = value;
       }
     }
 
-    /// <summary>Field number for the "role" field.</summary>
-    public const int RoleFieldNumber = 5;
-    private pb::ByteString role_ = pb::ByteString.Empty;
+    /// <summary>Field number for the "taker_id" field.</summary>
+    public const int TakerIdFieldNumber = 5;
+    private uint takerId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString Role {
-      get { return role_; }
+    public uint TakerId {
+      get { return takerId_; }
       set {
-        role_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        takerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "executed_order_id" field.</summary>
+    public const int ExecutedOrderIdFieldNumber = 6;
+    private uint executedOrderId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint ExecutedOrderId {
+      get { return executedOrderId_; }
+      set {
+        executedOrderId_ = value;
       }
     }
 
@@ -737,20 +765,24 @@ namespace Be {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Timestamp != other.Timestamp) return false;
       if (Price != other.Price) return false;
       if (Quantity != other.Quantity) return false;
-      if (OrderSide != other.OrderSide) return false;
-      if (Role != other.Role) return false;
+      if (MakerId != other.MakerId) return false;
+      if (TakerId != other.TakerId) return false;
+      if (ExecutedOrderId != other.ExecutedOrderId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Timestamp != 0) hash ^= Timestamp.GetHashCode();
       if (Price != 0UL) hash ^= Price.GetHashCode();
       if (Quantity != 0) hash ^= Quantity.GetHashCode();
-      if (OrderSide.Length != 0) hash ^= OrderSide.GetHashCode();
-      if (Role.Length != 0) hash ^= Role.GetHashCode();
+      if (MakerId != 0) hash ^= MakerId.GetHashCode();
+      if (TakerId != 0) hash ^= TakerId.GetHashCode();
+      if (ExecutedOrderId != 0) hash ^= ExecutedOrderId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -764,6 +796,10 @@ namespace Be {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (Timestamp != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Timestamp);
+      }
       if (Price != 0UL) {
         output.WriteRawTag(16);
         output.WriteUInt64(Price);
@@ -772,13 +808,17 @@ namespace Be {
         output.WriteRawTag(24);
         output.WriteUInt32(Quantity);
       }
-      if (OrderSide.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteBytes(OrderSide);
+      if (MakerId != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(MakerId);
       }
-      if (Role.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteBytes(Role);
+      if (TakerId != 0) {
+        output.WriteRawTag(40);
+        output.WriteUInt32(TakerId);
+      }
+      if (ExecutedOrderId != 0) {
+        output.WriteRawTag(48);
+        output.WriteUInt32(ExecutedOrderId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -788,17 +828,23 @@ namespace Be {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Timestamp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Timestamp);
+      }
       if (Price != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Price);
       }
       if (Quantity != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Quantity);
       }
-      if (OrderSide.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(OrderSide);
+      if (MakerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MakerId);
       }
-      if (Role.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Role);
+      if (TakerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TakerId);
+      }
+      if (ExecutedOrderId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExecutedOrderId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -811,17 +857,23 @@ namespace Be {
       if (other == null) {
         return;
       }
+      if (other.Timestamp != 0) {
+        Timestamp = other.Timestamp;
+      }
       if (other.Price != 0UL) {
         Price = other.Price;
       }
       if (other.Quantity != 0) {
         Quantity = other.Quantity;
       }
-      if (other.OrderSide.Length != 0) {
-        OrderSide = other.OrderSide;
+      if (other.MakerId != 0) {
+        MakerId = other.MakerId;
       }
-      if (other.Role.Length != 0) {
-        Role = other.Role;
+      if (other.TakerId != 0) {
+        TakerId = other.TakerId;
+      }
+      if (other.ExecutedOrderId != 0) {
+        ExecutedOrderId = other.ExecutedOrderId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -834,6 +886,10 @@ namespace Be {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 8: {
+            Timestamp = input.ReadUInt32();
+            break;
+          }
           case 16: {
             Price = input.ReadUInt64();
             break;
@@ -842,12 +898,16 @@ namespace Be {
             Quantity = input.ReadUInt32();
             break;
           }
-          case 34: {
-            OrderSide = input.ReadBytes();
+          case 32: {
+            MakerId = input.ReadUInt32();
             break;
           }
-          case 42: {
-            Role = input.ReadBytes();
+          case 40: {
+            TakerId = input.ReadUInt32();
+            break;
+          }
+          case 48: {
+            ExecutedOrderId = input.ReadUInt32();
             break;
           }
         }
